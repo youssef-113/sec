@@ -14,50 +14,15 @@
         <!-- Sidebar -->
         <aside class="sidebar">
             <div class="sidebar-header">
-                <img src="/home/ubuntu/upload/search_images/1.png" alt="Al Ahly SC" class="sidebar-logo">
+                <img src="search_images/1.png" alt="Al Ahly SC" class="sidebar-logo">
                 <div class="sidebar-title">
                     <h3>Al Ahly SC</h3>
                     <p>Training Management</p>
                 </div>
             </div>
             
-            <nav class="sidebar-nav">
-                <div class="nav-section">
-                    <h4>OVERVIEW</h4>
-                    <ul>
-                        <li><a href="pages/coach/coach-dashboard.html" class="nav-link active"><i class="fas fa-home"></i> Dashboard</a></li>
-                        <li><a href="pages/coach/coach-analytics.html" class="nav-link"><i class="fas fa-chart-bar"></i>Coach Analytics</a></li>
-                        <li><a href="pages/player/player-performance.html" class="nav-link"><i class="fas fa-chart-bar"></i> Player Analytics</a></li>
-                    </ul>
-                </div>
-                
-                <div class="nav-section">
-                    <h4>SPORTS MANAGEMENT</h4>
-                    <ul>
-                        <li><a href="pages/teams/teams.html" class="nav-link"><i class="fas fa-users"></i> Teams</a></li>
-                        <li><a href="pages/coach/schedule.html" class="nav-link"><i class="fas fa-calendar-alt"></i> Schedule</a></li>
-                        <li><a href="pages/coach/drills.html" class="nav-link"><i class="fas fa-dumbbell"></i> Drill Library</a></li>
-                        <li><a href="pages/player/players.html" class="nav-link"><i class="fas fa-user-friends"></i> View Players</a></li>
-                        <li><a href="pages/coach/coach-attendance.html" class="nav-link"><i class="fas fa-clipboard-check"></i> Attendance</a></li>
-                    </ul>
-                </div>
-                
-                <div class="nav-section">
-                    <h4>COMMUNICATION</h4>
-                    <ul>
-                        <li><a href="pages/coach/coach-announcements.html" class="nav-link"><i class="fas fa-bullhorn"></i> Announcements</a></li>
-                        <li><a href="pages/coach/coach-chat.html" class="nav-link"><i class="fas fa-comments"></i> Chat</a></li>
-                        <li><a href="pages/coach/coach-feedback.html" class="nav-link"><i class="fas fa-star"></i> Feedback</a></li>
-                    </ul>
-                </div>
-                
-                <div class="nav-section">
-                    <h4>MEDICAL CENTER</h4>
-                    <ul>
-                        <li><a href="pages/midical/medical-dashboard.html" class="nav-link"><i class="fas fa-heartbeat"></i> Medical Overview</a></li>
-                        <li><a href="pages/midical/medical-injuries.html" class="nav-link"><i class="fas fa-band-aid"></i> Injury Management</a></li>
-                    </ul>
-                </div>
+            <nav class="sidebar-nav" id="role-nav">
+                <!-- Navigation will be populated by JavaScript based on user role -->
             </nav>
             
             <div class="sidebar-footer">
@@ -409,7 +374,17 @@
     </div>
     
     <script src="scripts/main.js"></script>
+    <script src="scripts/navigation.js"></script>
+    <script src="scripts/role-navigation.js"></script>
     <script src="scripts/page-init.js"></script>
-    <script src="scripts/dashboard.js"></script>
+    <script>
+        // Initialize navigation for manager role
+        document.addEventListener('DOMContentLoaded', function() {
+            // Auto-render navigation if user is logged in
+            if (document.getElementById('role-nav')) {
+                autoRenderNavigation('#role-nav');
+            }
+        });
+    </script>
 </body>
 </html>
