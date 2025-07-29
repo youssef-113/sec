@@ -1,7 +1,4 @@
-The code is updated to include role-based access control, navigation integration, and match management functionalities.
-```
 
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -939,4 +936,26 @@ The code is updated to include role-based access control, navigation integration
             tbody.innerHTML = leagueTable.map(team => `
                 <tr class="${team.current ? 'current-team' : ''} ${getTableRowClass(team.position)}">
                     <td class="position">${team.position}</td>
-                    <td class="team-
+                    <td class="team-name">${team.team}</td>
+                    <td>${team.played}</td>
+                    <td>${team.won}</td>
+                    <td>${team.drawn}</td>
+                    <td>${team.lost}</td>
+                    <td>${team.goalsFor}</td>
+                    <td>${team.goalsAgainst}</td>
+                    <td>${team.goalDifference}</td>
+                    <td class="points">${team.points}</td>
+                </tr>
+            `).join('');
+        }
+
+        // Helper for league table row class
+        function getTableRowClass(position) {
+            if (position === 1) return 'champion'; // 1st place
+            if (position <= 2) return 'champions-league'; // Top 2
+            if (position <= 4) return 'europa-league'; // Top 4
+            if (position >= leagueTable.length - 1) return 'relegation'; // Bottom 2
+            return '';
+        }
+        
+                        
