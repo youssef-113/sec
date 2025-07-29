@@ -225,8 +225,8 @@ function hasPageAccess(page, userRole) {
 function redirectToDashboard(userRole) {
   const dashboards = {
     manager: 'dashboard.html',
-    coach: 'coach-dashboard.html',
-    player: 'player-dashboard.html',
+    coach: 'pages/coach/coach-dashboard.html',
+    player: 'pages/player/player-dashboard.html',
     medical: 'pages/midical/medical-dashboard.html'
   }
   

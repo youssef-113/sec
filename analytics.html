@@ -1006,3 +1006,63 @@
 </body>
 </html>
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics - Al Ahly SC Training Management</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/dashboard.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="search_images/1.png" alt="Al Ahly SC" class="sidebar-logo">
+                <div class="sidebar-title">
+                    <h3>Al Ahly SC</h3>
+                    <p>Analytics Portal</p>
+                </div>
+            </div>
+            <nav class="sidebar-nav" id="role-nav">
+                <!-- Navigation will be populated by JavaScript -->
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="main-header">
+                <div class="header-left">
+                    <h1>Analytics Dashboard</h1>
+                    <p>Performance insights and analytics</p>
+                </div>
+            </header>
+
+            <div class="dashboard-content">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Performance Metrics</h3>
+                            <p>Team and individual performance analysis</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="scripts/navigation.js"></script>
+    <script src="scripts/role-navigation.js"></script>
+    <script src="scripts/page-init.js"></script>
+    <script>
+        if (document.getElementById('role-nav')) {
+            autoRenderNavigation('#role-nav');
+        }
+    </script>
+</body>
+</html>

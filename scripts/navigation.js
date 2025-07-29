@@ -25,24 +25,24 @@ class NavigationManager {
         title: 'Manager Dashboard',
         navigation: [
           { section: 'OVERVIEW', items: [
-            { icon: 'fas fa-home', text: 'Dashboard', url: 'pages/coach/coach-dashboard.html' },
-            { icon: 'fas fa-chart-bar', text: 'Analytics', url: 'pages/coach/coach-analytics.html' }
+            { icon: 'fas fa-home', text: 'Dashboard', url: 'dashboard.html' },
+            { icon: 'fas fa-chart-bar', text: 'Analytics', url: 'analytics.html' }
           ]},
           { section: 'SPORTS MANAGEMENT', items: [
             { icon: 'fas fa-users', text: 'Teams', url: 'pages/teams/teams.html' },
-            { icon: 'fas fa-calendar-alt', text: 'Schedule', url: 'pages/coach/schedule.html' },
-            { icon: 'fas fa-dumbbell', text: 'Drill Library', url: 'pages/coach/drills.html' },
+            { icon: 'fas fa-calendar-alt', text: 'Schedule', url: 'schedule.html' },
+            { icon: 'fas fa-dumbbell', text: 'Drill Library', url: 'drills.html' },
             { icon: 'fas fa-user-friends', text: 'View Players', url: 'pages/player/players.html' },
-            { icon: 'fas fa-clipboard-check', text: 'Attendance', url: 'pages/coach/coach-attendance.html' }
+            { icon: 'fas fa-clipboard-check', text: 'Attendance', url: 'attendance.html' }
           ]},
           { section: 'COMMUNICATION', items: [
-            { icon: 'fas fa-bullhorn', text: 'Announcements', url: 'pages/coach/coach-announcements.html' },
-            { icon: 'fas fa-comments', text: 'Chat', url: 'pages/coach/coach-chat.html' },
-            { icon: 'fas fa-star', text: 'Feedback', url: 'pages/coach/coach-feedback.html' }
+            { icon: 'fas fa-bullhorn', text: 'Announcements', url: 'announcements.html' },
+            { icon: 'fas fa-comments', text: 'Chat', url: 'chat.html' },
+            { icon: 'fas fa-star', text: 'Feedback', url: 'feedback.html' }
           ]},
           { section: 'MEDICAL CENTER', items: [
             { icon: 'fas fa-heartbeat', text: 'Medical Overview', url: 'pages/midical/medical-dashboard.html' },
-            { icon: 'fas fa-band-aid', text: 'Injury Management', url: 'pages/midical/medical-injuries.html' }
+            { icon: 'fas fa-band-aid', text: 'Injury Management', url: 'injuries.html' }
           ]}
         ]
       },
@@ -91,7 +91,7 @@ class NavigationManager {
         ]
       },
       medical: {
-        dashboard: 'pages/midical/medical-team-analysis.html',
+        dashboard: 'pages/midical/medical-dashboard.html',
         title: 'Medical Center',
         navigation: [
           { section: 'MEDICAL OVERVIEW', items: [

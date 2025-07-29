@@ -3,26 +3,26 @@ const roleNavigationConfig = {
     manager: [
         {text: 'Dashboard', url: 'dashboard.html', icon: 'fas fa-home'},
         {text: 'Analytics', url: 'analytics.html', icon: 'fas fa-chart-bar'},
-        {text: 'Teams', url: 'teams.html', icon: 'fas fa-users'},
+        {text: 'Teams', url: 'pages/teams/teams.html', icon: 'fas fa-users'},
         {text: 'Schedule', url: 'schedule.html', icon: 'fas fa-calendar-alt'},
         {text: 'Drill Library', url: 'drills.html', icon: 'fas fa-dumbbell'},
-        {text: 'View Players', url: 'players.html', icon: 'fas fa-user-friends'},
+        {text: 'View Players', url: 'pages/player/players.html', icon: 'fas fa-user-friends'},
         {text: 'Attendance', url: 'attendance.html', icon: 'fas fa-clipboard-check'},
         {text: 'Announcements', url: 'announcements.html', icon: 'fas fa-bullhorn'},
         {text: 'Chat', url: 'chat.html', icon: 'fas fa-comments'},
         {text: 'Feedback', url: 'feedback.html', icon: 'fas fa-star'},
-        {text: 'Medical Overview', url: 'medical-dashboard.html', icon: 'fas fa-heartbeat'},
-        {text: 'Injury Management', url: 'medical-injuries.html', icon: 'fas fa-band-aid'},
+        {text: 'Medical Overview', url: 'pages/midical/medical-dashboard.html', icon: 'fas fa-heartbeat'},
+        {text: 'Injury Management', url: 'injuries.html', icon: 'fas fa-band-aid'},
         {text: 'Profile', url: 'profile.html', icon: 'fas fa-user'}
     ],
     coach: [
-        {text: 'Dashboard', url: 'coach-dashboard.html', icon: 'fas fa-home'},
-        {text: 'Analytics', url: 'coach-analytics.html', icon: 'fas fa-chart-bar'},
-        {text: 'My Team', url: 'coach-team.html', icon: 'fas fa-users'},
-        {text: 'Attendance', url: 'coach-attendance.html', icon: 'fas fa-clipboard-check'},
+        {text: 'Dashboard', url: 'pages/coach/coach-dashboard.html', icon: 'fas fa-home'},
+        {text: 'Analytics', url: 'pages/coach/coach-analytics.html', icon: 'fas fa-chart-bar'},
+        {text: 'My Team', url: 'pages/coach/coach-team.html', icon: 'fas fa-users'},
+        {text: 'Attendance', url: 'pages/coach/coach-attendance.html', icon: 'fas fa-clipboard-check'},
         {text: 'Training Drills', url: 'drills.html', icon: 'fas fa-dumbbell'},
-        {text: 'Announcements', url: 'coach-announcements.html', icon: 'fas fa-bullhorn'},
-        {text: 'Team Chat', url: 'coach-chat.html', icon: 'fas fa-comments'},
+        {text: 'Announcements', url: 'pages/coach/coach-announcements.html', icon: 'fas fa-bullhorn'},
+        {text: 'Team Chat', url: 'pages/coach/coach-chat.html', icon: 'fas fa-comments'},
         {text: 'Profile', url: 'profile.html', icon: 'fas fa-user'}
     ],
     player: [
@@ -40,15 +40,15 @@ const roleNavigationConfig = {
         {text: 'Profile', url: 'profile.html', icon: 'fas fa-user'}
     ],
     medical: [
-        {text: 'Dashboard', url: 'medical-dashboard.html', icon: 'fas fa-heartbeat'},
-        {text: 'My Schedule', url: 'medical-schedule.html', icon: 'fas fa-calendar-alt'},
-        {text: 'Announcements', url: 'medical-announcements.html', icon: 'fas fa-bullhorn'},
-        {text: 'Player Search', url: 'medical-players.html', icon: 'fas fa-user-friends'},
-        {text: 'Injury Management', url: 'medical-injuries.html', icon: 'fas fa-band-aid'},
-        {text: 'Checkup Logs', url: 'medical-checkups.html', icon: 'fas fa-clipboard-list'},
-        {text: 'Player Chat', url: 'medical-chat.html', icon: 'fas fa-comments'},
-        {text: 'Medical Reports', url: 'medical-reports.html', icon: 'fas fa-file-medical'},
-        {text: 'Team Analysis', url: 'medical-team-analysis.html', icon: 'fas fa-chart-line'},
+        {text: 'Dashboard', url: 'pages/midical/medical-dashboard.html', icon: 'fas fa-heartbeat'},
+        {text: 'My Schedule', url: 'pages/midical/medical-schedule.html', icon: 'fas fa-calendar-alt'},
+        {text: 'Announcements', url: 'pages/midical/medical-announcements.html', icon: 'fas fa-bullhorn'},
+        {text: 'Player Search', url: 'pages/midical/medical-players.html', icon: 'fas fa-user-friends'},
+        {text: 'Injury Management', url: 'pages/midical/medical-injuries.html', icon: 'fas fa-band-aid'},
+        {text: 'Checkup Logs', url: 'pages/midical/medical-checkups.html', icon: 'fas fa-clipboard-list'},
+        {text: 'Player Chat', url: 'pages/midical/medical-chat.html', icon: 'fas fa-comments'},
+        {text: 'Medical Reports', url: 'pages/midical/medical-reports.html', icon: 'fas fa-file-medical'},
+        {text: 'Team Analysis', url: 'pages/midical/medical-team-analysis.html', icon: 'fas fa-chart-line'},
         {text: 'Profile', url: 'profile.html', icon: 'fas fa-user'}
     ]
 };
@@ -78,8 +78,8 @@ function handleLoginSuccess(user) {
     localStorage.setItem('currentUser', JSON.stringify(user));
     // Redirect to role dashboard
     let dashboard = 'dashboard.html';
-    if (user.role === 'coach') dashboard = 'coach-dashboard.html';
-    if (user.role === 'player') dashboard = 'player-dashboard.html';
-    if (user.role === 'medical') dashboard = 'medical-dashboard.html';
+    if (user.role === 'coach') dashboard = 'pages/coach/coach-dashboard.html';
+    if (user.role === 'player') dashboard = 'pages/player/player-dashboard.html';
+    if (user.role === 'medical') dashboard = 'pages/midical/medical-dashboard.html';
     window.location.href = dashboard;
 }
