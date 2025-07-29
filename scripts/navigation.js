@@ -31,8 +31,9 @@ class NavigationManager {
           { section: 'SPORTS MANAGEMENT', items: [
             { icon: 'fas fa-users', text: 'Teams', url: 'pages/teams/teams.html' },
             { icon: 'fas fa-calendar-alt', text: 'Schedule', url: 'schedule.html' },
+            { icon: 'fas fa-trophy', text: 'Matches & Tables', url: 'matches.html' },
             { icon: 'fas fa-dumbbell', text: 'Drill Library', url: 'drills.html' },
-            { icon: 'fas fa-user-friends', text: 'View Players', url: 'pages/player/players.html' },
+            { icon: 'fas fa-user-friends', text: 'Manage Players', url: 'pages/player/players.html' },
             { icon: 'fas fa-clipboard-check', text: 'Attendance', url: 'attendance.html' }
           ]},
           { section: 'COMMUNICATION', items: [
@@ -56,6 +57,8 @@ class NavigationManager {
           ]},
           { section: 'TEAM MANAGEMENT', items: [
             { icon: 'fas fa-users', text: 'My Team', url: 'pages/coach/coach-team.html' },
+            { icon: 'fas fa-user-friends', text: 'My Players', url: 'pages/coach/coach-players-list.html' },
+            { icon: 'fas fa-trophy', text: 'Matches & Tables', url: 'matches.html' },
             { icon: 'fas fa-clipboard-check', text: 'Attendance', url: 'pages/coach/coach-attendance.html' },
             { icon: 'fas fa-dumbbell', text: 'Training Drills', url: 'pages/coach/drills.html' }
           ]},

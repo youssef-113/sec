@@ -1,4 +1,7 @@
+The code is updated to include role-based access control, navigation integration, and match management functionalities.
+```
 
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -822,7 +825,7 @@
 
         function loadFixtures() {
             const container = document.getElementById('fixtures-list');
-            
+
             if (fixtures.length === 0) {
                 container.innerHTML = `
                     <div class="empty-state">
@@ -876,7 +879,7 @@
 
         function loadResults() {
             const container = document.getElementById('results-list');
-            
+
             if (results.length === 0) {
                 container.innerHTML = `
                     <div class="empty-state">
@@ -932,110 +935,8 @@
 
         function loadLeagueTable() {
             const tbody = document.getElementById('league-table-body');
-            
+
             tbody.innerHTML = leagueTable.map(team => `
                 <tr class="${team.current ? 'current-team' : ''} ${getTableRowClass(team.position)}">
                     <td class="position">${team.position}</td>
-                    <td class="team-cell">
-                        <img src="${team.current ? 'search_images/7AhhubHgCAYu.jpg' : 'https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=24&h=24&fit=crop&crop=center'}" alt="${team.team}" class="table-team-logo">
-                        <span>${team.team}</span>
-                    </td>
-                    <td>${team.played}</td>
-                    <td>${team.won}</td>
-                    <td>${team.drawn}</td>
-                    <td>${team.lost}</td>
-                    <td>${team.goalsFor}</td>
-                    <td>${team.goalsAgainst}</td>
-                    <td>${team.goalDifference > 0 ? '+' : ''}${team.goalDifference}</td>
-                    <td><strong>${team.points}</strong></td>
-                </tr>
-            `).join('');
-        }
-
-        function getCompetitionName(competition) {
-            const names = {
-                'league': 'Egyptian Premier League',
-                'cup': 'Egypt Cup',
-                'champions': 'CAF Champions League',
-                'friendly': 'Friendly'
-            };
-            return names[competition] || competition;
-        }
-
-        function getTableRowClass(position) {
-            if (position <= 2) return 'champions-position';
-            if (position <= 4) return 'europa-position';
-            if (position >= 16) return 'relegation-position';
-            return '';
-        }
-
-        function viewMatchDetail(id) {
-            showNotification('Opening match details...', 'info');
-        }
-
-        function applyFilters(type) {
-            if (type === 'fixtures') {
-                loadFixtures();
-            } else if (type === 'results') {
-                loadResults();
-            }
-            showNotification('Filters applied successfully', 'success');
-        }
-
-        function refreshData() {
-            loadMatchesData();
-            showNotification('Data refreshed successfully', 'success');
-        }
-
-        function exportData() {
-            const data = { fixtures, results, leagueTable };
-            const dataStr = JSON.stringify(data, null, 2);
-            const dataBlob = new Blob([dataStr], {type: 'application/json'});
-            const url = URL.createObjectURL(dataBlob);
-            const link = document.createElement('a');
-            link.href = url;
-            link.download = 'matches_data.json';
-            link.click();
-            
-            showNotification('Data exported successfully', 'success');
-        }
-
-        function showNotification(message, type = 'info') {
-            const notification = document.createElement('div');
-            notification.className = `notification notification-${type}`;
-            notification.textContent = message;
-
-            notification.style.cssText = `
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                background: ${type === 'success' ? '#10b981' : type === 'error' ? '#ef4444' : '#3b82f6'};
-                color: white;
-                padding: 12px 24px;
-                border-radius: 8px;
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-                z-index: 1000;
-                font-size: 14px;
-                font-weight: 500;
-                transform: translateX(100%);
-                transition: transform 0.3s ease;
-            `;
-
-            document.body.appendChild(notification);
-
-            setTimeout(() => {
-                notification.style.transform = 'translateX(0)';
-            }, 100);
-
-            setTimeout(() => {
-                notification.style.transform = 'translateX(100%)';
-                setTimeout(() => {
-                    if (document.body.contains(notification)) {
-                        document.body.removeChild(notification);
-                    }
-                }, 300);
-            }, 3000);
-        }
-    </script>
-</body>
-</html>
+                    <td class="team-

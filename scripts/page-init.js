@@ -198,12 +198,13 @@ function hasPageAccess(page, userRole) {
   const rolePages = {
     manager: [
       'dashboard.html', 'analytics.html', 'teams.html', 'schedule.html', 
-      'drills.html', 'players.html', 'attendance.html', 'announcements.html',
+      'matches.html', 'drills.html', 'players.html', 'attendance.html', 'announcements.html',
       'chat.html', 'feedback.html', 'medical-dashboard.html', 'medical-injuries.html'
     ],
     coach: [
       'coach-dashboard.html', 'coach-analytics.html', 'coach-team.html',
-      'coach-attendance.html', 'drills.html', 'coach-announcements.html', 'coach-chat.html'
+      'coach-players-list.html', 'matches.html', 'coach-attendance.html', 'drills.html', 
+      'coach-announcements.html', 'coach-chat.html'
     ],
     player: [
       'player-dashboard.html', 'player-performance.html', 'player-schedule.html',

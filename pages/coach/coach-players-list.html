@@ -533,7 +533,16 @@
     <script src="../../scripts/navigation.js"></script>
     <script src="../../scripts/role-navigation.js"></script>
     <script src="../../scripts/page-init.js"></script>
+    <script src="../../scripts/main.js"></script>
+    <script src="../../scripts/navigation.js"></script>
+    <script src="../../scripts/role-navigation.js"></script>
+    <script src="../../scripts/page-init.js"></script>
     <script>
+        // Initialize navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            autoRenderNavigation('#role-nav');
+        });
+
         // Sample player data
         const playersData = [
             {
