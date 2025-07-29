@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Medical Announcements - Al Ahly SC Medical Center</title>
+        <link rel="stylesheet" href="../../styles/main.css">
+        <link rel="stylesheet" href="../../styles/medical.css">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+            rel="stylesheet">
+    </head>
+
+    <body>
+        <div class="app-container">
+            <!-- Medical Sidebar -->
+            <aside class="sidebar">
+                <div class="sidebar-header">
+                    <img src="../../search_images/7AhhubHgCAYu.jpg" alt="Al Ahly SC" class="sidebar-logo">
+                    <div class="sidebar-title">
+                        <h3>Al Ahly SC</h3>
+                        <p>Medical Center</p>
+                    </div>
+                </div>
+
+                <nav class="sidebar-nav">
+                    <div class="nav-section">
+                        <h4>MEDICAL OVERVIEW</h4>
+                        <ul>
+                            <li><a href="medical-dashboard.html" class="nav-link"><i class="fas fa-heartbeat"></i>
+                                    Dashboard</a></li>
+                            <li><a href="medical-schedule.html" class="nav-link"><i class="fas fa-calendar-alt"></i> My
+                                    Schedule</a></li>
+                            <li><a href="medical-announcements.html" class="nav-link active"><i
+                                        class="fas fa-bullhorn"></i> Announcements</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="nav-section">
+                        <h4>PLAYER MANAGEMENT</h4>
+                        <ul>
+                            <li><a href="medical-players.html" class="nav-link"><i class="fas fa-user-friends"></i>
+                                    Player Search</a></li>
+                            <li><a href="medical-injuries.html" class="nav-link"><i class="fas fa-band-aid"></i> Injury
+                                    Management</a></li>
+                            <li><a href="medical-checkups.html" class="nav-link"><i class="fas fa-clipboard-list"></i>
+                                    Checkup Logs</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="nav-section">
+                        <h4>COMMUNICATION</h4>
+                        <ul>
+                            <li><a href="medical-chat.html" class="nav-link"><i class="fas fa-comments"></i> Player
+                                    Chat</a></li>
+                            <li><a href="medical-reports.html" class="nav-link"><i class="fas fa-file-medical"></i>
+                                    Medical Reports</a></li>
+                            <li><a href="medical-team-analysis.html" class="nav-link"><i class="fas fa-chart-line"></i>
+                                    Team Analysis</a></li>
+                        </ul>
+                    </div>
+                </nav>
+
+                <div class="sidebar-footer">
+                    <div class="user-profile">
+                        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=40&h=40&fit=crop&crop=face"
+                            alt="User" class="user-avatar">
+                        <div class="user-info">
+                            <span class="user-name">Dr. Sarah Ahmed</span>
+                            <span class="user-role">Medical Staff</span>
+                        </div>
+                        <div class="user-menu">
+                            <i class="fas fa-chevron-down"></i>
+                            <div class="dropdown-menu">
+                                <a href="profile.html"><i class="fas fa-user"></i> Profile</a>
+                                <a href="settings.html"><i class="fas fa-cog"></i> Settings</a>
+                                <a href="../../index.html"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="main-content">
+                <header class="main-header">
+                    <div class="header-left">
+                        <button class="sidebar-toggle">
+                            <i class="fas fa-bars"></i>
+                        </button>
+                        <h1>Medical Announcements</h1>
+                        <p>Post and manage medical-related announcements for players and staff</p>
+                    </div>
+
+                    <div class="header-right">
+                        <div class="search-box">
+                            <i class="fas fa-search"></i>
+                            <input type="text" placeholder="Search announcements..." id="announcement-search">
+                        </div>
+                        <button class="btn-primary" onclick="openNewAnnouncementModal()">
+                            <i class="fas fa-plus"></i>
+                            New Announcement
+                        </button>
+                    </div>
+                </header>
+
+                <div class="medical-content">
+                    <!-- Quick Stats -->
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-bullhorn"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>8</h3>
+                                <p>Active Announcements</p>
+                            </div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-eye"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>95%</h3>
+                                <p>Read Rate</p>
+                            </div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>2</h3>
+                                <p>Urgent Alerts</p>
+                            </div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>3</h3>
+                                <p>Scheduled</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Announcement Filters -->
+                    <div class="announcement-filters">
+                        <div class="filter-tabs">
+                            <button class="filter-tab active" data-filter="all">All</button>
+                            <button class="filter-tab" data-filter="urgent">Urgent</button>
+                            <button class="filter-tab" data-filter="general">General</button>
+                            <button class="filter-tab" data-filter="protocol">Protocol</button>
+                            <button class="filter-tab" data-filter="scheduled">Scheduled</button>
+                        </div>
+
+                        <div class="filter-actions">
+                            <select id="category-filter">
+                                <option value="">All Categories</option>
+                                <option value="health">Health Alerts</option>
+                                <option value="protocol">Medical Protocols</option>
+                                <option value="checkup">Checkup Reminders</option>
+                                <option value="emergency">Emergency Procedures</option>
+                            </select>
+
+                            <select id="audience-filter">
+                                <option value="">All Audiences</option>
+                                <option value="players">Players Only</option>
+                                <option value="coaches">Coaches Only</option>
+                                <option value="staff">Medical Staff</option>
+                                <option value="all">Everyone</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Announcements List -->
+                    <div class="announcements-list">
+                        <div class="announcement-item urgent">
+                            <div class="announcement-header">
+                                <div class="announcement-author">
+                                    <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=40&h=40&fit=crop&crop=face"
+                                        alt="Dr. Sarah Ahmed" class="author-avatar">
+                                    <div class="author-info">
+                                        <span class="author-name">Dr. Sarah Ahmed</span>
+                                        <span class="author-role">Head Medical Officer</span>
+                                    </div>
+                                </div>
+                                <div class="announcement-meta">
+                                    <span class="announcement-date">2 hours ago</span>
+                                    <span class="announcement-category urgent">Urgent</span>
+                                </div>
+                            </div>
+
+                            <div class="announcement-content">
+                                <h3>⚠️ Important: New COVID-19 Protocol Update</h3>
+                                <p>Due to recent developments, we are implementing updated COVID-19 protocols effective
+                                    immediately. All players must complete daily health screenings before entering the
+                                    facility. Please review the attached guidelines and ensure compliance.</p>
+
+                                <div class="announcement-attachments">
+                                    <div class="attachment">
+                                        <i class="fas fa-file-pdf"></i>
+                                        <span>COVID-19_Protocol_Update.pdf</span>
+                                    </div>
+                                    <div class="attachment">
+                                        <i class="fas fa-file-pdf"></i>
+                                        <span>Daily_Health_Screening.pdf</span>
+                                    </div>
+                                </div>
+
+                                <div class="announcement-stats">
+                                    <span class="stat"><i class="fas fa-eye"></i> 45 views</span>
+                                    <span class="stat"><i class="fas fa-check"></i> 38 confirmed</span>
+                                    <span class="stat"><i class="fas fa-exclamation"></i> 7 pending</span>
+                                </div>
+                            </div>
+
+                            <div class="announcement-actions">
+                                <button class="action-btn" onclick="editAnnouncement(1)">
+                                    <i class="fas fa-edit"></i>
+                                    Edit
+                                </button>
+                                <button class="action-btn" onclick="viewReads(1)">
+                                    <i class="fas fa-eye"></i>
+                                    View Reads
+                                </button>
+                                <button class="action-btn" onclick="resendAnnouncement(1)">
+                                    <i class="fas fa-share"></i>
+                                    Resend
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="announcement-item general">
+                            <div class="announcement-header">
+                                <div class="announcement-author">
+                                    <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=40&h=40&fit=crop&crop=face"
+                                        alt="Dr. Sarah Ahmed" class="author-avatar">
+                                    <div class="author-info">
+                                        <span class="author-name">Dr. Sarah Ahmed</span>
+                                        <span class="author-role">Head Medical Officer</span>
+                                    </div>
+                                </div>
+                                <div class="announcement-meta">
+                                    <span class="announcement-date">1 day ago</span>
+                                    <span class="announcement-category general">General</span>
+                                </div>
+                            </div>
+
+                            <div class="announcement-content">
+                                <h3>📋 Monthly Health Checkup Schedule</h3>
+                                <p>Monthly health checkups are scheduled for next week. All players are required to
+                                    attend their assigned time slots. Please check your individual schedules and contact
+                                    the medical team if you need to reschedule.</p>
+
+                                <div class="announcement-stats">
+                                    <span class="stat"><i class="fas fa-eye"></i> 32 views</span>
+                                    <span class="stat"><i class="fas fa-check"></i> 28 confirmed</span>
+                                    <span class="stat"><i class="fas fa-exclamation"></i> 4 pending</span>
+                                </div>
+                            </div>
+
+                            <div class="announcement-actions">
+                                <button class="action-btn" onclick="editAnnouncement(2)">
+                                    <i class="fas fa-edit"></i>
+                                    Edit
+                                </button>
+                                <button class="action-btn" onclick="viewReads(2)">
+                                    <i class="fas fa-eye"></i>
+                                    View Reads
+                                </button>
+                                <button class="action-btn" onclick="resendAnnouncement(2)">
+                                    <i class="fas fa-share"></i>
+                                    Resend
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="announcement-item protocol">
+                            <div class="announcement-header">
+                                <div class="announcement-author">
+                                    <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=40&h=40&fit=crop&crop=face"
+                                        alt="Dr. Sarah Ahmed" class="author-avatar">
+                                    <div class="author-info">
+                                        <span class="author-name">Dr. Sarah Ahmed</span>
+                                        <span class="author-role">Head Medical Officer</span>
+                                    </div>
+                                </div>
+                                <div class="announcement-meta">
+                                    <span class="announcement-date">3 days ago</span>
+                                    <span class="announcement-category protocol">Protocol</span>
+                                </div>
+                            </div>
+
+                            <div class="announcement-content">
+                                <h3>🏥 Updated Injury Reporting Protocol</h3>
+                                <p>We have updated our injury reporting protocol to ensure faster response times and
+                                    better tracking. All injuries must be reported within 24 hours using the new digital
+                                    form. Coaches and medical staff should review the updated procedures.</p>
+
+                                <div class="announcement-attachments">
+                                    <div class="attachment">
+                                        <i class="fas fa-file-pdf"></i>
+                                        <span>Injury_Reporting_Protocol.pdf</span>
+                                    </div>
+                                </div>
+
+                                <div class="announcement-stats">
+                                    <span class="stat"><i class="fas fa-eye"></i> 28 views</span>
+                                    <span class="stat"><i class="fas fa-check"></i> 25 confirmed</span>
+                                    <span class="stat"><i class="fas fa-exclamation"></i> 3 pending</span>
+                                </div>
+                            </div>
+
+                            <div class="announcement-actions">
+                                <button class="action-btn" onclick="editAnnouncement(3)">
+                                    <i class="fas fa-edit"></i>
+                                    Edit
+                                </button>
+                                <button class="action-btn" onclick="viewReads(3)">
+                                    <i class="fas fa-eye"></i>
+                                    View Reads
+                                </button>
+                                <button class="action-btn" onclick="resendAnnouncement(3)">
+                                    <i class="fas fa-share"></i>
+                                    Resend
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <!-- New Announcement Modal -->
+        <div class="modal" id="new-announcement-modal">
+            <div class="modal-content large">
+                <div class="modal-header">
+                    <h3>Create Medical Announcement</h3>
+                    <span class="close" onclick="closeNewAnnouncementModal()">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <form id="new-announcement-form">
+                        <div class="form-group">
+                            <label for="announcement-title">Title</label>
+                            <input type="text" id="announcement-title" name="title" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="announcement-content">Content</label>
+                            <textarea id="announcement-content" name="content" rows="5" required></textarea>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="announcement-category">Category</label>
+                                <select id="announcement-category" name="category" required>
+                                    <option value="">Select category</option>
+                                    <option value="urgent">Urgent</option>
+                                    <option value="general">General</option>
+                                    <option value="protocol">Protocol</option>
+                                    <option value="checkup">Checkup Reminder</option>
+                                    <option value="emergency">Emergency</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="announcement-audience">Audience</label>
+                                <select id="announcement-audience" name="audience" required>
+                                    <option value="all">Everyone</option>
+                                    <option value="players">Players Only</option>
+                                    <option value="coaches">Coaches Only</option>
+                                    <option value="staff">Medical Staff</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="announcement-schedule">Schedule (Optional)</label>
+                            <div class="schedule-options">
+                                <label class="radio-container">
+                                    <input type="radio" name="schedule" value="immediate" checked>
+                                    <span class="radio-mark"></span>
+                                    Send Immediately
+                                </label>
+                                <label class="radio-container">
+                                    <input type="radio" name="schedule" value="scheduled">
+                                    <span class="radio-mark"></span>
+                                    Schedule for Later
+                                </label>
+                            </div>
+                            <div class="schedule-datetime" style="display: none;">
+                                <input type="datetime-local" id="schedule-datetime" name="schedule-datetime">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="announcement-attachments">Attachments</label>
+                            <input type="file" id="announcement-attachments" name="attachments" multiple>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="checkbox-container">
+                                <input type="checkbox" name="require-confirmation">
+                                <span class="checkmark"></span>
+                                Require confirmation from recipients
+                            </label>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="button" class="btn-outline"
+                                onclick="closeNewAnnouncementModal()">Cancel</button>
+                            <button type="submit" class="btn-primary">Post Announcement</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <script src="../../scripts/main.js"></script>
+        <script src="../../scripts/medical.js"></script>
+        <script src="../../scripts/page-init.js"></script>
+        <script>
+            // Medical announcement functionality
+            function openNewAnnouncementModal() {
+                openModal('new-announcement-modal');
+            }
+
+            function closeNewAnnouncementModal() {
+                closeModal('new-announcement-modal');
+            }
+
+            function editAnnouncement(id) {
+                showNotification('Edit announcement functionality will be implemented', 'info');
+            }
+
+            function viewReads(id) {
+                showNotification('View reads functionality will be implemented', 'info');
+            }
+
+            function resendAnnouncement(id) {
+                showNotification('Resend announcement functionality will be implemented', 'info');
+            }
+
+            // Schedule options
+            document.querySelectorAll('input[name="schedule"]').forEach(radio => {
+                radio.addEventListener('change', function () {
+                    const scheduleDatetime = document.querySelector('.schedule-datetime');
+                    if (this.value === 'scheduled') {
+                        scheduleDatetime.style.display = 'block';
+                    } else {
+                        scheduleDatetime.style.display = 'none';
+                    }
+                });
+            });
+
+            // Filter functionality
+            document.querySelectorAll('.filter-tab').forEach(tab => {
+                tab.addEventListener('click', function () {
+                    document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+
+                    const filter = this.dataset.filter;
+                    const announcements = document.querySelectorAll('.announcement-item');
+
+                    announcements.forEach(announcement => {
+                        if (filter === 'all' || announcement.classList.contains(filter)) {
+                            announcement.style.display = 'block';
+                        } else {
+                            announcement.style.display = 'none';
+                        }
+                    });
+                });
+            });
+
+            // Search functionality
+            document.getElementById('announcement-search').addEventListener('input', function () {
+                const searchTerm = this.value.toLowerCase();
+                const announcements = document.querySelectorAll('.announcement-item');
+
+                announcements.forEach(announcement => {
+                    const title = announcement.querySelector('h3').textContent.toLowerCase();
+                    const content = announcement.querySelector('p').textContent.toLowerCase();
+
+                    if (title.includes(searchTerm) || content.includes(searchTerm)) {
+                        announcement.style.display = 'block';
+                    } else {
+                        announcement.style.display = 'none';
+                    }
+                });
+            });
+        </script>
+    </body>
+
+</html>

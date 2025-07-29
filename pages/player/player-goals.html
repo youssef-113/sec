@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Goals & Progress - Al Ahly SC Player Portal</title>
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/player.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Player Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="https://upload.wikimedia.org/wikipedia/en/4/41/Al_Ahly_SC_logo.png" alt="Al Ahly SC" class="sidebar-logo">
+                <div class="sidebar-title">
+                    <h3>Al Ahly SC</h3>
+                    <p>Player Portal</p>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <h4>OVERVIEW</h4>
+                    <ul>
+                        <li><a href="player-dashboard.html" class="nav-link"><i class="fas fa-home"></i> Dashboard</a></li>
+                        <li><a href="player-performance.html" class="nav-link"><i class="fas fa-chart-line"></i> Performance</a></li>
+                        <li><a href="player-schedule.html" class="nav-link"><i class="fas fa-calendar-alt"></i> Schedule</a></li>
+                    </ul>
+                </div>
+                
+                <div class="nav-section">
+                    <h4>TRAINING</h4>
+                    <ul>
+                        <li><a href="player-attendance.html" class="nav-link"><i class="fas fa-clipboard-check"></i> Attendance</a></li>
+                        <li><a href="player-drills.html" class="nav-link"><i class="fas fa-dumbbell"></i> Training Drills</a></li>
+                        <li><a href="player-goals.html" class="nav-link active"><i class="fas fa-target"></i> Goals & Progress</a></li>
+                    </ul>
+                </div>
+                
+                <div class="nav-section">
+                    <h4>COMMUNICATION</h4>
+                    <ul>
+                        <li><a href="player-announcements.html" class="nav-link"><i class="fas fa-bullhorn"></i> Announcements</a></li>
+                        <li><a href="player-chat.html" class="nav-link"><i class="fas fa-comments"></i> Chat with Doctor</a></li>
+                        <li><a href="player-feedback.html" class="nav-link"><i class="fas fa-star"></i> Feedback</a></li>
+                    </ul>
+                </div>
+                
+                <div class="nav-section">
+                    <h4>HEALTH</h4>
+                    <ul>
+                        <li><a href="player-medical.html" class="nav-link"><i class="fas fa-heartbeat"></i> Medical Records</a></li>
+                        <li><a href="player-nutrition.html" class="nav-link"><i class="fas fa-apple-alt"></i> Nutrition Plan</a></li>
+                    </ul>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <img src="https://images.unsplash.com/photo-1566753323558-f4e0952af115?w=40&h=40&fit=crop&crop=face" alt="Mohamed Salah" class="user-avatar">
+                    <div class="user-info">
+                        <span class="user-name">Mohamed Salah</span>
+                        <span class="user-role">Forward • #11</span>
+                    </div>
+                    <div class="user-menu">
+                        <i class="fas fa-chevron-down"></i>
+                        <div class="dropdown-menu">
+                            <a href="player-profile.html"><i class="fas fa-user"></i> Profile</a>
+                            <a href="player-settings.html"><i class="fas fa-cog"></i> Settings</a>
+                            <a href="index.html"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="main-header">
+                <div class="header-left">
+                    <button class="sidebar-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1>Goals & Progress</h1>
+                    <p>Track your personal goals and development progress</p>
+                </div>
+                
+                <div class="header-right">
+                    <button class="btn-primary" onclick="addNewGoal()">
+                        <i class="fas fa-plus"></i>
+                        Add Goal
+                    </button>
+                </div>
+            </header>
+            
+            <div class="goals-content">
+                <!-- Progress Overview -->
+                <div class="progress-overview">
+                    <div class="overview-card">
+                        <div class="card-icon completed">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="card-info">
+                            <h3>8</h3>
+                            <p>Goals Completed</p>
+                            <span class="card-change positive">+2 this month</span>
+                        </div>
+                    </div>
+                    
+                    <div class="overview-card">
+                        <div class="card-icon in-progress">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="card-info">
+                            <h3>5</h3>
+                            <p>In Progress</p>
+                            <span class="card-change neutral">Active goals</span>
+                        </div>
+                    </div>
+                    
+                    <div class="overview-card">
+                        <div class="card-icon achievement">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div class="card-info">
+                            <h3>92%</h3>
+                            <p>Success Rate</p>
+                            <span class="card-change positive">+5% improvement</span>
+                        </div>
+                    </div>
+                    
+                    <div class="overview-card">
+                        <div class="card-icon streak">
+                            <i class="fas fa-fire"></i>
+                        </div>
+                        <div class="card-info">
+                            <h3>15</h3>
+                            <p>Day Streak</p>
+                            <span class="card-change positive">Personal best</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Active Goals -->
+                <div class="goals-section">
+                    <div class="section-header">
+                        <h3>Active Goals</h3>
+                        <div class="goal-filters">
+                            <button class="filter-btn active" data-filter="all">All</button>
+                            <button class="filter-btn" data-filter="technical">Technical</button>
+                            <button class="filter-btn" data-filter="physical">Physical</button>
+                            <button class="filter-btn" data-filter="tactical">Tactical</button>
+                            <button class="filter-btn" data-filter="personal">Personal</button>
+                        </div>
+                    </div>
+                    
+                    <div class="goals-grid">
+                        <div class="goal-card technical">
+                            <div class="goal-header">
+                                <div class="goal-category">Technical</div>
+                                <div class="goal-priority high">High Priority</div>
+                            </div>
+                            <h4>Improve Shooting Accuracy</h4>
+                            <p>Achieve 85% shooting accuracy in training sessions</p>
+                            <div class="goal-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 78%"></div>
+                                </div>
+                                <span class="progress-text">78% Complete</span>
+                            </div>
+                            <div class="goal-meta">
+                                <span class="goal-deadline"><i class="fas fa-calendar"></i> Due: Feb 15</span>
+                                <span class="goal-coach"><i class="fas fa-user"></i> Ahmed Hassan</span>
+                            </div>
+                            <div class="goal-actions">
+                                <button class="action-btn" onclick="updateProgress('goal1')">Update Progress</button>
+                                <button class="action-btn" onclick="viewDetails('goal1')">View Details</button>
+                            </div>
+                        </div>
+                        
+                        <div class="goal-card physical">
+                            <div class="goal-header">
+                                <div class="goal-category">Physical</div>
+                                <div class="goal-priority medium">Medium Priority</div>
+                            </div>
+                            <h4>Increase Sprint Speed</h4>
+                            <p>Reduce 100m sprint time to under 11.5 seconds</p>
+                            <div class="goal-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 65%"></div>
+                                </div>
+                                <span class="progress-text">65% Complete</span>
+                            </div>
+                            <div class="goal-meta">
+                                <span class="goal-deadline"><i class="fas fa-calendar"></i> Due: Mar 1</span>
+                                <span class="goal-coach"><i class="fas fa-user"></i> Fitness Coach</span>
+                            </div>
+                            <div class="goal-actions">
+                                <button class="action-btn" onclick="updateProgress('goal2')">Update Progress</button>
+                                <button class="action-btn" onclick="viewDetails('goal2')">View Details</button>
+                            </div>
+                        </div>
+                        
+                        <div class="goal-card tactical">
+                            <div class="goal-header">
+                                <div class="goal-category">Tactical</div>
+                                <div class="goal-priority high">High Priority</div>
+                            </div>
+                            <h4>Master Wing Play</h4>
+                            <p>Improve crossing accuracy and wing positioning</p>
+                            <div class="goal-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 45%"></div>
+                                </div>
+                                <span class="progress-text">45% Complete</span>
+                            </div>
+                            <div class="goal-meta">
+                                <span class="goal-deadline"><i class="fas fa-calendar"></i> Due: Feb 28</span>
+                                <span class="goal-coach"><i class="fas fa-user"></i> Ahmed Hassan</span>
+                            </div>
+                            <div class="goal-actions">
+                                <button class="action-btn" onclick="updateProgress('goal3')">Update Progress</button>
+                                <button class="action-btn" onclick="viewDetails('goal3')">View Details</button>
+                            </div>
+                        </div>
+                        
+                        <div class="goal-card personal">
+                            <div class="goal-header">
+                                <div class="goal-category">Personal</div>
+                                <div class="goal-priority low">Low Priority</div>
+                            </div>
+                            <h4>Leadership Development</h4>
+                            <p>Take more initiative in team communication and motivation</p>
+                            <div class="goal-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 30%"></div>
+                                </div>
+                                <span class="progress-text">30% Complete</span>
+                            </div>
+                            <div class="goal-meta">
+                                <span class="goal-deadline"><i class="fas fa-calendar"></i> Due: Apr 1</span>
+                                <span class="goal-coach"><i class="fas fa-user"></i> Self-directed</span>
+                            </div>
+                            <div class="goal-actions">
+                                <button class="action-btn" onclick="updateProgress('goal4')">Update Progress</button>
+                                <button class="action-btn" onclick="viewDetails('goal4')">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Completed Goals -->
+                <div class="goals-section">
+                    <div class="section-header">
+                        <h3>Recently Completed</h3>
+                        <span class="section-count">Last 30 days</span>
+                    </div>
+                    
+                    <div class="completed-goals">
+                        <div class="completed-goal">
+                            <div class="completion-icon">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div class="goal-info">
+                                <h4>Improve First Touch</h4>
+                                <p>Achieve consistent first touch control in training</p>
+                                <span class="completion-date">Completed on Jan 10, 2024</span>
+                            </div>
+                            <div class="goal-rating">
+                                <span class="rating-label">Coach Rating:</span>
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="completed-goal">
+                            <div class="completion-icon">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div class="goal-info">
+                                <h4>Increase Training Attendance</h4>
+                                <p>Maintain 95% attendance rate for the month</p>
+                                <span class="completion-date">Completed on Jan 5, 2024</span>
+                            </div>
+                            <div class="goal-rating">
+                                <span class="rating-label">Coach Rating:</span>
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="scripts/main.js"></script>
+    <script src="scripts/player.js"></script>
+    <script src="scripts/page-init.js"></script>
+</body>
+</html>
+

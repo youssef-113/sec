@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Al Ahly Players Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../styles/teams-detiles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="header-content">
+                <div>
+                    <h1>Al Ahly Players</h1>
+                    <p>Manage players and track their performance</p>
+                </div>
+                <div class="header-actions">
+                    <button class="btn btn-outline" onclick="window.history.back()">
+                        <i class="fas fa-arrow-left icon-margin-right"></i>
+                        Back to Teams
+                    </button>
+                    <button class="btn btn-primary" onclick="showAddPlayerModal()">
+                        <i class="fas fa-plus icon-margin-right"></i>
+                        Add Player
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Team Header -->
+        <div class="team-header">
+            <div class="team-avatar">FT</div>
+            <div class="team-info">
+                <h2>First Team</h2>
+                <span class="team-sport">Football</span>
+                <div class="team-stats">
+                    <div class="stat-item">
+                        <div class="stat-value">25</div>
+                        <div class="stat-label">Players</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">1</div>
+                        <div class="stat-label">Rank</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">18</div>
+                        <div class="stat-label">Wins</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stats Section -->
+        <div class="stats-container">
+            <div class="stat-card">
+                <h3><i class="fas fa-chart-line"></i> Team Statistics</h3>
+                <div class="stat-item">
+                    <span class="stat-name">Goals Scored</span>
+                    <span class="stat-value">42</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-name">Goals Conceded</span>
+                    <span class="stat-value">12</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-name">Clean Sheets</span>
+                    <span class="stat-value">10</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-name">Avg. Possession</span>
+                    <span class="stat-value">62%</span>
+                </div>
+            </div>
+            
+            <div class="stat-card">
+                <h3><i class="fas fa-star"></i> Top Performers</h3>
+                <div class="stat-item">
+                    <span class="stat-name">Top Scorer</span>
+                    <span class="stat-value">Mohamed Sherif (12 goals)</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-name">Most Assists</span>
+                    <span class="stat-value">Percy Tau (8 assists)</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-name">Player of the Month</span>
+                    <span class="stat-value">Aliou Dieng</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Player Filters -->
+        <div class="filter-section">
+            <div class="filter-container">
+                <div class="search-container">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" class="search-input" placeholder="Search players by name or position..." id="playerSearch">
+                </div>
+                <div class="position-filter">
+                    <select id="positionFilter" title="Filter by position">
+                        <option value="">All Positions</option>
+                        <option value="Goalkeeper">Goalkeeper</option>
+                        <option value="Defender">Defender</option>
+                        <option value="Midfielder">Midfielder</option>
+                        <option value="Forward">Forward</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Players Grid -->
+        <div class="player-grid" id="playersGrid">
+            <!-- Player cards will be generated here -->
+        </div>
+    </div>
+
+    <script>
+        // Player data
+        const players = [
+            { id: 1, name: "Mohamed El Shenawy", position: "Goalkeeper", number: 1, age: 34, nationality: "Egyptian", team: "First Team" },
+            { id: 2, name: "Ali Maaloul", position: "Defender", number: 21, age: 33, nationality: "Tunisian", team: "First Team" },
+            { id: 3, name: "Rami Rabia", position: "Defender", number: 4, age: 30, nationality: "Egyptian", team: "First Team" },
+            { id: 4, name: "Mohamed Hany", position: "Defender", number: 24, age: 28, nationality: "Egyptian", team: "First Team" },
+            { id: 5, name: "Aliou Dieng", position: "Midfielder", number: 15, age: 29, nationality: "Malian", team: "First Team" },
+            { id: 6, name: "Hamdy Fathy", position: "Midfielder", number: 8, age: 28, nationality: "Egyptian", team: "First Team" },
+            { id: 7, name: "Hussein El Shahat", position: "Midfielder", number: 14, age: 31, nationality: "Egyptian", team: "First Team" },
+            { id: 8, name: "Percy Tau", position: "Forward", number: 10, age: 29, nationality: "South African", team: "First Team" },
+            { id: 9, name: "Mahmoud Kahraba", position: "Forward", number: 7, age: 29, nationality: "Egyptian", team: "First Team" },
+            { id: 10, name: "Mohamed Sherif", position: "Forward", number: 19, age: 27, nationality: "Egyptian", team: "First Team" },
+            { id: 11, name: "Karim Fouad", position: "Midfielder", number: 6, age: 28, nationality: "Egyptian", team: "First Team" },
+            { id: 12, name: "Ahmed Abdelkader", position: "Defender", number: 13, age: 26, nationality: "Egyptian", team: "First Team" },
+        ];
+
+        // Function to render players
+        function renderPlayers() {
+            const playersGrid = document.getElementById('playersGrid');
+            playersGrid.innerHTML = '';
+            
+            players.forEach((player, index) => {
+                const playerCard = document.createElement('div');
+                playerCard.className = 'player-card card-animate';
+                playerCard.style.animationDelay = `${index * 0.05}s`;
+                
+                playerCard.innerHTML = `
+                    <div class="player-image-container">
+                        <div class="player-image-icon">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="player-number">${player.number}</div>
+                    </div>
+                    <div class="player-content">
+                        <div class="player-name">${player.name}</div>
+                        <div class="player-position">${player.position}</div>
+                        <div class="player-details">
+                            <div class="player-detail">
+                                <i class="fas fa-flag player-detail-icon"></i>
+                                <div>
+                                    <span class="player-detail-value">${player.nationality}</span>
+                                </div>
+                            </div>
+                            <div class="player-detail">
+                                <i class="fas fa-birthday-cake player-detail-icon"></i>
+                                <div>
+                                    <span class="player-detail-value">${player.age} years</span>
+                                </div>
+                            </div>
+                            <div class="player-detail">
+                                <i class="fas fa-users player-detail-icon"></i>
+                                <div>
+                                    <span class="player-detail-label">Team:</span>
+                                    <span class="player-detail-value">${player.team}</span>
+                                </div>
+                            </div>
+                            <div class="player-detail">
+                                <i class="fas fa-futbol player-detail-icon"></i>
+                                <div>
+                                    <span class="player-detail-label">Sport:</span>
+                                    <span class="player-detail-value">Football</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                playersGrid.appendChild(playerCard);
+            });
+        }
+
+        // Show add player modal
+        function showAddPlayerModal() {
+            alert("Add Player functionality would open a modal in a real application");
+        }
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            renderPlayers();
+            
+            // Setup search functionality
+            document.getElementById('playerSearch').addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                const positionFilter = document.getElementById('positionFilter').value;
+                
+                // Filter players based on search and position
+                // In a real app, this would filter the player list
+            });
+            
+            // Setup position filter
+            document.getElementById('positionFilter').addEventListener('change', function() {
+                const position = this.value;
+                const searchTerm = document.getElementById('playerSearch').value.toLowerCase();
+                
+                // Filter players based on search and position
+                // In a real app, this would filter the player list
+            });
+        });
+    </script>
+    <script src="scripts/page-init.js"></script>
+</body>
+</html>

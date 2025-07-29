@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Players - Al Ahly SC Training Management</title>
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/players.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="https://upload.wikimedia.org/wikipedia/en/4/41/Al_Ahly_SC_logo.png" alt="Al Ahly SC" class="sidebar-logo">
+                <div class="sidebar-title">
+                    <h3>Al Ahly SC</h3>
+                    <p>Manager Portal</p>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <ul id="role-nav" class="sidebar-nav"></ul>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop&crop=face" alt="Manager" class="user-avatar">
+                    <div class="user-info">
+                        <span class="user-name">Manager Name</span>
+                        <span class="user-role">Manager</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="main-header">
+                <div class="header-left">
+                    <button class="sidebar-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1>Team Players</h1>
+                    <p>Manage player details, performance, and attendance for your team</p>
+                </div>
+                
+                <div class="header-right">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search players..." id="player-search">
+                    </div>
+                    <button class="btn-outline" onclick="exportPlayers()">
+                        <i class="fas fa-download"></i>
+                        Export
+                    </button>
+                    <button class="btn-primary" onclick="openAddPlayerModal()">
+                        <i class="fas fa-user-plus"></i>
+                        Add Player
+                    </button>
+                </div>
+            </header>
+            
+            <div class="players-content">
+                <!-- Team Selection -->
+                <div class="team-selector">
+                    <div class="team-info">
+                        <img src="https://upload.wikimedia.org/wikipedia/en/4/41/Al_Ahly_SC_logo.png" alt="Team" class="team-logo">
+                        <div class="team-details">
+                            <h3>Football First Team</h3>
+                            <p>25 Active Players • Coach: Ahmed Hassan</p>
+                        </div>
+                    </div>
+                    
+                    <div class="team-actions">
+                        <select id="team-select" onchange="changeTeam()">
+                            <option value="football-first">Football First Team</option>
+                            <option value="football-youth">Football Youth Team</option>
+                            <option value="basketball-senior">Basketball Senior Team</option>
+                            <option value="handball-senior">Handball Senior Team</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <!-- Player Filters -->
+                <div class="player-filters">
+                    <div class="filter-group">
+                        <label>Position:</label>
+                        <select id="position-filter">
+                            <option value="">All Positions</option>
+                            <option value="goalkeeper">Goalkeeper</option>
+                            <option value="defender">Defender</option>
+                            <option value="midfielder">Midfielder</option>
+                            <option value="forward">Forward</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label>Status:</label>
+                        <select id="status-filter">
+                            <option value="">All Status</option>
+                            <option value="active">Active</option>
+                            <option value="injured">Injured</option>
+                            <option value="suspended">Suspended</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label>Age Group:</label>
+                        <select id="age-filter">
+                            <option value="">All Ages</option>
+                            <option value="u18">Under 18</option>
+                            <option value="u21">Under 21</option>
+                            <option value="senior">Senior</option>
+                        </select>
+                    </div>
+                    
+                    <button class="btn-outline" onclick="clearPlayerFilters()">
+                        <i class="fas fa-times"></i>
+                        Clear
+                    </button>
+                </div>
+                
+                <!-- Players Grid -->
+                <div class="players-grid">
+                    <div class="player-card">
+                        <div class="player-header">
+                            <img src="https://images.unsplash.com/photo-1566753323558-f4e0952af115?w=80&h=80&fit=crop&crop=face" alt="Mohamed Salah" class="player-avatar">
+                            <div class="player-status active">
+                                <i class="fas fa-circle"></i>
+                                Active
+                            </div>
+                        </div>
+                        
+                        <div class="player-info">
+                            <h3>Mohamed Salah</h3>
+                            <div class="player-meta">
+                                <span class="position">Forward</span>
+                                <span class="jersey-number">#11</span>
+                            </div>
+                            <div class="player-stats">
+                                <div class="stat">
+                                    <span class="label">Age</span>
+                                    <span class="value">31</span>
+                                    </div>
+                                <div class="stat">
+                                    <span class="label">Rating</span>
+                                    <span class="value">9.2</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="label">Attendance</span>
+                                    <span class="value">95%</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="player-actions">
+                            <button class="action-btn uiverse-tooltip" onclick="viewPlayerDetails(1)">
+  <i class="fas fa-eye"></i>
+  <span class="uiverse-tooltip-text">View Details</span>
+</button>
+                            <button class="action-btn uiverse-tooltip" onclick="editPlayerPerformance(1)">
+  <i class="fas fa-chart-line"></i>
+  <span class="uiverse-tooltip-text">Edit Performance</span>
+</button>
+                            <button class="action-btn uiverse-tooltip" onclick="editPlayerAttendance(1)">
+  <i class="fas fa-calendar-check"></i>
+  <span class="uiverse-tooltip-text">Edit Attendance</span>
+</button>
+                            <button class="action-btn uiverse-tooltip" onclick="leaveFeedback(1)">
+  <i class="fas fa-comment"></i>
+  <span class="uiverse-tooltip-text">Leave Feedback</span>
+</button>
+                        </div>
+                    </div>
+                    
+                    <div class="player-card">
+                        <div class="player-header">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face" alt="Ahmed Zizo" class="player-avatar">
+                            <div class="player-status active">
+                                <i class="fas fa-circle"></i>
+                                Active
+                            </div>
+                        </div>
+                        
+                        <div class="player-info">
+                            <h3>Ahmed Zizo</h3>
+                            <div class="player-meta">
+                                <span class="position">Midfielder</span>
+                                <span class="jersey-number">#8</span>
+                            </div>
+                            <div class="player-stats">
+                                <div class="stat">
+                                    <span class="label">Age</span>
+                                    <span class="value">28</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="label">Rating</span>
+                                    <span class="value">8.8</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="label">Attendance</span>
+                                    <span class="value">92%</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="player-actions">
+                            <button class="action-btn uiverse-tooltip" onclick="viewPlayerDetails(2)">
+  <i class="fas fa-eye"></i>
+  <span class="uiverse-tooltip-text">View Details</span>
+</button>
+                            <button class="action-btn uiverse-tooltip" onclick="editPlayerPerformance(2)">
+  <i class="fas fa-chart-line"></i>
+  <span class="uiverse-tooltip-text">Edit Performance</span>
+</button>
+                            <button class="action-btn uiverse-tooltip" onclick="editPlayerAttendance(2)">
+  <i class="fas fa-calendar-check"></i>
+  <span class="uiverse-tooltip-text">Edit Attendance</span>
+</button>
+                            <button class="action-btn uiverse-tooltip" onclick="leaveFeedback(2)">
+  <i class="fas fa-comment"></i>
+  <span class="uiverse-tooltip-text">Leave Feedback</span>
+</button>
+                        </div>
+                    </div>
+                    
+                    <div class="player-card">
+                        <div class="player-header">
+                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&h=80&fit=crop&crop=face" alt="Karim Fouad" class="player-avatar">
+                            <div class="player-status injured">
+                                <i class="fas fa-circle"></i>
+                                Injured
+                            </div>
+                        </div>
+                        
+                        <div class="player-info">
+                            <h3>Karim Fouad</h3>
+                            <div class="player-meta">
+                                <span class="position">Defender</span>
+                                <span class="jersey-number">#4</span>
+                            </div>
+                            <div class="player-stats">
+                                <div class="stat">
+                                    <span class="label">Age</span>
+                                    <span class="value">26</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="label">Rating</span>
+                                    <span class="value">8.6</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="label">Attendance</span>
+                                    <span class="value">88%</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="player-actions">
+                            <button class="action-btn uiverse-tooltip" onclick="viewPlayerDetails(3)">
+  <i class="fas fa-eye"></i>
+  <span class="uiverse-tooltip-text">View Details</span>
+</button>
+                            <button class="action-btn uiverse-tooltip" onclick="editPlayerPerformance(3)">
+  <i class="fas fa-chart-line"></i>
+  <span class="uiverse-tooltip-text">Edit Performance</span>
+</button>
+                            <button class="action-btn uiverse-tooltip" onclick="editPlayerAttendance(3)">
+  <i class="fas fa-calendar-check"></i>
+  <span class="uiverse-tooltip-text">Edit Attendance</span>
+</button>
+                            <button class="action-btn uiverse-tooltip" onclick="leaveFeedback(3)">
+  <i class="fas fa-comment"></i>
+  <span class="uiverse-tooltip-text">Leave Feedback</span>
+</button>
+                        </div>
+                    </div>
+                    
+                    <div class="player-card">
+                        <div class="player-header">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face" alt="Ali Maaloul" class="player-avatar">
+                            <div class="player-status active">
+                                <i class="fas fa-circle"></i>
+                                Active
+                            </div>
+                        </div>
+                        
+                        <div class="player-info">
+                            <h3>Ali Maaloul</h3>
+                            <div class="player-meta">
+                                <span class="position">Defender</span>
+                                <span class="jersey-number">#21</span>
+                            </div>
+                            <div class="player-stats">
+                                <div class="stat">
+                                    <span class="label">Age</span>
+                                    <span class="value">34</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="label">Rating</span>
+                                    <span class="value">8.9</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="label">Attendance</span>
+                                    <span class="value">96%</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="player-actions">
+                            <button class="action-btn uiverse-tooltip" onclick="viewPlayerDetails(4)">
+  <i class="fas fa-eye"></i>
+  <span class="uiverse-tooltip-text">View Details</span>
+</button>
+                            <button class="action-btn uiverse-tooltip" onclick="editPlayerPerformance(4)">
+  <i class="fas fa-chart-line"></i>
+  <span class="uiverse-tooltip-text">Edit Performance</span>
+</button>
+                            <button class="action-btn uiverse-tooltip" onclick="editPlayerAttendance(4)">
+  <i class="fas fa-calendar-check"></i>
+  <span class="uiverse-tooltip-text">Edit Attendance</span>
+</button>
+                            <button class="action-btn uiverse-tooltip" onclick="leaveFeedback(4)">
+  <i class="fas fa-comment"></i>
+  <span class="uiverse-tooltip-text">Leave Feedback</span>
+</button>
+                        </div>
+                    </div>
+                    
+                    <div class="player-card">
+                        <div class="player-header">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face" alt="Percy Tau" class="player-avatar">
+                            <div class="player-status active">
+                                <i class="fas fa-circle"></i>
+                                Active
+                            </div>
+                        </div>
+                        
+                        <div class="player-info">
+                            <h3>Percy Tau</h3>
+                            <div class="player-meta">
+                                <span class="position">Forward</span>
+                                <span class="jersey-number">#23</span>
+                            </div>
+                            <div class="player-stats">
+                                <div class="stat">
+                                    <span class="label">Age</span>
+                                    <span class="value">29</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="label">Rating</span>
+                                    <span class="value">8.5</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="label">Attendance</span>
+                                    <span class="value">90%</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="player-actions">
+                            <button class="action-btn uiverse-tooltip" onclick="viewPlayerDetails(5)">
+  <i class="fas fa-eye"></i>
+  <span class="uiverse-tooltip-text">View Details</span>
+</button>
+                            <button class="action-btn uiverse-tooltip" onclick="editPlayerPerformance(5)">
+  <i class="fas fa-chart-line"></i>
+  <span class="uiverse-tooltip-text">Edit Performance</span>
+</button>
+                            <button class="action-btn uiverse-tooltip" onclick="editPlayerAttendance(5)">
+  <i class="fas fa-calendar-check"></i>
+  <span class="uiverse-tooltip-text">Edit Attendance</span>
+</button>
+                            <button class="action-btn uiverse-tooltip" onclick="leaveFeedback(5)">
+  <i class="fas fa-comment"></i>
+  <span class="uiverse-tooltip-text">Leave Feedback</span>
+</button>
+                        </div>
+                    </div>
+                    
+                    <div class="player-card">
+                        <div class="player-header">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face" alt="Amr El Solia" class="player-avatar">
+                            <div class="player-status active">
+                                <i class="fas fa-circle"></i>
+                                Active
+                            </div>
+                        </div>
+                        
+                        <div class="player-info">
+                            <h3>Amr El Solia</h3>
+                            <div class="player-meta">
+                                <span class="position">Midfielder</span>
+                                <span class="jersey-number">#17</span>
+                            </div>
+                            <div class="player-stats">
+                                <div class="stat">
+                                    <span class="label">Age</span>
+                                    <span class="value">33</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="label">Rating</span>
+                                    <span class="value">8.7</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="label">Attendance</span>
+                                    <span class="value">94%</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="player-actions">
+                            <button class="action-btn uiverse-tooltip" onclick="viewPlayerDetails(6)">
+  <i class="fas fa-eye"></i>
+  <span class="uiverse-tooltip-text">View Details</span>
+</button>
+                            <button class="action-btn uiverse-tooltip" onclick="editPlayerPerformance(6)">
+  <i class="fas fa-chart-line"></i>
+  <span class="uiverse-tooltip-text">Edit Performance</span>
+</button>
+                            <button class="action-btn uiverse-tooltip" onclick="editPlayerAttendance(6)">
+  <i class="fas fa-calendar-check"></i>
+  <span class="uiverse-tooltip-text">Edit Attendance</span>
+</button>
+                            <button class="action-btn uiverse-tooltip" onclick="leaveFeedback(6)">
+  <i class="fas fa-comment"></i>
+  <span class="uiverse-tooltip-text">Leave Feedback</span>
+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Add Player Modal -->
+    <div class="modal" id="add-player-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add New Player</h3>
+                <span class="close" onclick="closeAddPlayerModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="add-player-form">
+                    <div class="form-group">
+                        <label for="player-name">Player Name</label>
+                        <input type="text" id="player-name" name="player-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="player-position">Position</label>
+                        <select id="player-position" name="player-position" required>
+                            <option value="">Select Position</option>
+                            <option value="goalkeeper">Goalkeeper</option>
+                            <option value="defender">Defender</option>
+                            <option value="midfielder">Midfielder</option>
+                            <option value="forward">Forward</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="jersey-number">Jersey Number</label>
+                        <input type="number" id="jersey-number" name="jersey-number" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="player-age">Age</label>
+                        <input type="number" id="player-age" name="player-age" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="player-rating">Overall Rating</label>
+                        <input type="number" id="player-rating" name="player-rating" step="0.1" min="0" max="10" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="player-attendance">Attendance (%)</label>
+                        <input type="number" id="player-attendance" name="player-attendance" min="0" max="100" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="player-status">Status</label>
+                        <select id="player-status" name="player-status" required>
+                            <option value="active">Active</option>
+                            <option value="injured">Injured</option>
+                            <option value="suspended">Suspended</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="player-image">Player Image URL</label>
+                        <input type="url" id="player-image" name="player-image">
+                    </div>
+                    <button type="submit" class="btn-primary">Add Player</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts/main.js"></script>
+    <script src="scripts/role-navigation.js"></script>
+    <script src="scripts/players.js"></script>
+    <script src="scripts/page-init.js"></script>
+    <script>
+        autoRenderNavigation('#role-nav');
+    </script>
+</body>
+</html>
+

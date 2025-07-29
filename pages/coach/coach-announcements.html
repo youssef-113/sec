@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Announcements - Al Ahly SC Coach Portal</title>
+        <link rel="stylesheet" href="../../styles/main.css">
+        <link rel="stylesheet" href="../../styles/coach.css">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+            rel="stylesheet">
+    </head>
+
+    <body>
+        <div class="app-container">
+            <!-- Coach Sidebar -->
+            <aside class="sidebar">
+                <div class="sidebar-header">
+                    <img src="/home/ubuntu/upload/search_images/1.png" alt="Al Ahly SC" class="sidebar-logo">
+                    <div class="sidebar-title">
+                        <h3>Al Ahly SC</h3>
+                        <p>Coach Dashboard</p>
+                    </div>
+                </div>
+
+                <nav class="sidebar-nav">
+                    <!-- Navigation will be dynamically generated -->
+                </nav>
+
+                <div class="sidebar-footer">
+                    <div class="user-profile">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face"
+                            alt="User" class="user-avatar">
+                        <div class="user-info">
+                            <span class="user-name">Mohamed Ali</span>
+                            <span class="user-role">Coach</span>
+                        </div>
+                        <div class="user-menu">
+                            <i class="fas fa-chevron-down"></i>
+                            <div class="dropdown-menu">
+                                <a href="profile.html"><i class="fas fa-user"></i> Profile</a>
+                                <a href="settings.html"><i class="fas fa-cog"></i> Settings</a>
+                                <a href="index.html"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="main-content">
+                <header class="main-header">
+                    <div class="header-left">
+                        <button class="sidebar-toggle">
+                            <i class="fas fa-bars"></i>
+                        </button>
+                        <h1>Team Announcements</h1>
+                        <p>View and manage announcements for your team</p>
+                    </div>
+
+                    <div class="header-right">
+                        <div class="search-box">
+                            <i class="fas fa-search"></i>
+                            <input type="text" placeholder="Search announcements..." id="announcement-search">
+                        </div>
+                        <button class="btn-primary" onclick="openNewAnnouncementModal()">
+                            <i class="fas fa-plus"></i>
+                            New Announcement
+                        </button>
+                    </div>
+                </header>
+
+                <div class="coach-content">
+                    <!-- Quick Stats -->
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-bullhorn"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>12</h3>
+                                <p>My Announcements</p>
+                            </div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-eye"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>98%</h3>
+                                <p>Team Read Rate</p>
+                            </div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>2</h3>
+                                <p>Pending</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Announcements -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h2>Recent Announcements</h2>
+                            <div class="filter-tabs">
+                                <button class="filter-tab active" data-filter="all">All</button>
+                                <button class="filter-tab" data-filter="my">My Posts</button>
+                                <button class="filter-tab" data-filter="management">From Management</button>
+                            </div>
+                        </div>
+
+                        <div class="announcements-list">
+                            <div class="announcement-item my">
+                                <div class="announcement-header">
+                                    <div class="announcement-author">
+                                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face"
+                                            alt="Mohamed Ali" class="author-avatar">
+                                        <div class="author-info">
+                                            <span class="author-name">Mohamed Ali</span>
+                                            <span class="author-role">Football Coach</span>
+                                        </div>
+                                    </div>
+                                    <div class="announcement-meta">
+                                        <span class="announcement-time">2 hours ago</span>
+                                        <span class="announcement-category training">Training</span>
+                                    </div>
+                                </div>
+
+                                <div class="announcement-content">
+                                    <h3>Tomorrow's Training Session Update</h3>
+                                    <p>Team, tomorrow's training session will start 30 minutes earlier at 3:30 PM. We'll
+                                        be focusing on set pieces and tactical positioning. Please arrive on time and
+                                        bring your training gear.</p>
+
+                                    <div class="announcement-stats">
+                                        <div class="stat">
+                                            <i class="fas fa-eye"></i>
+                                            <span>23 views</span>
+                                        </div>
+                                        <div class="stat">
+                                            <i class="fas fa-check-circle"></i>
+                                            <span>18 read</span>
+                                        </div>
+                                        <div class="stat">
+                                            <i class="fas fa-users"></i>
+                                            <span>25 players</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="announcement-actions">
+                                    <button class="btn-outline" onclick="editAnnouncement(1)">
+                                        <i class="fas fa-edit"></i>
+                                        Edit
+                                    </button>
+                                    <button class="btn-outline" onclick="viewReads(1)">
+                                        <i class="fas fa-users"></i>
+                                        View Reads
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="announcement-item management">
+                                <div class="announcement-header">
+                                    <div class="announcement-author">
+                                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop&crop=face"
+                                            alt="Ahmed Hassan" class="author-avatar">
+                                        <div class="author-info">
+                                            <span class="author-name">Ahmed Hassan</span>
+                                            <span class="author-role">Manager</span>
+                                        </div>
+                                    </div>
+                                    <div class="announcement-meta">
+                                        <span class="announcement-time">1 day ago</span>
+                                        <span class="announcement-category general">General</span>
+                                    </div>
+                                </div>
+
+                                <div class="announcement-content">
+                                    <h3>New Medical Protocols Implementation</h3>
+                                    <p>Starting next week, we will implement new medical screening protocols for all
+                                        players. Please ensure all medical forms are updated and coordinate with the
+                                        medical team for any questions.</p>
+
+                                    <div class="announcement-stats">
+                                        <div class="stat">
+                                            <i class="fas fa-eye"></i>
+                                            <span>156 views</span>
+                                        </div>
+                                        <div class="stat">
+                                            <i class="fas fa-check-circle"></i>
+                                            <span>142 read</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="announcement-item my">
+                                <div class="announcement-header">
+                                    <div class="announcement-author">
+                                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face"
+                                            alt="Mohamed Ali" class="author-avatar">
+                                        <div class="author-info">
+                                            <span class="author-name">Mohamed Ali</span>
+                                            <span class="author-role">Football Coach</span>
+                                        </div>
+                                    </div>
+                                    <div class="announcement-meta">
+                                        <span class="announcement-time">3 days ago</span>
+                                        <span class="announcement-category match">Match</span>
+                                    </div>
+                                </div>
+
+                                <div class="announcement-content">
+                                    <h3>Match Preparation - Zamalek vs Al Ahly</h3>
+                                    <p>Great job in today's training session! Our preparation for the upcoming match
+                                        against Zamalek is going well. Remember to get proper rest and follow your
+                                        nutrition plans. Match day is Friday at 7 PM.</p>
+
+                                    <div class="announcement-stats">
+                                        <div class="stat">
+                                            <i class="fas fa-eye"></i>
+                                            <span>45 views</span>
+                                        </div>
+                                        <div class="stat">
+                                            <i class="fas fa-check-circle"></i>
+                                            <span>25 read</span>
+                                        </div>
+                                        <div class="stat">
+                                            <i class="fas fa-users"></i>
+                                            <span>25 players</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="announcement-actions">
+                                    <button class="btn-outline" onclick="editAnnouncement(3)">
+                                        <i class="fas fa-edit"></i>
+                                        Edit
+                                    </button>
+                                    <button class="btn-outline" onclick="viewReads(3)">
+                                        <i class="fas fa-users"></i>
+                                        View Reads
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <!-- New Announcement Modal -->
+        <div class="modal" id="new-announcement-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Create Team Announcement</h3>
+                    <span class="close" onclick="closeModal('new-announcement-modal')">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <form id="new-announcement-form">
+                        <div class="form-group">
+                            <label for="announcement-title">Title</label>
+                            <input type="text" id="announcement-title" name="title" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="announcement-content">Content</label>
+                            <textarea id="announcement-content" name="content" rows="5" required></textarea>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="announcement-category">Category</label>
+                                <select id="announcement-category" name="category" required>
+                                    <option value="">Select category</option>
+                                    <option value="training">Training</option>
+                                    <option value="match">Match</option>
+                                    <option value="general">General</option>
+                                    <option value="urgent">Urgent</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="announcement-audience">Audience</label>
+                                <select id="announcement-audience" name="audience" required>
+                                    <option value="team">My Team</option>
+                                    <option value="starters">Starting XI</option>
+                                    <option value="reserves">Reserves</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="checkbox-container">
+                                <input type="checkbox" name="send-notification">
+                                <span class="checkmark"></span>
+                                Send push notification to players
+                            </label>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="button" class="btn-outline"
+                                onclick="closeModal('new-announcement-modal')">Cancel</button>
+                            <button type="submit" class="btn-primary">Post Announcement</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <script src="../../scripts/main.js"></script>
+        <script src="../../scripts/page-init.js"></script>
+        <script>
+            // Coach announcement functionality
+            function openNewAnnouncementModal() {
+                openModal('new-announcement-modal')
+            }
+
+            function editAnnouncement(id) {
+                showNotification('Edit announcement functionality will be implemented', 'info')
+            }
+
+            function viewReads(id) {
+                showNotification('View reads functionality will be implemented', 'info')
+            }
+
+            // Filter tabs functionality
+            document.querySelectorAll('.filter-tab').forEach(tab => {
+                tab.addEventListener('click', function () {
+                    document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'))
+                    this.classList.add('active')
+
+                    const filter = this.dataset.filter
+                    const announcements = document.querySelectorAll('.announcement-item')
+
+                    announcements.forEach(announcement => {
+                        if (filter === 'all' || announcement.classList.contains(filter)) {
+                            announcement.style.display = 'block'
+                        } else {
+                            announcement.style.display = 'none'
+                        }
+                    })
+                })
+            })
+        </script>
+    </body>
+
+</html>

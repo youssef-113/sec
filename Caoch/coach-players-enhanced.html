@@ -1,0 +1,1628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Players - Al Ahly SC Coach Portal</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="coach.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Enhanced Players Styles */
+        .players-content {
+            padding: var(--spacing-xl);
+            flex: 1;
+        }
+
+        .players-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-xl);
+            flex-wrap: wrap;
+            gap: var(--spacing);
+        }
+
+        .players-title h1 {
+            font-size: var(--font-size-3xl);
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .players-title p {
+            font-size: var(--font-size-base);
+            color: var(--gray-600);
+        }
+
+        .view-controls {
+            display: flex;
+            gap: var(--spacing-sm);
+            background-color: var(--gray-100);
+            border-radius: var(--radius);
+            padding: 4px;
+        }
+
+        .view-btn {
+            background: none;
+            border: none;
+            padding: var(--spacing-sm) var(--spacing);
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--gray-600);
+            font-size: var(--font-size-sm);
+            font-weight: 500;
+        }
+
+        .view-btn.active {
+            background-color: var(--primary-white);
+            color: var(--primary-red);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .players-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .stat-card {
+            background: var(--primary-white);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--gray-200);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing);
+        }
+
+        .stat-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--font-size-lg);
+            color: var(--primary-white);
+        }
+
+        .stat-icon.total {
+            background: linear-gradient(135deg, var(--primary-red), var(--dark-red));
+        }
+
+        .stat-icon.available {
+            background: linear-gradient(135deg, #10b981, #059669);
+        }
+
+        .stat-icon.injured {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+        }
+
+        .stat-icon.suspended {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+        }
+
+        .stat-info h3 {
+            font-size: var(--font-size-2xl);
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 2px;
+        }
+
+        .stat-info p {
+            font-size: var(--font-size-sm);
+            color: var(--gray-600);
+        }
+
+        .filters-section {
+            background: var(--primary-white);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--gray-200);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .filters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing);
+            align-items: end;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-sm);
+        }
+
+        .filter-group label {
+            font-size: var(--font-size-sm);
+            font-weight: 500;
+            color: var(--gray-700);
+        }
+
+        .filter-select {
+            padding: var(--spacing-sm) var(--spacing);
+            border: 1px solid var(--gray-300);
+            border-radius: var(--radius);
+            font-size: var(--font-size-sm);
+            background-color: var(--primary-white);
+        }
+
+        .search-container {
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: var(--spacing-sm) var(--spacing-sm) var(--spacing-sm) 2.5rem;
+            border: 1px solid var(--gray-300);
+            border-radius: var(--radius);
+            font-size: var(--font-size-sm);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: var(--spacing);
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gray-400);
+        }
+
+        .clear-filters {
+            background: none;
+            border: 1px solid var(--gray-300);
+            padding: var(--spacing-sm) var(--spacing);
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--gray-600);
+            font-size: var(--font-size-sm);
+        }
+
+        .clear-filters:hover {
+            background-color: var(--gray-100);
+            color: var(--primary-red);
+        }
+
+        /* Table View */
+        .players-table-container {
+            background: var(--primary-white);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--gray-200);
+            overflow: hidden;
+        }
+
+        .players-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .players-table th,
+        .players-table td {
+            padding: var(--spacing);
+            text-align: left;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .players-table th {
+            background-color: var(--gray-50);
+            font-weight: 600;
+            color: var(--gray-700);
+            font-size: var(--font-size-sm);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .players-table td {
+            font-size: var(--font-size-sm);
+            color: var(--gray-900);
+        }
+
+        .player-info {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing);
+        }
+
+        .player-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--gray-200);
+        }
+
+        .player-details h4 {
+            font-size: var(--font-size-base);
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: 2px;
+        }
+
+        .player-details p {
+            font-size: var(--font-size-xs);
+            color: var(--gray-600);
+        }
+
+        .position-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: var(--radius-sm);
+            font-size: var(--font-size-xs);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .position-gk {
+            background-color: #fef3c7;
+            color: #d97706;
+        }
+
+        .position-def {
+            background-color: #dbeafe;
+            color: #1d4ed8;
+        }
+
+        .position-mid {
+            background-color: #dcfce7;
+            color: #166534;
+        }
+
+        .position-fwd {
+            background-color: #fecaca;
+            color: #dc2626;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: var(--radius-sm);
+            font-size: var(--font-size-xs);
+            font-weight: 500;
+        }
+
+        .status-available {
+            background-color: #f0fdf4;
+            color: #166534;
+        }
+
+        .status-injured {
+            background-color: #fef3c7;
+            color: #d97706;
+        }
+
+        .status-suspended {
+            background-color: #fef2f2;
+            color: #dc2626;
+        }
+
+        .rating-display {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .rating-value {
+            font-weight: 600;
+            color: var(--primary-red);
+        }
+
+        .rating-stars {
+            display: flex;
+            gap: 2px;
+        }
+
+        .star {
+            color: var(--gray-300);
+            font-size: var(--font-size-xs);
+        }
+
+        .star.filled {
+            color: #fbbf24;
+        }
+
+        .player-actions {
+            display: flex;
+            gap: var(--spacing-sm);
+        }
+
+        .action-btn {
+            background: none;
+            border: 1px solid var(--gray-300);
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--gray-600);
+            font-size: var(--font-size-xs);
+        }
+
+        .action-btn:hover {
+            background-color: var(--gray-100);
+            color: var(--primary-red);
+        }
+
+        /* Card View */
+        .players-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: var(--spacing-lg);
+        }
+
+        .player-card {
+            background: var(--primary-white);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--gray-200);
+            overflow: hidden;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .player-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .player-card.status-injured {
+            border-left: 4px solid var(--warning);
+        }
+
+        .player-card.status-suspended {
+            border-left: 4px solid var(--error);
+        }
+
+        .player-card.status-available {
+            border-left: 4px solid var(--success);
+        }
+
+        .player-card-header {
+            padding: var(--spacing-lg);
+            text-align: center;
+            background: linear-gradient(135deg, var(--gray-50), var(--gray-100));
+        }
+
+        .player-card-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--primary-white);
+            margin: 0 auto var(--spacing);
+            box-shadow: var(--shadow-md);
+        }
+
+        .player-card-name {
+            font-size: var(--font-size-lg);
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .player-card-position {
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .player-card-body {
+            padding: var(--spacing-lg);
+        }
+
+        .player-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--spacing);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .player-stat {
+            text-align: center;
+        }
+
+        .player-stat-value {
+            font-size: var(--font-size-lg);
+            font-weight: 700;
+            color: var(--primary-red);
+            display: block;
+        }
+
+        .player-stat-label {
+            font-size: var(--font-size-xs);
+            color: var(--gray-600);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .player-card-actions {
+            display: flex;
+            gap: var(--spacing-sm);
+            justify-content: center;
+        }
+
+        /* Formation View */
+        .formation-container {
+            background: var(--primary-white);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--gray-200);
+            overflow: hidden;
+        }
+
+        .formation-header {
+            padding: var(--spacing-lg);
+            border-bottom: 1px solid var(--gray-200);
+            background-color: var(--gray-50);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .formation-selector {
+            display: flex;
+            gap: var(--spacing);
+            align-items: center;
+        }
+
+        .formation-btn {
+            background: none;
+            border: 1px solid var(--gray-300);
+            padding: var(--spacing-sm) var(--spacing);
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--gray-600);
+            font-size: var(--font-size-sm);
+        }
+
+        .formation-btn.active {
+            background-color: var(--primary-red);
+            color: var(--primary-white);
+            border-color: var(--primary-red);
+        }
+
+        .football-pitch {
+            background: linear-gradient(to bottom, #2d5a27 0%, #4a7c59 50%, #2d5a27 100%);
+            position: relative;
+            padding: var(--spacing-xl);
+            min-height: 600px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .football-pitch::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: rgba(255, 255, 255, 0.8);
+            transform: translateY(-50%);
+        }
+
+        .football-pitch::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100px;
+            height: 100px;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .pitch-line {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+            margin: var(--spacing) 0;
+        }
+
+        .pitch-line.goalkeeper {
+            justify-content: center;
+        }
+
+        .formation-player {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--spacing-sm);
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: var(--spacing);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-md);
+            cursor: pointer;
+            transition: var(--transition);
+            min-width: 80px;
+            position: relative;
+        }
+
+        .formation-player:hover {
+            background-color: var(--primary-white);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .formation-player.empty {
+            background-color: rgba(255, 255, 255, 0.3);
+            border: 2px dashed rgba(255, 255, 255, 0.6);
+        }
+
+        .formation-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--primary-red);
+        }
+
+        .formation-name {
+            font-size: var(--font-size-xs);
+            font-weight: 600;
+            color: var(--gray-900);
+            text-align: center;
+            line-height: 1.2;
+        }
+
+        .formation-number {
+            font-size: var(--font-size-xs);
+            font-weight: 700;
+            color: var(--primary-red);
+            background-color: var(--light-red);
+            padding: 2px 6px;
+            border-radius: var(--radius-sm);
+        }
+
+        .bench-section {
+            padding: var(--spacing-lg);
+            border-top: 1px solid var(--gray-200);
+            background-color: var(--gray-50);
+        }
+
+        .bench-title {
+            font-size: var(--font-size-base);
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: var(--spacing);
+        }
+
+        .bench-players {
+            display: flex;
+            gap: var(--spacing);
+            flex-wrap: wrap;
+        }
+
+        .bench-player {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            background-color: var(--primary-white);
+            padding: var(--spacing-sm);
+            border-radius: var(--radius);
+            border: 1px solid var(--gray-200);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .bench-player:hover {
+            box-shadow: var(--shadow-sm);
+            transform: translateY(-1px);
+        }
+
+        .bench-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .bench-info {
+            font-size: var(--font-size-sm);
+            font-weight: 500;
+            color: var(--gray-900);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .players-content {
+                padding: var(--spacing);
+            }
+
+            .players-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .filters-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .players-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
+
+            .football-pitch {
+                min-height: 500px;
+                padding: var(--spacing);
+            }
+
+            .formation-player {
+                min-width: 60px;
+                padding: var(--spacing-sm);
+            }
+
+            .formation-avatar {
+                width: 40px;
+                height: 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .players-header {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .players-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .players-table-container {
+                overflow-x: auto;
+            }
+
+            .players-table {
+                min-width: 800px;
+            }
+
+            .players-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pitch-line {
+                flex-wrap: wrap;
+                gap: var(--spacing-sm);
+            }
+
+            .bench-players {
+                justify-content: center;
+            }
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: var(--spacing-2xl);
+            color: var(--gray-500);
+        }
+
+        .empty-state i {
+            font-size: var(--font-size-4xl);
+            margin-bottom: var(--spacing);
+            color: var(--gray-400);
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="7AhhubHgCAYu.jpg" alt="Al Ahly SC" class="sidebar-logo">
+                <div class="sidebar-title">
+                    <h3>Al Ahly SC</h3>
+                    <p>Coach Portal</p>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <h4>OVERVIEW</h4>
+                    <ul>
+                        <li><a href="coach-dashboard.html" class="nav-link"><i class="fas fa-home"></i> Dashboard</a></li>
+                        <li><a href="coach-analytics.html" class="nav-link"><i class="fas fa-chart-bar"></i> My Analytics</a></li>
+                    </ul>
+                </div>
+                
+                <div class="nav-section">
+                    <h4>TEAM MANAGEMENT</h4>
+                    <ul>
+                        <li><a href="coach-team.html" class="nav-link"><i class="fas fa-users"></i> My Team</a></li>
+                        <li><a href="coach-schedule-enhanced.html" class="nav-link"><i class="fas fa-calendar-alt"></i> Schedule</a></li>
+                        <li><a href="drills.html" class="nav-link"><i class="fas fa-dumbbell"></i> Drill Library</a></li>
+                        <li><a href="coach-players-enhanced.html" class="nav-link active"><i class="fas fa-user-friends"></i> My Players</a></li>
+                        <li><a href="coach-attendance.html" class="nav-link"><i class="fas fa-clipboard-check"></i> Attendance</a></li>
+                    </ul>
+                </div>
+                
+                <div class="nav-section">
+                    <h4>TRAINING</h4>
+                    <ul>
+                        <li><a href="coach-sessions.html" class="nav-link"><i class="fas fa-play-circle"></i> Training Sessions</a></li>
+                        <li><a href="coach-performance.html" class="nav-link"><i class="fas fa-chart-line"></i> Performance</a></li>
+                        <li><a href="coach-matches-enhanced.html" class="nav-link"><i class="fas fa-trophy"></i> Matches</a></li>
+                    </ul>
+                </div>
+                
+                <div class="nav-section">
+                    <h4>COMMUNICATION</h4>
+                    <ul>
+                        <li><a href="coach-announcements-enhanced.html" class="nav-link"><i class="fas fa-bullhorn"></i> Announcements</a></li>
+                        <li><a href="coach-chat-enhanced.html" class="nav-link"><i class="fas fa-comments"></i> Team Chat</a></li>
+                        <li><a href="coach-feedback.html" class="nav-link"><i class="fas fa-star"></i> Player Feedback</a></li>
+                    </ul>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop&crop=face" alt="User" class="user-avatar">
+                    <div class="user-info">
+                        <span class="user-name">Ahmed Hassan</span>
+                        <span class="user-role">Football Coach</span>
+                    </div>
+                    <div class="user-menu">
+                        <i class="fas fa-chevron-down"></i>
+                        <div class="dropdown-menu">
+                            <a href="coach-profile.html"><i class="fas fa-user"></i> Profile</a>
+                            <a href="coach-settings.html"><i class="fas fa-cog"></i> Settings</a>
+                            <a href="index.html"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="main-header">
+                <div class="header-left">
+                    <button class="sidebar-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="players-title">
+                        <h1>My Players</h1>
+                        <p>Manage your team roster and formations</p>
+                    </div>
+                </div>
+                
+                <div class="header-right">
+                    <div class="view-controls">
+                        <button class="view-btn active" data-view="table">
+                            <i class="fas fa-table"></i> Table
+                        </button>
+                        <button class="view-btn" data-view="cards">
+                            <i class="fas fa-th-large"></i> Cards
+                        </button>
+                        <button class="view-btn" data-view="formation">
+                            <i class="fas fa-futbol"></i> Formation
+                        </button>
+                    </div>
+                    <button class="btn-outline" onclick="exportPlayers()">
+                        <i class="fas fa-download"></i>
+                        Export
+                    </button>
+                    <button class="btn-primary" onclick="openModal('add-player-modal')">
+                        <i class="fas fa-plus"></i>
+                        Add Player
+                    </button>
+                    <div class="theme-toggle">
+                        <i class="fas fa-moon"></i>
+                    </div>
+                    <div class="notifications">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">2</span>
+                    </div>
+                </div>
+            </header>
+            
+            <div class="players-content">
+                <!-- Stats Overview -->
+                <div class="players-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon total">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>25</h3>
+                            <p>Total Players</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon available">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>23</h3>
+                            <p>Available</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon injured">
+                            <i class="fas fa-band-aid"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>2</h3>
+                            <p>Injured</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon suspended">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>0</h3>
+                            <p>Suspended</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Filters Section -->
+                <div class="filters-section">
+                    <div class="filters-grid">
+                        <div class="filter-group">
+                            <label for="position-filter">Position</label>
+                            <select id="position-filter" class="filter-select">
+                                <option value="">All Positions</option>
+                                <option value="GK">Goalkeeper</option>
+                                <option value="DEF">Defender</option>
+                                <option value="MID">Midfielder</option>
+                                <option value="FWD">Forward</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label for="status-filter">Status</label>
+                            <select id="status-filter" class="filter-select">
+                                <option value="">All Status</option>
+                                <option value="available">Available</option>
+                                <option value="injured">Injured</option>
+                                <option value="suspended">Suspended</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label for="age-filter">Age Group</label>
+                            <select id="age-filter" class="filter-select">
+                                <option value="">All Ages</option>
+                                <option value="18-22">18-22 years</option>
+                                <option value="23-27">23-27 years</option>
+                                <option value="28-32">28-32 years</option>
+                                <option value="33+">33+ years</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label for="search-players">Search</label>
+                            <div class="search-container">
+                                <i class="fas fa-search search-icon"></i>
+                                <input type="text" id="search-players" class="search-input" placeholder="Search players...">
+                            </div>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label>&nbsp;</label>
+                            <button class="clear-filters" onclick="clearFilters()">
+                                <i class="fas fa-times"></i> Clear Filters
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Table View -->
+                <div id="table-view" class="players-table-container">
+                    <table class="players-table">
+                        <thead>
+                            <tr>
+                                <th>Player</th>
+                                <th>Position</th>
+                                <th>Age</th>
+                                <th>Jersey #</th>
+                                <th>Status</th>
+                                <th>Rating</th>
+                                <th>Goals</th>
+                                <th>Assists</th>
+                                <th>Attendance</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="players-table-body">
+                            <!-- Players will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- Cards View -->
+                <div id="cards-view" class="players-grid" style="display: none;">
+                    <!-- Player cards will be populated by JavaScript -->
+                </div>
+                
+                <!-- Formation View -->
+                <div id="formation-view" class="formation-container" style="display: none;">
+                    <div class="formation-header">
+                        <h3>Team Formation</h3>
+                        <div class="formation-selector">
+                            <label>Formation:</label>
+                            <button class="formation-btn active" data-formation="4-3-3">4-3-3</button>
+                            <button class="formation-btn" data-formation="4-4-2">4-4-2</button>
+                            <button class="formation-btn" data-formation="3-5-2">3-5-2</button>
+                            <button class="formation-btn" data-formation="4-2-3-1">4-2-3-1</button>
+                        </div>
+                    </div>
+                    
+                    <div class="football-pitch" id="football-pitch">
+                        <!-- Formation will be populated by JavaScript -->
+                    </div>
+                    
+                    <div class="bench-section">
+                        <h4 class="bench-title">Bench & Substitutes</h4>
+                        <div class="bench-players" id="bench-players">
+                            <!-- Bench players will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Add Player Modal -->
+    <div id="add-player-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add New Player</h3>
+                <button class="close" onclick="closeModal('add-player-modal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="add-player-form">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="player-name">Full Name *</label>
+                            <input type="text" id="player-name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="player-position">Position *</label>
+                            <select id="player-position" name="position" required>
+                                <option value="">Select Position</option>
+                                <option value="GK">Goalkeeper</option>
+                                <option value="DEF">Defender</option>
+                                <option value="MID">Midfielder</option>
+                                <option value="FWD">Forward</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="player-age">Age *</label>
+                            <input type="number" id="player-age" name="age" min="16" max="45" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="player-jersey">Jersey Number *</label>
+                            <input type="number" id="player-jersey" name="jersey" min="1" max="99" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn-secondary" onclick="closeModal('add-player-modal')">Cancel</button>
+                        <button type="submit" class="btn-primary">Add Player</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+    <script>
+        // Enhanced Players JavaScript
+        document.addEventListener('DOMContentLoaded', function() {
+            initializePlayers();
+            loadPlayers();
+            setupEventListeners();
+        });
+
+        // Sample data
+        let players = [
+            {
+                id: 1,
+                name: "Mohamed Salah",
+                position: "FWD",
+                age: 31,
+                jersey: 10,
+                status: "available",
+                rating: 9.2,
+                goals: 15,
+                assists: 8,
+                attendance: 98,
+                avatar: "https://images.unsplash.com/photo-1566753323558-f4e0952af115?w=80&h=80&fit=crop&crop=face"
+            },
+            {
+                id: 2,
+                name: "Ahmed Zizo",
+                position: "MID",
+                age: 28,
+                jersey: 8,
+                status: "available",
+                rating: 8.8,
+                goals: 6,
+                assists: 12,
+                attendance: 95,
+                avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face"
+            },
+            {
+                id: 3,
+                name: "Karim Fouad",
+                position: "DEF",
+                age: 26,
+                jersey: 4,
+                status: "available",
+                rating: 8.6,
+                goals: 2,
+                assists: 3,
+                attendance: 92,
+                avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&h=80&fit=crop&crop=face"
+            },
+            {
+                id: 4,
+                name: "Hassan Ahmed",
+                position: "GK",
+                age: 29,
+                jersey: 1,
+                status: "available",
+                rating: 8.4,
+                goals: 0,
+                assists: 0,
+                attendance: 100,
+                avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&h=80&fit=crop&crop=face"
+            },
+            {
+                id: 5,
+                name: "Omar Khaled",
+                position: "DEF",
+                age: 24,
+                jersey: 5,
+                status: "available",
+                rating: 8.1,
+                goals: 1,
+                assists: 2,
+                attendance: 89,
+                avatar: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=80&h=80&fit=crop&crop=face"
+            },
+            {
+                id: 6,
+                name: "Mahmoud Hassan",
+                position: "MID",
+                age: 27,
+                jersey: 6,
+                status: "injured",
+                rating: 7.9,
+                goals: 4,
+                assists: 7,
+                attendance: 85,
+                avatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=80&h=80&fit=crop&crop=face"
+            },
+            {
+                id: 7,
+                name: "Ali Mohamed",
+                position: "FWD",
+                age: 25,
+                jersey: 9,
+                status: "available",
+                rating: 8.3,
+                goals: 12,
+                assists: 5,
+                attendance: 94,
+                avatar: "https://images.unsplash.com/photo-1507591064344-4c6ce005b128?w=80&h=80&fit=crop&crop=face"
+            },
+            {
+                id: 8,
+                name: "Youssef Ibrahim",
+                position: "DEF",
+                age: 30,
+                jersey: 3,
+                status: "available",
+                rating: 8.0,
+                goals: 1,
+                assists: 1,
+                attendance: 96,
+                avatar: "https://images.unsplash.com/photo-1463453091185-61582044d556?w=80&h=80&fit=crop&crop=face"
+            },
+            {
+                id: 9,
+                name: "Ahmed Ali",
+                position: "MID",
+                age: 23,
+                jersey: 7,
+                status: "available",
+                rating: 7.8,
+                goals: 3,
+                assists: 9,
+                attendance: 91,
+                avatar: "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=80&h=80&fit=crop&crop=face"
+            },
+            {
+                id: 10,
+                name: "Mohamed Tarek",
+                position: "DEF",
+                age: 22,
+                jersey: 2,
+                status: "injured",
+                rating: 7.5,
+                goals: 0,
+                assists: 2,
+                attendance: 88,
+                avatar: "https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?w=80&h=80&fit=crop&crop=face"
+            }
+        ];
+
+        let currentView = 'table';
+        let currentFormation = '4-3-3';
+
+        function initializePlayers() {
+            // Load players from localStorage if available
+            const savedPlayers = localStorage.getItem('coach_players');
+            if (savedPlayers) {
+                players = JSON.parse(savedPlayers);
+            }
+            updateStats();
+        }
+
+        function loadPlayers() {
+            const filteredPlayers = filterPlayers();
+            
+            if (currentView === 'table') {
+                loadTableView(filteredPlayers);
+            } else if (currentView === 'cards') {
+                loadCardsView(filteredPlayers);
+            } else if (currentView === 'formation') {
+                loadFormationView();
+            }
+        }
+
+        function loadTableView(playersData) {
+            const tbody = document.getElementById('players-table-body');
+            
+            if (playersData.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="10" class="empty-state">
+                            <i class="fas fa-users"></i>
+                            <h3>No players found</h3>
+                            <p>Try adjusting your filters</p>
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            tbody.innerHTML = playersData.map(player => `
+                <tr>
+                    <td>
+                        <div class="player-info">
+                            <img src="${player.avatar}" alt="${player.name}" class="player-avatar">
+                            <div class="player-details">
+                                <h4>${player.name}</h4>
+                                <p>Jersey #${player.jersey}</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <span class="position-badge position-${player.position.toLowerCase()}">
+                            ${getPositionName(player.position)}
+                        </span>
+                    </td>
+                    <td>${player.age}</td>
+                    <td>${player.jersey}</td>
+                    <td>
+                        <span class="status-badge status-${player.status}">
+                            <i class="fas fa-${getStatusIcon(player.status)}"></i>
+                            ${player.status}
+                        </span>
+                    </td>
+                    <td>
+                        <div class="rating-display">
+                            <span class="rating-value">${player.rating}</span>
+                            <div class="rating-stars">
+                                ${generateStars(player.rating)}
+                            </div>
+                        </div>
+                    </td>
+                    <td>${player.goals}</td>
+                    <td>${player.assists}</td>
+                    <td>${player.attendance}%</td>
+                    <td>
+                        <div class="player-actions">
+                            <button class="action-btn" onclick="viewPlayer(${player.id})" title="View">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="action-btn" onclick="editPlayer(${player.id})" title="Edit">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="action-btn" onclick="messagePlayer(${player.id})" title="Message">
+                                <i class="fas fa-comment"></i>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function loadCardsView(playersData) {
+            const container = document.getElementById('cards-view');
+            
+            if (playersData.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-users"></i>
+                        <h3>No players found</h3>
+                        <p>Try adjusting your filters</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = playersData.map(player => `
+                <div class="player-card status-${player.status}">
+                    <div class="player-card-header">
+                        <img src="${player.avatar}" alt="${player.name}" class="player-card-avatar">
+                        <h3 class="player-card-name">${player.name}</h3>
+                        <div class="player-card-position">
+                            <span class="position-badge position-${player.position.toLowerCase()}">
+                                ${getPositionName(player.position)}
+                            </span>
+                        </div>
+                        <div class="status-badge status-${player.status}">
+                            <i class="fas fa-${getStatusIcon(player.status)}"></i>
+                            ${player.status}
+                        </div>
+                    </div>
+                    <div class="player-card-body">
+                        <div class="player-stats-grid">
+                            <div class="player-stat">
+                                <span class="player-stat-value">${player.rating}</span>
+                                <span class="player-stat-label">Rating</span>
+                            </div>
+                            <div class="player-stat">
+                                <span class="player-stat-value">${player.goals}</span>
+                                <span class="player-stat-label">Goals</span>
+                            </div>
+                            <div class="player-stat">
+                                <span class="player-stat-value">${player.assists}</span>
+                                <span class="player-stat-label">Assists</span>
+                            </div>
+                            <div class="player-stat">
+                                <span class="player-stat-value">${player.attendance}%</span>
+                                <span class="player-stat-label">Attendance</span>
+                            </div>
+                        </div>
+                        <div class="player-card-actions">
+                            <button class="action-btn" onclick="viewPlayer(${player.id})">
+                                <i class="fas fa-eye"></i> View
+                            </button>
+                            <button class="action-btn" onclick="editPlayer(${player.id})">
+                                <i class="fas fa-edit"></i> Edit
+                            </button>
+                            <button class="action-btn" onclick="messagePlayer(${player.id})">
+                                <i class="fas fa-comment"></i> Message
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function loadFormationView() {
+            const pitch = document.getElementById('football-pitch');
+            const formations = {
+                '4-3-3': {
+                    lines: [
+                        { type: 'goalkeeper', count: 1 },
+                        { type: 'defense', count: 4 },
+                        { type: 'midfield', count: 3 },
+                        { type: 'attack', count: 3 }
+                    ]
+                },
+                '4-4-2': {
+                    lines: [
+                        { type: 'goalkeeper', count: 1 },
+                        { type: 'defense', count: 4 },
+                        { type: 'midfield', count: 4 },
+                        { type: 'attack', count: 2 }
+                    ]
+                },
+                '3-5-2': {
+                    lines: [
+                        { type: 'goalkeeper', count: 1 },
+                        { type: 'defense', count: 3 },
+                        { type: 'midfield', count: 5 },
+                        { type: 'attack', count: 2 }
+                    ]
+                },
+                '4-2-3-1': {
+                    lines: [
+                        { type: 'goalkeeper', count: 1 },
+                        { type: 'defense', count: 4 },
+                        { type: 'midfield', count: 2 },
+                        { type: 'attacking-mid', count: 3 },
+                        { type: 'attack', count: 1 }
+                    ]
+                }
+            };
+
+            const formation = formations[currentFormation];
+            const availablePlayers = players.filter(p => p.status === 'available');
+            let playerIndex = 0;
+
+            pitch.innerHTML = formation.lines.map(line => {
+                const lineClass = line.type === 'goalkeeper' ? 'pitch-line goalkeeper' : 'pitch-line';
+                const positions = [];
+                
+                for (let i = 0; i < line.count; i++) {
+                    const player = availablePlayers[playerIndex];
+                    if (player) {
+                        positions.push(`
+                            <div class="formation-player" onclick="selectFormationPlayer(${player.id})">
+                                <img src="${player.avatar}" alt="${player.name}" class="formation-avatar">
+                                <div class="formation-name">${player.name.split(' ')[0]}</div>
+                                <div class="formation-number">${player.jersey}</div>
+                            </div>
+                        `);
+                        playerIndex++;
+                    } else {
+                        positions.push(`
+                            <div class="formation-player empty" onclick="selectEmptyPosition()">
+                                <div class="formation-avatar" style="background: #ddd; display: flex; align-items: center; justify-content: center;">
+                                    <i class="fas fa-plus" style="color: #999;"></i>
+                                </div>
+                                <div class="formation-name">Empty</div>
+                            </div>
+                        `);
+                    }
+                }
+                
+                return `<div class="${lineClass}">${positions.join('')}</div>`;
+            }).join('');
+
+            // Load bench players
+            const benchPlayers = availablePlayers.slice(11);
+            const benchContainer = document.getElementById('bench-players');
+            benchContainer.innerHTML = benchPlayers.map(player => `
+                <div class="bench-player" onclick="selectBenchPlayer(${player.id})">
+                    <img src="${player.avatar}" alt="${player.name}" class="bench-avatar">
+                    <div class="bench-info">${player.name}</div>
+                </div>
+            `).join('');
+        }
+
+        function filterPlayers() {
+            const positionFilter = document.getElementById('position-filter').value;
+            const statusFilter = document.getElementById('status-filter').value;
+            const ageFilter = document.getElementById('age-filter').value;
+            const searchTerm = document.getElementById('search-players').value.toLowerCase();
+
+            return players.filter(player => {
+                const matchesPosition = !positionFilter || player.position === positionFilter;
+                const matchesStatus = !statusFilter || player.status === statusFilter;
+                const matchesAge = !ageFilter || checkAgeRange(player.age, ageFilter);
+                const matchesSearch = !searchTerm || 
+                    player.name.toLowerCase().includes(searchTerm) ||
+                    player.position.toLowerCase().includes(searchTerm);
+
+                return matchesPosition && matchesStatus && matchesAge && matchesSearch;
+            });
+        }
+
+        function checkAgeRange(age, range) {
+            switch (range) {
+                case '18-22': return age >= 18 && age <= 22;
+                case '23-27': return age >= 23 && age <= 27;
+                case '28-32': return age >= 28 && age <= 32;
+                case '33+': return age >= 33;
+                default: return true;
+            }
+        }
+
+        function setupEventListeners() {
+            // View switching
+            document.querySelectorAll('.view-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    currentView = this.dataset.view;
+                    switchView(currentView);
+                });
+            });
+
+            // Formation switching
+            document.querySelectorAll('.formation-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.formation-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    currentFormation = this.dataset.formation;
+                    if (currentView === 'formation') {
+                        loadFormationView();
+                    }
+                });
+            });
+
+            // Filter change listeners
+            document.getElementById('position-filter').addEventListener('change', loadPlayers);
+            document.getElementById('status-filter').addEventListener('change', loadPlayers);
+            document.getElementById('age-filter').addEventListener('change', loadPlayers);
+            document.getElementById('search-players').addEventListener('input', loadPlayers);
+
+            // Add player form
+            document.getElementById('add-player-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                addNewPlayer();
+            });
+        }
+
+        function switchView(view) {
+            // Hide all views
+            document.getElementById('table-view').style.display = 'none';
+            document.getElementById('cards-view').style.display = 'none';
+            document.getElementById('formation-view').style.display = 'none';
+
+            // Show selected view
+            document.getElementById(view + '-view').style.display = 'block';
+            
+            loadPlayers();
+        }
+
+        function addNewPlayer() {
+            const form = document.getElementById('add-player-form');
+            const formData = new FormData(form);
+            
+            const newPlayer = {
+                id: Date.now(),
+                name: formData.get('name'),
+                position: formData.get('position'),
+                age: parseInt(formData.get('age')),
+                jersey: parseInt(formData.get('jersey')),
+                status: 'available',
+                rating: 7.0,
+                goals: 0,
+                assists: 0,
+                attendance: 100,
+                avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&h=80&fit=crop&crop=face'
+            };
+
+            players.push(newPlayer);
+            savePlayers();
+            loadPlayers();
+            updateStats();
+            closeModal('add-player-modal');
+            form.reset();
+            
+            showNotification('Player added successfully!', 'success');
+        }
+
+        function clearFilters() {
+            document.getElementById('position-filter').value = '';
+            document.getElementById('status-filter').value = '';
+            document.getElementById('age-filter').value = '';
+            document.getElementById('search-players').value = '';
+            loadPlayers();
+        }
+
+        function exportPlayers() {
+            const dataStr = JSON.stringify(players, null, 2);
+            const dataBlob = new Blob([dataStr], {type: 'application/json'});
+            const url = URL.createObjectURL(dataBlob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'players_export.json';
+            link.click();
+            
+            showNotification('Players exported successfully!', 'success');
+        }
+
+        function viewPlayer(id) {
+            const player = players.find(p => p.id === id);
+            showNotification(`Viewing ${player.name} details`, 'info');
+        }
+
+        function editPlayer(id) {
+            const player = players.find(p => p.id === id);
+            showNotification(`Editing ${player.name}`, 'info');
+        }
+
+        function messagePlayer(id) {
+            const player = players.find(p => p.id === id);
+            showNotification(`Opening chat with ${player.name}`, 'info');
+        }
+
+        function selectFormationPlayer(id) {
+            const player = players.find(p => p.id === id);
+            showNotification(`Selected ${player.name}`, 'info');
+        }
+
+        function selectEmptyPosition() {
+            showNotification('Select a player to fill this position', 'info');
+        }
+
+        function selectBenchPlayer(id) {
+            const player = players.find(p => p.id === id);
+            showNotification(`Selected bench player ${player.name}`, 'info');
+        }
+
+        function savePlayers() {
+            localStorage.setItem('coach_players', JSON.stringify(players));
+        }
+
+        function updateStats() {
+            const totalCount = players.length;
+            const availableCount = players.filter(p => p.status === 'available').length;
+            const injuredCount = players.filter(p => p.status === 'injured').length;
+            const suspendedCount = players.filter(p => p.status === 'suspended').length;
+
+            // Update stat cards
+            const statCards = document.querySelectorAll('.stat-card');
+            if (statCards.length >= 4) {
+                statCards[0].querySelector('h3').textContent = totalCount;
+                statCards[1].querySelector('h3').textContent = availableCount;
+                statCards[2].querySelector('h3').textContent = injuredCount;
+                statCards[3].querySelector('h3').textContent = suspendedCount;
+            }
+        }
+
+        function getPositionName(position) {
+            const positions = {
+                'GK': 'Goalkeeper',
+                'DEF': 'Defender',
+                'MID': 'Midfielder',
+                'FWD': 'Forward'
+            };
+            return positions[position] || position;
+        }
+
+        function getStatusIcon(status) {
+            const icons = {
+                'available': 'check-circle',
+                'injured': 'band-aid',
+                'suspended': 'exclamation-triangle'
+            };
+            return icons[status] || 'circle';
+        }
+
+        function generateStars(rating) {
+            const fullStars = Math.floor(rating / 2);
+            const halfStar = rating % 2 >= 1;
+            const emptyStars = 5 - fullStars - (halfStar ? 1 : 0);
+            
+            let stars = '';
+            for (let i = 0; i < fullStars; i++) {
+                stars += '<i class="fas fa-star star filled"></i>';
+            }
+            if (halfStar) {
+                stars += '<i class="fas fa-star-half-alt star filled"></i>';
+            }
+            for (let i = 0; i < emptyStars; i++) {
+                stars += '<i class="fas fa-star star"></i>';
+            }
+            
+            return stars;
+        }
+    </script>
+</body>
+</html>
+

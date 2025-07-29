@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Announcements - Al Ahly SC Training Management</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/medical.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Medical Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="/home/ubuntu/upload/search_images/1.png" alt="Al Ahly SC" class="sidebar-logo">
+                <div class="sidebar-title">
+                    <h3>Al Ahly SC</h3>
+                    <p>Medical Center</p>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <h4>MEDICAL OVERVIEW</h4>
+                    <ul>
+                        <li><a href="medical-dashboard.html" class="nav-link"><i class="fas fa-heartbeat"></i> Dashboard</a></li>
+                        <li><a href="medical-schedule.html" class="nav-link"><i class="fas fa-calendar-alt"></i> My Schedule</a></li>
+                        <li><a href="medical-announcements.html" class="nav-link active"><i class="fas fa-bullhorn"></i> Announcements</a></li>
+                    </ul>
+                </div>
+                
+                <div class="nav-section">
+                    <h4>PLAYER MANAGEMENT</h4>
+                    <ul>
+                        <li><a href="medical-players.html" class="nav-link"><i class="fas fa-user-friends"></i> Player Search</a></li>
+                        <li><a href="medical-injuries.html" class="nav-link"><i class="fas fa-band-aid"></i> Injury Management</a></li>
+                        <li><a href="medical-checkups.html" class="nav-link"><i class="fas fa-clipboard-list"></i> Checkup Logs</a></li>
+                    </ul>
+                </div>
+                
+                <div class="nav-section">
+                    <h4>COMMUNICATION</h4>
+                    <ul>
+                        <li><a href="medical-chat.html" class="nav-link"><i class="fas fa-comments"></i> Player Chat</a></li>
+                        <li><a href="medical-reports.html" class="nav-link"><i class="fas fa-file-medical"></i> Medical Reports</a></li>
+                    </ul>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=40&h=40&fit=crop&crop=face" alt="User" class="user-avatar">
+                    <div class="user-info">
+                        <span class="user-name">Dr. Sarah Ahmed</span>
+                        <span class="user-role">Medical Staff</span>
+                    </div>
+                    <div class="user-menu">
+                        <i class="fas fa-chevron-down"></i>
+                        <div class="dropdown-menu">
+                            <a href="profile.html"><i class="fas fa-user"></i> Profile</a>
+                            <a href="settings.html"><i class="fas fa-cog"></i> Settings</a>
+                            <a href="index.html"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="main-header">
+                <div class="header-left">
+                    <button class="sidebar-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1>Medical Announcements</h1>
+                    <p>Important updates and messages for medical staff and players</p>
+                </div>
+                
+                <div class="header-right">
+                    <button class="btn-primary" onclick="openNewAnnouncementModal()">
+                        <i class="fas fa-plus"></i>
+                        New Announcement
+                    </button>
+                </div>
+            </header>
+            
+            <div class="announcements-content">
+                <div class="announcements-grid">
+                    <!-- Announcement Card Example -->
+                    <div class="announcement-card">
+                        <div class="card-header">
+                            <h3>Urgent: New COVID-19 Protocols</h3>
+                            <span class="announcement-date">Jan 20, 2024</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Please be advised of updated COVID-19 testing and isolation protocols for all players and staff. Details have been shared via email.</p>
+                        </div>
+                        <div class="card-footer">
+                            <span class="announcement-tag urgent">Urgent</span>
+                            <button class="btn-outline" onclick="viewAnnouncementDetails(1)">View Details</button>
+                        </div>
+                    </div>
+                    
+                    <div class="announcement-card">
+                        <div class="card-header">
+                            <h3>New Medical Equipment Training</h3>
+                            <span class="announcement-date">Jan 18, 2024</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Mandatory training session for all medical staff on the new diagnostic equipment. See schedule for details.</p>
+                        </div>
+                        <div class="card-footer">
+                            <span class="announcement-tag training">Training</span>
+                            <button class="btn-outline" onclick="viewAnnouncementDetails(2)">View Details</button>
+                        </div>
+                    </div>
+                    
+                    <div class="announcement-card">
+                        <div class="card-header">
+                            <h3>Annual Health Checkup Schedule</h3>
+                            <span class="announcement-date">Jan 15, 2024</span>
+                        </div>
+                        <div class="card-body">
+                            <p>The annual health checkup schedule for all teams has been finalized. Players will be notified of their individual slots.</p>
+                        </div>
+                        <div class="card-footer">
+                            <span class="announcement-tag general">General</span>
+                            <button class="btn-outline" onclick="viewAnnouncementDetails(3)">View Details</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- New Announcement Modal -->
+    <div class="modal" id="new-announcement-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Create New Announcement</h3>
+                <span class="close" onclick="closeNewAnnouncementModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="new-announcement-form">
+                    <div class="form-group">
+                        <label for="announcement-title">Title</label>
+                        <input type="text" id="announcement-title" name="announcement-title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="announcement-content">Content</label>
+                        <textarea id="announcement-content" name="announcement-content" rows="5" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="announcement-tag">Tag</label>
+                        <select id="announcement-tag" name="announcement-tag">
+                            <option value="general">General</option>
+                            <option value="urgent">Urgent</option>
+                            <option value="training">Training</option>
+                            <option value="protocol">Protocol</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn-primary">Publish Announcement</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts/main.js"></script>
+    <script src="scripts/medical.js"></script>
+    <script src="scripts/page-init.js"></script>
+    <script>
+        function openNewAnnouncementModal() {
+            document.getElementById("new-announcement-modal").style.display = "block";
+        }
+
+        function closeNewAnnouncementModal() {
+            document.getElementById("new-announcement-modal").style.display = "none";
+        }
+
+        function viewAnnouncementDetails(id) {
+            alert("Viewing announcement details for ID: " + id);
+            // In a real application, this would load announcement details dynamically
+        }
+
+        document.getElementById("new-announcement-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            const title = document.getElementById("announcement-title").value;
+            const content = document.getElementById("announcement-content").value;
+            const tag = document.getElementById("announcement-tag").value;
+            
+            alert(`New Announcement:\nTitle: ${title}\nContent: ${content}\nTag: ${tag}`);
+            closeNewAnnouncementModal();
+            // In a real application, this would send data to a backend and update the list
+        });
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Health Analysis - Al Ahly SC Training Management</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/medical.css">
+    <link rel="stylesheet" href="styles/medical-analysis.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Medical Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="/home/ubuntu/upload/search_images/1.png" alt="Al Ahly SC" class="sidebar-logo">
+                <div class="sidebar-title">
+                    <h3>Al Ahly SC</h3>
+                    <p>Medical Center</p>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <h4>MEDICAL OVERVIEW</h4>
+                    <ul>
+                        <li><a href="medical-dashboard.html" class="nav-link"><i class="fas fa-heartbeat"></i> Dashboard</a></li>
+                        <li><a href="medical-schedule.html" class="nav-link"><i class="fas fa-calendar-alt"></i> My Schedule</a></li>
+                        <li><a href="medical-announcements.html" class="nav-link"><i class="fas fa-bullhorn"></i> Announcements</a></li>
+                    </ul>
+                </div>
+                
+                <div class="nav-section">
+                    <h4>PLAYER MANAGEMENT</h4>
+                    <ul>
+                        <li><a href="medical-players.html" class="nav-link"><i class="fas fa-user-friends"></i> Player Search</a></li>
+                        <li><a href="medical-injuries.html" class="nav-link"><i class="fas fa-band-aid"></i> Injury Management</a></li>
+                        <li><a href="medical-checkups.html" class="nav-link"><i class="fas fa-clipboard-list"></i> Checkup Logs</a></li>
+                    </ul>
+                </div>
+                
+                <div class="nav-section">
+                    <h4>COMMUNICATION</h4>
+                    <ul>
+                        <li><a href="medical-chat.html" class="nav-link"><i class="fas fa-comments"></i> Player Chat</a></li>
+                        <li><a href="medical-reports.html" class="nav-link"><i class="fas fa-file-medical"></i> Medical Reports</a></li>
+                        <li><a href="medical-team-analysis.html" class="nav-link active"><i class="fas fa-chart-line"></i> Team Analysis</a></li>
+                    </ul>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=40&h=40&fit=crop&crop=face" alt="User" class="user-avatar">
+                    <div class="user-info">
+                        <span class="user-name">Dr. Sarah Ahmed</span>
+                        <span class="user-role">Medical Staff</span>
+                    </div>
+                    <div class="user-menu">
+                        <i class="fas fa-chevron-down"></i>
+                        <div class="dropdown-menu">
+                            <a href="profile.html"><i class="fas fa-user"></i> Profile</a>
+                            <a href="settings.html"><i class="fas fa-cog"></i> Settings</a>
+                            <a href="index.html"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="main-header">
+                <div class="header-left">
+                    <button class="sidebar-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1>Team Health Analysis</h1>
+                    <p>Comprehensive health and injury analysis for all teams</p>
+                </div>
+                
+                <div class="header-right">
+                    <div class="team-selector">
+                        <select id="team-select" onchange="changeTeam()">
+                            <option value="all">All Teams</option>
+                            <option value="football-first">Football First Team</option>
+                            <option value="football-youth">Football Youth Team</option>
+                            <option value="basketball-senior">Basketball Senior Team</option>
+                            <option value="handball-senior">Handball Senior Team</option>
+                        </select>
+                    </div>
+                    <button class="btn-primary" onclick="exportAnalysis()">
+                        <i class="fas fa-download"></i>
+                        Export Analysis
+                    </button>
+                </div>
+            </header>
+            
+            <div class="analysis-content">
+                <!-- Team Health Overview -->
+                <div class="health-overview-section">
+                    <h2>Health Overview</h2>
+                    <div class="health-stats-grid">
+                        <div class="health-stat-card">
+                            <div class="stat-icon healthy">
+                                <i class="fas fa-user-check"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>742</h3>
+                                <p>Healthy Players</p>
+                                <span class="stat-change positive">
+                                    <i class="fas fa-arrow-up"></i>
+                                    +12 this month
+                                </span>
+                            </div>
+                        </div>
+                        
+                        <div class="health-stat-card">
+                            <div class="stat-icon injured">
+                                <i class="fas fa-user-injured"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>23</h3>
+                                <p>Injured Players</p>
+                                <span class="stat-change negative">
+                                    <i class="fas fa-arrow-down"></i>
+                                    -5 this month
+                                </span>
+                            </div>
+                        </div>
+                        
+                        <div class="health-stat-card">
+                            <div class="stat-icon recovery">
+                                <i class="fas fa-heart"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>94%</h3>
+                                <p>Recovery Rate</p>
+                                <span class="stat-change positive">
+                                    <i class="fas fa-arrow-up"></i>
+                                    +2% this month
+                                </span>
+                            </div>
+                        </div>
+                        
+                        <div class="health-stat-card">
+                            <div class="stat-icon fitness">
+                                <i class="fas fa-dumbbell"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>87%</h3>
+                                <p>Fitness Level</p>
+                                <span class="stat-change positive">
+                                    <i class="fas fa-arrow-up"></i>
+                                    +3% this month
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Injury Analysis -->
+                <div class="injury-analysis-section">
+                    <h2>Injury Analysis</h2>
+                    <div class="analysis-grid">
+                        <div class="analysis-card">
+                            <div class="card-header">
+                                <h3>Injury Types Distribution</h3>
+                                <p>Most common injury types across all teams</p>
+                            </div>
+                            <div class="chart-container">
+                                <canvas id="injury-types-chart"></canvas>
+                            </div>
+                        </div>
+                        
+                        <div class="analysis-card">
+                            <div class="card-header">
+                                <h3>Injury Trends</h3>
+                                <p>Monthly injury trends over the past year</p>
+                            </div>
+                            <div class="chart-container">
+                                <canvas id="injury-trends-chart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Comparison -->
+                <div class="team-comparison-section">
+                    <h2>Team Comparison</h2>
+                    <div class="comparison-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Team</th>
+                                    <th>Total Players</th>
+                                    <th>Healthy</th>
+                                    <th>Injured</th>
+                                    <th>Recovery Rate</th>
+                                    <th>Avg. Fitness</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Football First Team</td>
+                                    <td>25</td>
+                                    <td>22</td>
+                                    <td>3</td>
+                                    <td>96%</td>
+                                    <td>89%</td>
+                                </tr>
+                                <tr>
+                                    <td>Football Youth Team</td>
+                                    <td>30</td>
+                                    <td>28</td>
+                                    <td>2</td>
+                                    <td>94%</td>
+                                    <td>85%</td>
+                                </tr>
+                                <tr>
+                                    <td>Basketball Senior Team</td>
+                                    <td>15</td>
+                                    <td>13</td>
+                                    <td>2</td>
+                                    <td>92%</td>
+                                    <td>87%</td>
+                                </tr>
+                                <tr>
+                                    <td>Handball Senior Team</td>
+                                    <td>18</td>
+                                    <td>16</td>
+                                    <td>2</td>
+                                    <td>90%</td>
+                                    <td>86%</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Risk Assessment -->
+                <div class="risk-assessment-section">
+                    <h2>Risk Assessment</h2>
+                    <div class="risk-cards">
+                        <div class="risk-card high-risk">
+                            <div class="risk-header">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <h3>High Risk Players</h3>
+                            </div>
+                            <div class="risk-list">
+                                <div class="risk-item">
+                                    <img src="https://images.unsplash.com/photo-1566753323558-f4e0952af115?w=40&h=40&fit=crop&crop=face" alt="Player" class="player-avatar">
+                                    <div class="risk-info">
+                                        <h4>Mohamed Salah</h4>
+                                        <p>Recurring ankle issues</p>
+                                    </div>
+                                </div>
+                                <div class="risk-item">
+                                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop&crop=face" alt="Player" class="player-avatar">
+                                    <div class="risk-info">
+                                        <h4>Ahmed Zizo</h4>
+                                        <p>Muscle strain history</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="risk-card medium-risk">
+                            <div class="risk-header">
+                                <i class="fas fa-exclamation-circle"></i>
+                                <h3>Medium Risk Players</h3>
+                            </div>
+                            <div class="risk-list">
+                                <div class="risk-item">
+                                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face" alt="Player" class="player-avatar">
+                                    <div class="risk-info">
+                                        <h4>Karim Fouad</h4>
+                                        <p>Previous knee injury</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="risk-card low-risk">
+                            <div class="risk-header">
+                                <i class="fas fa-check-circle"></i>
+                                <h3>Low Risk Players</h3>
+                            </div>
+                            <div class="risk-list">
+                                <p>687 players with low injury risk</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recommendations -->
+                <div class="recommendations-section">
+                    <h2>Medical Recommendations</h2>
+                    <div class="recommendations-list">
+                        <div class="recommendation-item">
+                            <div class="recommendation-icon">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+                            <div class="recommendation-content">
+                                <h4>Increase Preventive Care</h4>
+                                <p>Consider implementing additional warm-up routines for players with recurring muscle strain issues.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="recommendation-item">
+                            <div class="recommendation-icon">
+                                <i class="fas fa-calendar-check"></i>
+                            </div>
+                            <div class="recommendation-content">
+                                <h4>Schedule Regular Checkups</h4>
+                                <p>High-risk players should have bi-weekly medical assessments to monitor their condition.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="recommendation-item">
+                            <div class="recommendation-icon">
+                                <i class="fas fa-dumbbell"></i>
+                            </div>
+                            <div class="recommendation-content">
+                                <h4>Fitness Program Adjustment</h4>
+                                <p>Modify training intensity for players recovering from injuries to prevent re-injury.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="scripts/main.js"></script>
+    <script src="scripts/medical.js"></script>
+    <script src="scripts/page-init.js"></script>
+    <script>
+        function changeTeam() {
+            const selectedTeam = document.getElementById("team-select").value;
+            alert("Changing analysis view to: " + selectedTeam);
+            // In a real application, this would update all charts and data for the selected team
+        }
+
+        function exportAnalysis() {
+            alert("Exporting team health analysis...");
+            // In a real application, this would generate and download a comprehensive report
+        }
+
+        // Initialize charts (placeholder for actual chart implementation)
+        document.addEventListener('DOMContentLoaded', function() {
+            // In a real application, you would use Chart.js or similar library
+            console.log("Initializing charts...");
+        });
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,379 @@
+/* Medical Announcements Styles */
+
+.announcement-filters {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.announcements-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.announcement-item {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e5e7eb;
+    transition: all 0.3s ease;
+}
+
+.announcement-item:hover {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+.announcement-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.announcement-author {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.author-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.author-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.author-name {
+    font-weight: 600;
+    color: #111827;
+    font-size: 0.875rem;
+}
+
+.author-role {
+    color: #6b7280;
+    font-size: 0.75rem;
+}
+
+.announcement-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.25rem;
+}
+
+.announcement-date {
+    font-size: 0.75rem;
+    color: #9ca3af;
+}
+
+.announcement-category {
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.announcement-category.urgent {
+    background: #fee2e2;
+    color: #dc2626;
+}
+
+.announcement-category.general {
+    background: #dbeafe;
+    color: #1e40af;
+}
+
+.announcement-category.protocol {
+    background: #fef3c7;
+    color: #d97706;
+}
+
+.announcement-category.checkup {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.announcement-category.emergency {
+    background: #fef2f2;
+    color: #dc2626;
+}
+
+.announcement-content h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 0.75rem;
+}
+
+.announcement-content p {
+    color: #374151;
+    line-height: 1.6;
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+}
+
+.announcement-attachments {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.attachment {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    background: #f9fafb;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    color: #374151;
+}
+
+.attachment i {
+    color: #dc2626;
+}
+
+.announcement-stats {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.stat {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.75rem;
+    color: #6b7280;
+}
+
+.stat i {
+    font-size: 0.75rem;
+}
+
+.announcement-actions {
+    display: flex;
+    gap: 0.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid #e5e7eb;
+}
+
+.action-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #e5e7eb;
+    background: white;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 0.75rem;
+}
+
+.action-btn:hover {
+    background: #f9fafb;
+    border-color: #d1d5db;
+}
+
+.action-btn i {
+    font-size: 0.75rem;
+}
+
+/* Modal Styles */
+.schedule-options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.radio-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    font-size: 0.875rem;
+}
+
+.radio-container input[type="radio"] {
+    display: none;
+}
+
+.radio-mark {
+    width: 18px;
+    height: 18px;
+    border: 2px solid #d1d5db;
+    border-radius: 50%;
+    position: relative;
+    transition: all 0.2s;
+}
+
+.radio-container input[type="radio"]:checked + .radio-mark {
+    border-color: #dc2626;
+}
+
+.radio-container input[type="radio"]:checked + .radio-mark::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 8px;
+    background: #dc2626;
+    border-radius: 50%;
+}
+
+.schedule-datetime {
+    margin-top: 0.5rem;
+}
+
+.schedule-datetime input {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    font-size: 0.875rem;
+}
+
+/* Status indicators */
+.announcement-item.urgent {
+    border-left: 4px solid #dc2626;
+}
+
+.announcement-item.general {
+    border-left: 4px solid #3b82f6;
+}
+
+.announcement-item.protocol {
+    border-left: 4px solid #f59e0b;
+}
+
+.announcement-item.checkup {
+    border-left: 4px solid #10b981;
+}
+
+.announcement-item.emergency {
+    border-left: 4px solid #ef4444;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .announcement-filters {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: stretch;
+    }
+
+    .filter-tabs {
+        justify-content: center;
+    }
+
+    .filter-actions {
+        justify-content: center;
+    }
+
+    .announcement-header {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .announcement-meta {
+        align-items: flex-start;
+    }
+
+    .announcement-actions {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .announcement-stats {
+        flex-wrap: wrap;
+    }
+}
+
+/* Animation for announcement items */
+.announcement-item {
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Hover effects */
+.action-btn:hover {
+    background: #dc2626;
+    color: white;
+    border-color: #dc2626;
+}
+
+.announcement-item.urgent {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.95;
+    }
+}
+
+/* Medical-specific styling */
+.announcement-item.urgent .announcement-content h3 {
+    color: #dc2626;
+}
+
+.announcement-item.emergency .announcement-content h3 {
+    color: #ef4444;
+}
+
+.announcement-item.protocol .announcement-content h3 {
+    color: #d97706;
+}
+
+.announcement-item.checkup .announcement-content h3 {
+    color: #166534;
+}
+
+/* File attachment styling */
+.attachment:hover {
+    background: #f3f4f6;
+    cursor: pointer;
+}
+
+.attachment i {
+    transition: color 0.2s ease;
+}
+
+.attachment:hover i {
+    color: #dc2626;
+}

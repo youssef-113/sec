@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback & Reviews - Al Ahly SC Training Management</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/dashboard.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="/home/ubuntu/upload/search_images/1.png" alt="Al Ahly SC" class="sidebar-logo">
+                <div class="sidebar-title">
+                    <h3>Al Ahly SC</h3>
+                    <p>Training Management</p>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <!-- Navigation will be dynamically generated -->
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop&crop=face" alt="User" class="user-avatar">
+                    <div class="user-info">
+                        <span class="user-name">Ahmed Hassan</span>
+                        <span class="user-role">Manager</span>
+                    </div>
+                    <div class="user-menu">
+                        <i class="fas fa-chevron-down"></i>
+                        <div class="dropdown-menu">
+                            <a href="profile.html"><i class="fas fa-user"></i> Profile</a>
+                            <a href="settings.html"><i class="fas fa-cog"></i> Settings</a>
+                            <a href="index.html"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="main-header">
+                <div class="header-left">
+                    <button class="sidebar-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1>Feedback & Reviews</h1>
+                    <p>Manage player feedback, performance reviews, and evaluations</p>
+                </div>
+                
+                <div class="header-right">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search feedback..." id="feedback-search">
+                    </div>
+                    <button class="btn-primary" onclick="openNewFeedbackModal()">
+                        <i class="fas fa-plus"></i>
+                        New Review
+                    </button>
+                </div>
+            </header>
+            
+            <div class="dashboard-content">
+                <!-- Feedback Stats -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>4.8</h3>
+                            <p>Average Rating</p>
+                            <span class="stat-change positive">
+                                <i class="fas fa-arrow-up"></i>
+                                +0.2 this month
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>156</h3>
+                            <p>Total Reviews</p>
+                            <span class="stat-change positive">
+                                <i class="fas fa-arrow-up"></i>
+                                +12 this week
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>8</h3>
+                            <p>Pending Reviews</p>
+                            <span class="stat-change neutral">
+                                <i class="fas fa-minus"></i>
+                                No change
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>92%</h3>
+                            <p>Response Rate</p>
+                            <span class="stat-change positive">
+                                <i class="fas fa-arrow-up"></i>
+                                +3% this month
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Feedback Tabs -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Player Feedback</h2>
+                        <div class="filter-tabs">
+                            <button class="filter-tab active" data-filter="all">All Feedback</button>
+                            <button class="filter-tab" data-filter="pending">Pending</button>
+                            <button class="filter-tab" data-filter="completed">Completed</button>
+                            <button class="filter-tab" data-filter="high-priority">High Priority</button>
+                        </div>
+                    </div>
+                    
+                    <div class="feedback-list">
+                        <div class="feedback-item pending">
+                            <div class="feedback-header">
+                                <div class="player-info">
+                                    <img src="https://images.unsplash.com/photo-1566753323558-f4e0952af115?w=50&h=50&fit=crop&crop=face" alt="Mohamed Salah" class="player-avatar">
+                                    <div class="player-details">
+                                        <h3>Mohamed Salah</h3>
+                                        <p>Forward • #11 • Football First Team</p>
+                                    </div>
+                                </div>
+                                <div class="feedback-meta">
+                                    <span class="feedback-date">Jan 15, 2024</span>
+                                    <span class="feedback-status pending">Pending Review</span>
+                                </div>
+                            </div>
+                            
+                            <div class="feedback-content">
+                                <div class="feedback-category">
+                                    <i class="fas fa-dumbbell"></i>
+                                    <span>Training Performance</span>
+                                </div>
+                                <p class="feedback-text">
+                                    Mohamed has shown exceptional improvement in his finishing techniques during the past month. His work rate in training has been outstanding, and he's been very receptive to tactical instructions. However, there's room for improvement in his defensive contributions during matches.
+                                </p>
+                                
+                                <div class="feedback-ratings">
+                                    <div class="rating-item">
+                                        <span class="rating-label">Technical Skills</span>
+                                        <div class="rating-stars">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                        <span class="rating-score">9.2</span>
+                                    </div>
+                                    <div class="rating-item">
+                                        <span class="rating-label">Physical Fitness</span>
+                                        <div class="rating-stars">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                        </div>
+                                        <span class="rating-score">8.5</span>
+                                    </div>
+                                    <div class="rating-item">
+                                        <span class="rating-label">Team Work</span>
+                                        <div class="rating-stars">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                        </div>
+                                        <span class="rating-score">8.0</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="feedback-actions">
+                                <button class="btn-outline" onclick="editFeedback(1)">
+                                    <i class="fas fa-edit"></i>
+                                    Edit
+                                </button>
+                                <button class="btn-outline" onclick="shareFeedback(1)">
+                                    <i class="fas fa-share"></i>
+                                    Share
+                                </button>
+                                <button class="btn-primary" onclick="completeFeedback(1)">
+                                    <i class="fas fa-check"></i>
+                                    Complete Review
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="feedback-item completed">
+                            <div class="feedback-header">
+                                <div class="player-info">
+                                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=50&h=50&fit=crop&crop=face" alt="Ahmed Zizo" class="player-avatar">
+                                    <div class="player-details">
+                                        <h3>Ahmed Zizo</h3>
+                                        <p>Midfielder • #8 • Football First Team</p>
+                                    </div>
+                                </div>
+                                <div class="feedback-meta">
+                                    <span class="feedback-date">Jan 12, 2024</span>
+                                    <span class="feedback-status completed">Completed</span>
+                                </div>
+                            </div>
+                            
+                            <div class="feedback-content">
+                                <div class="feedback-category">
+                                    <i class="fas fa-tactics"></i>
+                                    <span>Tactical Understanding</span>
+                                </div>
+                                <p class="feedback-text">
+                                    Ahmed continues to be one of our most consistent performers. His vision and passing ability have been crucial in our recent victories. His leadership on the field has also improved significantly.
+                                </p>
+                                
+                                <div class="feedback-ratings">
+                                    <div class="rating-item">
+                                        <span class="rating-label">Technical Skills</span>
+                                        <div class="rating-stars">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                        </div>
+                                        <span class="rating-score">8.8</span>
+                                    </div>
+                                    <div class="rating-item">
+                                        <span class="rating-label">Leadership</span>
+                                        <div class="rating-stars">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                        <span class="rating-score">9.0</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="feedback-actions">
+                                <button class="btn-outline" onclick="viewFullFeedback(2)">
+                                    <i class="fas fa-eye"></i>
+                                    View Full
+                                </button>
+                                <button class="btn-outline" onclick="exportFeedback(2)">
+                                    <i class="fas fa-download"></i>
+                                    Export
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <!-- New Feedback Modal -->
+    <div class="modal" id="new-feedback-modal">
+        <div class="modal-content large">
+            <div class="modal-header">
+                <h3>Create New Player Review</h3>
+                <span class="close" onclick="closeModal('new-feedback-modal')">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="new-feedback-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="player-select">Player</label>
+                            <select id="player-select" name="player" required>
+                                <option value="">Select player</option>
+                                <option value="1">Mohamed Salah - Forward</option>
+                                <option value="2">Ahmed Zizo - Midfielder</option>
+                                <option value="3">Karim Fouad - Defender</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="review-category">Category</label>
+                            <select id="review-category" name="category" required>
+                                <option value="">Select category</option>
+                                <option value="training">Training Performance</option>
+                                <option value="tactical">Tactical Understanding</option>
+                                <option value="physical">Physical Fitness</option>
+                                <option value="mental">Mental Strength</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="feedback-text">Feedback</label>
+                        <textarea id="feedback-text" name="feedback" rows="5" required placeholder="Provide detailed feedback about the player's performance..."></textarea>
+                    </div>
+                    
+                    <div class="ratings-section">
+                        <h4>Performance Ratings</h4>
+                        <div class="rating-inputs">
+                            <div class="rating-input">
+                                <label>Technical Skills</label>
+                                <div class="star-rating" data-rating="technical">
+                                    <i class="far fa-star" data-value="1"></i>
+                                    <i class="far fa-star" data-value="2"></i>
+                                    <i class="far fa-star" data-value="3"></i>
+                                    <i class="far fa-star" data-value="4"></i>
+                                    <i class="far fa-star" data-value="5"></i>
+                                </div>
+                            </div>
+                            <div class="rating-input">
+                                <label>Physical Fitness</label>
+                                <div class="star-rating" data-rating="physical">
+                                    <i class="far fa-star" data-value="1"></i>
+                                    <i class="far fa-star" data-value="2"></i>
+                                    <i class="far fa-star" data-value="3"></i>
+                                    <i class="far fa-star" data-value="4"></i>
+                                    <i class="far fa-star" data-value="5"></i>
+                                </div>
+                            </div>
+                            <div class="rating-input">
+                                <label>Team Work</label>
+                                <div class="star-rating" data-rating="teamwork">
+                                    <i class="far fa-star" data-value="1"></i>
+                                    <i class="far fa-star" data-value="2"></i>
+                                    <i class="far fa-star" data-value="3"></i>
+                                    <i class="far fa-star" data-value="4"></i>
+                                    <i class="far fa-star" data-value="5"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn-outline" onclick="closeModal('new-feedback-modal')">Cancel</button>
+                        <button type="submit" class="btn-primary">Save Review</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <script src="scripts/main.js"></script>
+    <script src="scripts/page-init.js"></script>
+    <script>
+        // Feedback-specific functionality
+        function openNewFeedbackModal() {
+            openModal('new-feedback-modal')
+        }
+        
+        function editFeedback(id) {
+            showNotification('Edit feedback functionality will be implemented', 'info')
+        }
+        
+        function shareFeedback(id) {
+            showNotification('Share feedback functionality will be implemented', 'info')
+        }
+        
+        function completeFeedback(id) {
+            showNotification('Feedback marked as completed', 'success')
+        }
+        
+        function viewFullFeedback(id) {
+            showNotification('View full feedback functionality will be implemented', 'info')
+        }
+        
+        function exportFeedback(id) {
+            showNotification('Export feedback functionality will be implemented', 'info')
+        }
+        
+        // Filter tabs functionality
+        document.querySelectorAll('.filter-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'))
+                this.classList.add('active')
+                
+                const filter = this.dataset.filter
+                const feedbackItems = document.querySelectorAll('.feedback-item')
+                
+                feedbackItems.forEach(item => {
+                    if (filter === 'all' || item.classList.contains(filter)) {
+                        item.style.display = 'block'
+                    } else {
+                        item.style.display = 'none'
+                    }
+                })
+            })
+        })
+        
+        // Star rating functionality
+        document.querySelectorAll('.star-rating').forEach(rating => {
+            const stars = rating.querySelectorAll('i')
+            
+            stars.forEach((star, index) => {
+                star.addEventListener('click', function() {
+                    const value = parseInt(this.dataset.value)
+                    
+                    stars.forEach((s, i) => {
+                        if (i < value) {
+                            s.classList.remove('far')
+                            s.classList.add('fas')
+                        } else {
+                            s.classList.remove('fas')
+                            s.classList.add('far')
+                        }
+                    })
+                })
+            })
+        })
+    </script>
+</body>
+</html>
+

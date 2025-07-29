@@ -1,0 +1,309 @@
+/* Medical Reports Styles */
+.reports-content {
+    padding: var(--spacing-xl);
+    flex: 1;
+}
+
+.report-filters {
+    display: flex;
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-2xl);
+    background-color: var(--primary-white);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.filter-group {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.filter-group label {
+    font-size: var(--font-size-sm);
+    color: var(--gray-700);
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.filter-group select,
+.filter-group input {
+    padding: var(--spacing-sm) var(--spacing);
+    border: 1px solid var(--gray-300);
+    border-radius: var(--radius);
+    background-color: var(--gray-50);
+    font-size: var(--font-size-base);
+    color: var(--gray-900);
+    min-width: 150px;
+}
+
+.filter-group input[type="date"] {
+    min-width: 140px;
+}
+
+.filter-group span {
+    font-size: var(--font-size-sm);
+    color: var(--gray-600);
+    margin: 0 var(--spacing-sm);
+}
+
+.reports-list-section {
+    display: grid;
+    gap: var(--spacing-lg);
+}
+
+.report-card {
+    background-color: var(--primary-white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    transition: var(--transition);
+    border-left: 4px solid var(--primary-red);
+}
+
+.report-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.report-card-header {
+    padding: var(--spacing-lg);
+    background: var(--gray-50);
+    border-bottom: 1px solid var(--gray-200);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.report-card-header h3 {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    color: var(--gray-900);
+    margin-bottom: 4px;
+}
+
+.report-date {
+    font-size: var(--font-size-sm);
+    color: var(--gray-600);
+    font-weight: 500;
+}
+
+.report-card-body {
+    padding: var(--spacing-lg);
+}
+
+.report-card-body p {
+    font-size: var(--font-size-base);
+    color: var(--gray-700);
+    line-height: 1.6;
+    margin-bottom: var(--spacing);
+}
+
+.report-meta {
+    display: flex;
+    gap: var(--spacing-lg);
+    font-size: var(--font-size-sm);
+    color: var(--gray-600);
+}
+
+.report-meta span {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.report-meta i {
+    color: var(--primary-red);
+}
+
+.report-card-footer {
+    padding: var(--spacing-lg);
+    border-top: 1px solid var(--gray-200);
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--spacing);
+}
+
+.report-card-footer .btn-outline {
+    background-color: transparent;
+    color: var(--primary-red);
+    border: 1px solid var(--primary-red);
+    padding: var(--spacing-sm) var(--spacing);
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+}
+
+.report-card-footer .btn-outline:hover {
+    background-color: var(--light-red);
+}
+
+.report-card-footer .btn-primary {
+    background-color: var(--primary-red);
+    color: var(--primary-white);
+    border: none;
+    padding: var(--spacing-sm) var(--spacing);
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+}
+
+.report-card-footer .btn-primary:hover {
+    background-color: var(--dark-red);
+}
+
+/* Report Generation Modal */
+.report-generation-modal .modal-content {
+    max-width: 600px;
+}
+
+.form-group {
+    margin-bottom: var(--spacing-lg);
+}
+
+.form-group label {
+    display: block;
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    color: var(--gray-700);
+    margin-bottom: var(--spacing-sm);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: var(--spacing-sm) var(--spacing);
+    border: 1px solid var(--gray-300);
+    border-radius: var(--radius);
+    background-color: var(--gray-50);
+    font-size: var(--font-size-base);
+    color: var(--gray-900);
+    transition: var(--transition);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-red);
+    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* Report Type Specific Styles */
+.report-card.injury-report {
+    border-left-color: #ef4444;
+}
+
+.report-card.checkup-report {
+    border-left-color: #3b82f6;
+}
+
+.report-card.performance-report {
+    border-left-color: #10b981;
+}
+
+.report-card.team-health-report {
+    border-left-color: #f59e0b;
+}
+
+/* Empty State */
+.reports-empty-state {
+    text-align: center;
+    padding: var(--spacing-2xl);
+    color: var(--gray-600);
+}
+
+.reports-empty-state i {
+    font-size: 4rem;
+    color: var(--gray-400);
+    margin-bottom: var(--spacing-lg);
+}
+
+.reports-empty-state h3 {
+    font-size: var(--font-size-xl);
+    font-weight: 600;
+    color: var(--gray-700);
+    margin-bottom: var(--spacing);
+}
+
+.reports-empty-state p {
+    font-size: var(--font-size-base);
+    line-height: 1.6;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .report-filters {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing);
+    }
+
+    .filter-group {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .filter-group select,
+    .filter-group input {
+        min-width: auto;
+        flex: 1;
+    }
+}
+
+@media (max-width: 768px) {
+    .reports-content {
+        padding: var(--spacing-lg);
+    }
+
+    .report-card-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-sm);
+    }
+
+    .report-card-footer {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+
+    .report-card-footer .btn-outline,
+    .report-card-footer .btn-primary {
+        width: 100%;
+        text-align: center;
+    }
+
+    .report-meta {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+}
+
+/* Print Styles */
+@media print {
+    .report-filters,
+    .report-card-footer {
+        display: none;
+    }
+
+    .report-card {
+        box-shadow: none;
+        border: 1px solid var(--gray-300);
+        margin-bottom: var(--spacing-lg);
+        break-inside: avoid;
+    }
+}
+

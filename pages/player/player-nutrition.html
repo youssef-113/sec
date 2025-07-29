@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nutrition Plan - Al Ahly SC Player Portal</title>
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/player.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Player Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="https://upload.wikimedia.org/wikipedia/en/4/41/Al_Ahly_SC_logo.png" alt="Al Ahly SC" class="sidebar-logo">
+                <div class="sidebar-title">
+                    <h3>Al Ahly SC</h3>
+                    <p>Player Portal</p>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <h4>OVERVIEW</h4>
+                    <ul>
+                        <li><a href="player-dashboard.html" class="nav-link"><i class="fas fa-home"></i> Dashboard</a></li>
+                        <li><a href="player-performance.html" class="nav-link"><i class="fas fa-chart-line"></i> Performance</a></li>
+                        <li><a href="player-schedule.html" class="nav-link"><i class="fas fa-calendar-alt"></i> Schedule</a></li>
+                    </ul>
+                </div>
+                
+                <div class="nav-section">
+                    <h4>TRAINING</h4>
+                    <ul>
+                        <li><a href="player-attendance.html" class="nav-link"><i class="fas fa-clipboard-check"></i> Attendance</a></li>
+                        <li><a href="player-drills.html" class="nav-link"><i class="fas fa-dumbbell"></i> Training Drills</a></li>
+                        <li><a href="player-goals.html" class="nav-link"><i class="fas fa-target"></i> Goals & Progress</a></li>
+                    </ul>
+                </div>
+                
+                <div class="nav-section">
+                    <h4>COMMUNICATION</h4>
+                    <ul>
+                        <li><a href="player-announcements.html" class="nav-link"><i class="fas fa-bullhorn"></i> Announcements</a></li>
+                        <li><a href="player-chat.html" class="nav-link"><i class="fas fa-comments"></i> Chat with Doctor</a></li>
+                        <li><a href="player-feedback.html" class="nav-link"><i class="fas fa-star"></i> Feedback</a></li>
+                    </ul>
+                </div>
+                
+                <div class="nav-section">
+                    <h4>HEALTH</h4>
+                    <ul>
+                        <li><a href="player-medical.html" class="nav-link"><i class="fas fa-heartbeat"></i> Medical Records</a></li>
+                        <li><a href="player-nutrition.html" class="nav-link active"><i class="fas fa-apple-alt"></i> Nutrition Plan</a></li>
+                    </ul>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <img src="https://images.unsplash.com/photo-1566753323558-f4e0952af115?w=40&h=40&fit=crop&crop=face" alt="Mohamed Salah" class="user-avatar">
+                    <div class="user-info">
+                        <span class="user-name">Mohamed Salah</span>
+                        <span class="user-role">Forward • #11</span>
+                    </div>
+                    <div class="user-menu">
+                        <i class="fas fa-chevron-down"></i>
+                        <div class="dropdown-menu">
+                            <a href="player-profile.html"><i class="fas fa-user"></i> Profile</a>
+                            <a href="player-settings.html"><i class="fas fa-cog"></i> Settings</a>
+                            <a href="index.html"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="main-header">
+                <div class="header-left">
+                    <button class="sidebar-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1>Nutrition Plan</h1>
+                    <p>Your personalized nutrition and dietary guidelines</p>
+                </div>
+                
+                <div class="header-right">
+                    <button class="btn-outline" onclick="consultNutritionist()">
+                        <i class="fas fa-user-md"></i>
+                        Consult Nutritionist
+                    </button>
+                    <button class="btn-primary" onclick="logMeal()">
+                        <i class="fas fa-plus"></i>
+                        Log Meal
+                    </button>
+                </div>
+            </header>
+            
+            <div class="nutrition-content">
+                <!-- Daily Overview -->
+                <div class="daily-overview">
+                    <div class="overview-card calories">
+                        <div class="card-icon">
+                            <i class="fas fa-fire"></i>
+                        </div>
+                        <div class="card-info">
+                            <h3>2,850</h3>
+                            <p>Daily Calories</p>
+                            <div class="progress-ring">
+                                <svg class="progress-circle" width="60" height="60">
+                                    <circle class="progress-bg" stroke="#e5e7eb" stroke-width="4" fill="transparent" r="26" cx="30" cy="30"/>
+                                    <circle class="progress-fill" stroke="#dc2626" stroke-width="4" fill="transparent" r="26" cx="30" cy="30" style="stroke-dasharray: 163.36; stroke-dashoffset: 32.67;"/>
+                                </svg>
+                                <span class="progress-text">80%</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="overview-card protein">
+                        <div class="card-icon">
+                            <i class="fas fa-drumstick-bite"></i>
+                        </div>
+                        <div class="card-info">
+                            <h3>180g</h3>
+                            <p>Protein</p>
+                            <div class="progress-ring">
+                                <svg class="progress-circle" width="60" height="60">
+                                    <circle class="progress-bg" stroke="#e5e7eb" stroke-width="4" fill="transparent" r="26" cx="30" cy="30"/>
+                                    <circle class="progress-fill" stroke="#059669" stroke-width="4" fill="transparent" r="26" cx="30" cy="30" style="stroke-dasharray: 163.36; stroke-dashoffset: 49.01;"/>
+                                </svg>
+                                <span class="progress-text">70%</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="overview-card carbs">
+                        <div class="card-icon">
+                            <i class="fas fa-bread-slice"></i>
+                        </div>
+                        <div class="card-info">
+                            <h3>350g</h3>
+                            <p>Carbohydrates</p>
+                            <div class="progress-ring">
+                                <svg class="progress-circle" width="60" height="60">
+                                    <circle class="progress-bg" stroke="#e5e7eb" stroke-width="4" fill="transparent" r="26" cx="30" cy="30"/>
+                                    <circle class="progress-fill" stroke="#2563eb" stroke-width="4" fill="transparent" r="26" cx="30" cy="30" style="stroke-dasharray: 163.36; stroke-dashoffset: 16.34;"/>
+                                </svg>
+                                <span class="progress-text">90%</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="overview-card fats">
+                        <div class="card-icon">
+                            <i class="fas fa-seedling"></i>
+                        </div>
+                        <div class="card-info">
+                            <h3>95g</h3>
+                            <p>Healthy Fats</p>
+                            <div class="progress-ring">
+                                <svg class="progress-circle" width="60" height="60">
+                                    <circle class="progress-bg" stroke="#e5e7eb" stroke-width="4" fill="transparent" r="26" cx="30" cy="30"/>
+                                    <circle class="progress-fill" stroke="#f59e0b" stroke-width="4" fill="transparent" r="26" cx="30" cy="30" style="stroke-dasharray: 163.36; stroke-dashoffset: 65.34;"/>
+                                </svg>
+                                <span class="progress-text">60%</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="overview-card water">
+                        <div class="card-icon">
+                            <i class="fas fa-tint"></i>
+                        </div>
+                        <div class="card-info">
+                            <h3>3.5L</h3>
+                            <p>Water Intake</p>
+                            <div class="progress-ring">
+                                <svg class="progress-circle" width="60" height="60">
+                                    <circle class="progress-bg" stroke="#e5e7eb" stroke-width="4" fill="transparent" r="26" cx="30" cy="30"/>
+                                    <circle class="progress-fill" stroke="#06b6d4" stroke-width="4" fill="transparent" r="26" cx="30" cy="30" style="stroke-dasharray: 163.36; stroke-dashoffset: 24.50;"/>
+                                </svg>
+                                <span class="progress-text">85%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Today's Meal Plan -->
+                <div class="nutrition-section">
+                    <div class="section-header">
+                        <h3>Today's Meal Plan</h3>
+                        <span class="meal-date">Tuesday, January 17, 2024</span>
+                    </div>
+                    
+                    <div class="meal-plan">
+                        <div class="meal-card breakfast">
+                            <div class="meal-header">
+                                <div class="meal-info">
+                                    <h4>Breakfast</h4>
+                                    <span class="meal-time">7:00 AM</span>
+                                </div>
+                                <div class="meal-calories">
+                                    <span class="calories">650 kcal</span>
+                                    <span class="status completed">Completed</span>
+                                </div>
+                            </div>
+                            <div class="meal-items">
+                                <div class="meal-item">
+                                    <span class="item-name">Oatmeal with berries and honey</span>
+                                    <span class="item-amount">1 bowl</span>
+                                </div>
+                                <div class="meal-item">
+                                    <span class="item-name">Greek yogurt</span>
+                                    <span class="item-amount">200g</span>
+                                </div>
+                                <div class="meal-item">
+                                    <span class="item-name">Banana</span>
+                                    <span class="item-amount">1 medium</span>
+                                </div>
+                                <div class="meal-item">
+                                    <span class="item-name">Orange juice</span>
+                                    <span class="item-amount">250ml</span>
+                                </div>
+                            </div>
+                            <div class="meal-macros">
+                                <span class="macro">Protein: 25g</span>
+                                <span class="macro">Carbs: 85g</span>
+                                <span class="macro">Fat: 18g</span>
+                            </div>
+                        </div>
+                        
+                        <div class="meal-card lunch">
+                            <div class="meal-header">
+                                <div class="meal-info">
+                                    <h4>Lunch</h4>
+                                    <span class="meal-time">1:00 PM</span>
+                                </div>
+                                <div class="meal-calories">
+                                    <span class="calories">850 kcal</span>
+                                    <span class="status completed">Completed</span>
+                                </div>
+                            </div>
+                            <div class="meal-items">
+                                <div class="meal-item">
+                                    <span class="item-name">Grilled chicken breast</span>
+                                    <span class="item-amount">200g</span>
+                                </div>
+                                <div class="meal-item">
+                                    <span class="item-name">Brown rice</span>
+                                    <span class="item-amount">150g</span>
+                                </div>
+                                <div class="meal-item">
+                                    <span class="item-name">Mixed vegetables</span>
+                                    <span class="item-amount">200g</span>
+                                </div>
+                                <div class="meal-item">
+                                    <span class="item-name">Avocado</span>
+                                    <span class="item-amount">1/2 medium</span>
+                                </div>
+                            </div>
+                            <div class="meal-macros">
+                                <span class="macro">Protein: 45g</span>
+                                <span class="macro">Carbs: 65g</span>
+                                <span class="macro">Fat: 22g</span>
+                            </div>
+                        </div>
+                        
+                        <div class="meal-card snack">
+                            <div class="meal-header">
+                                <div class="meal-info">
+                                    <h4>Pre-Training Snack</h4>
+                                    <span class="meal-time">3:30 PM</span>
+                                </div>
+                                <div class="meal-calories">
+                                    <span class="calories">300 kcal</span>
+                                    <span class="status pending">Pending</span>
+                                </div>
+                            </div>
+                            <div class="meal-items">
+                                <div class="meal-item">
+                                    <span class="item-name">Energy bar</span>
+                                    <span class="item-amount">1 bar</span>
+                                </div>
+                                <div class="meal-item">
+                                    <span class="item-name">Sports drink</span>
+                                    <span class="item-amount">500ml</span>
+                                </div>
+                            </div>
+                            <div class="meal-macros">
+                                <span class="macro">Protein: 12g</span>
+                                <span class="macro">Carbs: 45g</span>
+                                <span class="macro">Fat: 8g</span>
+                            </div>
+                            <button class="meal-action" onclick="markMealCompleted('snack1')">Mark as Eaten</button>
+                        </div>
+                        
+                        <div class="meal-card dinner">
+                            <div class="meal-header">
+                                <div class="meal-info">
+                                    <h4>Dinner</h4>
+                                    <span class="meal-time">7:30 PM</span>
+                                </div>
+                                <div class="meal-calories">
+                                    <span class="calories">750 kcal</span>
+                                    <span class="status scheduled">Scheduled</span>
+                                </div>
+                            </div>
+                            <div class="meal-items">
+                                <div class="meal-item">
+                                    <span class="item-name">Grilled salmon</span>
+                                    <span class="item-amount">180g</span>
+                                </div>
+                                <div class="meal-item">
+                                    <span class="item-name">Sweet potato</span>
+                                    <span class="item-amount">200g</span>
+                                </div>
+                                <div class="meal-item">
+                                    <span class="item-name">Green salad</span>
+                                    <span class="item-amount">150g</span>
+                                </div>
+                                <div class="meal-item">
+                                    <span class="item-name">Olive oil dressing</span>
+                                    <span class="item-amount">1 tbsp</span>
+                                </div>
+                            </div>
+                            <div class="meal-macros">
+                                <span class="macro">Protein: 38g</span>
+                                <span class="macro">Carbs: 55g</span>
+                                <span class="macro">Fat: 25g</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Supplements -->
+                <div class="nutrition-section">
+                    <div class="section-header">
+                        <h3>Daily Supplements</h3>
+                        <p>Recommended supplements for optimal performance</p>
+                    </div>
+                    
+                    <div class="supplements-grid">
+                        <div class="supplement-card">
+                            <div class="supplement-icon">
+                                <i class="fas fa-pills"></i>
+                            </div>
+                            <div class="supplement-info">
+                                <h4>Multivitamin</h4>
+                                <p>1 tablet with breakfast</p>
+                                <span class="supplement-time">7:00 AM</span>
+                            </div>
+                            <div class="supplement-status">
+                                <button class="status-btn taken" onclick="toggleSupplement('multi')">
+                                    <i class="fas fa-check"></i>
+                                    Taken
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="supplement-card">
+                            <div class="supplement-icon">
+                                <i class="fas fa-dumbbell"></i>
+                            </div>
+                            <div class="supplement-info">
+                                <h4>Protein Powder</h4>
+                                <p>30g post-training</p>
+                                <span class="supplement-time">After training</span>
+                            </div>
+                            <div class="supplement-status">
+                                <button class="status-btn pending" onclick="toggleSupplement('protein')">
+                                    <i class="fas fa-clock"></i>
+                                    Pending
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="supplement-card">
+                            <div class="supplement-icon">
+                                <i class="fas fa-fish"></i>
+                            </div>
+                            <div class="supplement-info">
+                                <h4>Omega-3</h4>
+                                <p>2 capsules with dinner</p>
+                                <span class="supplement-time">7:30 PM</span>
+                            </div>
+                            <div class="supplement-status">
+                                <button class="status-btn scheduled" onclick="toggleSupplement('omega3')">
+                                    <i class="fas fa-calendar"></i>
+                                    Scheduled
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="supplement-card">
+                            <div class="supplement-icon">
+                                <i class="fas fa-sun"></i>
+                            </div>
+                            <div class="supplement-info">
+                                <h4>Vitamin D</h4>
+                                <p>1000 IU with breakfast</p>
+                                <span class="supplement-time">7:00 AM</span>
+                            </div>
+                            <div class="supplement-status">
+                                <button class="status-btn taken" onclick="toggleSupplement('vitd')">
+                                    <i class="fas fa-check"></i>
+                                    Taken
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Nutrition Tips -->
+                <div class="nutrition-section">
+                    <div class="section-header">
+                        <h3>Nutrition Tips</h3>
+                        <p>Personalized recommendations from your nutritionist</p>
+                    </div>
+                    
+                    <div class="tips-grid">
+                        <div class="tip-card hydration">
+                            <div class="tip-icon">
+                                <i class="fas fa-tint"></i>
+                            </div>
+                            <div class="tip-content">
+                                <h4>Stay Hydrated</h4>
+                                <p>Drink water consistently throughout the day. Aim for 500ml 2 hours before training and 150-250ml every 15-20 minutes during exercise.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="tip-card timing">
+                            <div class="tip-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="tip-content">
+                                <h4>Meal Timing</h4>
+                                <p>Eat your pre-training meal 3-4 hours before exercise. Have a light snack 30-60 minutes before training for optimal energy levels.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="tip-card recovery">
+                            <div class="tip-icon">
+                                <i class="fas fa-heart"></i>
+                            </div>
+                            <div class="tip-content">
+                                <h4>Post-Training Recovery</h4>
+                                <p>Consume protein and carbohydrates within 30 minutes after training to optimize muscle recovery and glycogen replenishment.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="tip-card sleep">
+                            <div class="tip-icon">
+                                <i class="fas fa-moon"></i>
+                            </div>
+                            <div class="tip-content">
+                                <h4>Evening Nutrition</h4>
+                                <p>Avoid heavy meals 3 hours before bedtime. A light protein snack like Greek yogurt can support overnight muscle recovery.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="scripts/main.js"></script>
+    <script src="scripts/player.js"></script>
+    <script src="scripts/page-init.js"></script>
+</body>
+</html>
+

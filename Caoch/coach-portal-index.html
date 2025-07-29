@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Al Ahly SC - Coach Portal</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="coach.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Enhanced Portal Index Styles */
+        .portal-content {
+            padding: var(--spacing-xl);
+            flex: 1;
+        }
+
+        .portal-header {
+            text-align: center;
+            margin-bottom: var(--spacing-2xl);
+            padding: var(--spacing-2xl);
+            background: linear-gradient(135deg, var(--primary-red), var(--dark-red));
+            border-radius: var(--radius-lg);
+            color: var(--primary-white);
+        }
+
+        .portal-logo {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto var(--spacing-lg);
+            border-radius: 50%;
+            border: 4px solid var(--primary-white);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .portal-title {
+            font-size: var(--font-size-4xl);
+            font-weight: 700;
+            margin-bottom: var(--spacing);
+        }
+
+        .portal-subtitle {
+            font-size: var(--font-size-lg);
+            opacity: 0.9;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .portal-description {
+            font-size: var(--font-size-base);
+            opacity: 0.8;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: var(--spacing-xl);
+            margin-bottom: var(--spacing-2xl);
+        }
+
+        .feature-card {
+            background: var(--primary-white);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--gray-200);
+            overflow: hidden;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .feature-header {
+            padding: var(--spacing-lg);
+            background: linear-gradient(135deg, var(--gray-50), var(--gray-100));
+            border-bottom: 1px solid var(--gray-200);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--font-size-xl);
+            color: var(--primary-white);
+            background: linear-gradient(135deg, var(--primary-red), var(--dark-red));
+        }
+
+        .feature-title {
+            font-size: var(--font-size-lg);
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .feature-subtitle {
+            font-size: var(--font-size-sm);
+            color: var(--gray-600);
+        }
+
+        .feature-body {
+            padding: var(--spacing-lg);
+        }
+
+        .feature-description {
+            font-size: var(--font-size-base);
+            color: var(--gray-700);
+            line-height: 1.6;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .feature-highlights {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-sm);
+        }
+
+        .highlight-item {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            font-size: var(--font-size-sm);
+            color: var(--gray-600);
+        }
+
+        .highlight-icon {
+            color: var(--primary-red);
+            font-size: var(--font-size-xs);
+        }
+
+        .feature-footer {
+            padding: var(--spacing-lg);
+            border-top: 1px solid var(--gray-200);
+            background-color: var(--gray-50);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .feature-status {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+            font-size: var(--font-size-sm);
+            color: var(--success);
+            font-weight: 500;
+        }
+
+        .feature-link {
+            background: var(--primary-red);
+            color: var(--primary-white);
+            padding: var(--spacing-sm) var(--spacing);
+            border-radius: var(--radius);
+            text-decoration: none;
+            font-size: var(--font-size-sm);
+            font-weight: 500;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+        }
+
+        .feature-link:hover {
+            background: var(--dark-red);
+            transform: translateX(2px);
+        }
+
+        .quick-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-2xl);
+        }
+
+        .stat-card {
+            background: var(--primary-white);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--gray-200);
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: var(--font-size-3xl);
+            font-weight: 700;
+            color: var(--primary-red);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .stat-label {
+            font-size: var(--font-size-sm);
+            color: var(--gray-600);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .getting-started {
+            background: var(--primary-white);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--gray-200);
+            padding: var(--spacing-xl);
+            margin-bottom: var(--spacing-2xl);
+        }
+
+        .getting-started h3 {
+            font-size: var(--font-size-xl);
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: var(--spacing);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .getting-started-icon {
+            color: var(--primary-red);
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-lg);
+        }
+
+        .step-item {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--spacing);
+            padding: var(--spacing);
+            background-color: var(--gray-50);
+            border-radius: var(--radius);
+        }
+
+        .step-number {
+            width: 32px;
+            height: 32px;
+            background: var(--primary-red);
+            color: var(--primary-white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--font-size-sm);
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .step-content h4 {
+            font-size: var(--font-size-base);
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .step-content p {
+            font-size: var(--font-size-sm);
+            color: var(--gray-600);
+            line-height: 1.5;
+        }
+
+        .footer-info {
+            background: var(--gray-50);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-xl);
+            text-align: center;
+            border: 1px solid var(--gray-200);
+        }
+
+        .footer-info h4 {
+            font-size: var(--font-size-lg);
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: var(--spacing);
+        }
+
+        .footer-info p {
+            font-size: var(--font-size-base);
+            color: var(--gray-600);
+            line-height: 1.6;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing);
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+            padding: var(--spacing-sm) var(--spacing);
+            background: var(--primary-white);
+            border: 1px solid var(--gray-300);
+            border-radius: var(--radius);
+            text-decoration: none;
+            color: var(--gray-700);
+            font-size: var(--font-size-sm);
+            transition: var(--transition);
+        }
+
+        .contact-link:hover {
+            background: var(--primary-red);
+            color: var(--primary-white);
+            border-color: var(--primary-red);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .portal-content {
+                padding: var(--spacing);
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .quick-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .steps-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .portal-header {
+                padding: var(--spacing-lg);
+            }
+
+            .portal-title {
+                font-size: var(--font-size-2xl);
+            }
+
+            .portal-subtitle {
+                font-size: var(--font-size-base);
+            }
+
+            .quick-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-links {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="7AhhubHgCAYu.jpg" alt="Al Ahly SC" class="sidebar-logo">
+                <div class="sidebar-title">
+                    <h3>Al Ahly SC</h3>
+                    <p>Coach Portal</p>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <h4>OVERVIEW</h4>
+                    <ul>
+                        <li><a href="coach-portal-index.html" class="nav-link active"><i class="fas fa-home"></i> Portal Home</a></li>
+                        <li><a href="coach-dashboard.html" class="nav-link"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                        <li><a href="coach-analytics.html" class="nav-link"><i class="fas fa-chart-bar"></i> Analytics</a></li>
+                    </ul>
+                </div>
+                
+                <div class="nav-section">
+                    <h4>TEAM MANAGEMENT</h4>
+                    <ul>
+                        <li><a href="coach-team.html" class="nav-link"><i class="fas fa-users"></i> My Team</a></li>
+                        <li><a href="coach-schedule-enhanced.html" class="nav-link"><i class="fas fa-calendar-alt"></i> Schedule</a></li>
+                        <li><a href="drills.html" class="nav-link"><i class="fas fa-dumbbell"></i> Drill Library</a></li>
+                        <li><a href="coach-players-enhanced.html" class="nav-link"><i class="fas fa-user-friends"></i> My Players</a></li>
+                        <li><a href="coach-attendance.html" class="nav-link"><i class="fas fa-clipboard-check"></i> Attendance</a></li>
+                    </ul>
+                </div>
+                
+                <div class="nav-section">
+                    <h4>TRAINING</h4>
+                    <ul>
+                        <li><a href="coach-sessions.html" class="nav-link"><i class="fas fa-play-circle"></i> Training Sessions</a></li>
+                        <li><a href="coach-performance.html" class="nav-link"><i class="fas fa-chart-line"></i> Performance</a></li>
+                        <li><a href="coach-matches-enhanced.html" class="nav-link"><i class="fas fa-trophy"></i> Matches</a></li>
+                    </ul>
+                </div>
+                
+                <div class="nav-section">
+                    <h4>COMMUNICATION</h4>
+                    <ul>
+                        <li><a href="coach-announcements-enhanced.html" class="nav-link"><i class="fas fa-bullhorn"></i> Announcements</a></li>
+                        <li><a href="coach-chat-enhanced.html" class="nav-link"><i class="fas fa-comments"></i> Team Chat</a></li>
+                        <li><a href="coach-feedback.html" class="nav-link"><i class="fas fa-star"></i> Player Feedback</a></li>
+                    </ul>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop&crop=face" alt="User" class="user-avatar">
+                    <div class="user-info">
+                        <span class="user-name">Ahmed Hassan</span>
+                        <span class="user-role">Football Coach</span>
+                    </div>
+                    <div class="user-menu">
+                        <i class="fas fa-chevron-down"></i>
+                        <div class="dropdown-menu">
+                            <a href="coach-profile.html"><i class="fas fa-user"></i> Profile</a>
+                            <a href="coach-settings.html"><i class="fas fa-cog"></i> Settings</a>
+                            <a href="index.html"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="main-header">
+                <div class="header-left">
+                    <button class="sidebar-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+                
+                <div class="header-right">
+                    <div class="theme-toggle">
+                        <i class="fas fa-moon"></i>
+                    </div>
+                    <div class="notifications">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">5</span>
+                    </div>
+                </div>
+            </header>
+            
+            <div class="portal-content">
+                <!-- Portal Header -->
+                <div class="portal-header">
+                    <img src="7AhhubHgCAYu.jpg" alt="Al Ahly SC" class="portal-logo">
+                    <h1 class="portal-title">Al Ahly SC Coach Portal</h1>
+                    <p class="portal-subtitle">Club of the Century - 1907</p>
+                    <p class="portal-description">
+                        Welcome to the comprehensive coaching management system for Al Ahly Sporting Club. 
+                        Access all your team management tools, communication features, and performance analytics in one unified platform.
+                    </p>
+                </div>
+                
+                <!-- Quick Stats -->
+                <div class="quick-stats">
+                    <div class="stat-card">
+                        <div class="stat-value">25</div>
+                        <div class="stat-label">Total Players</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">18</div>
+                        <div class="stat-label">Wins This Season</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">12</div>
+                        <div class="stat-label">Training Sessions</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">4</div>
+                        <div class="stat-label">Upcoming Matches</div>
+                    </div>
+                </div>
+                
+                <!-- Features Grid -->
+                <div class="features-grid">
+                    <!-- Announcements Feature -->
+                    <div class="feature-card" onclick="window.location.href='coach-announcements-enhanced.html'">
+                        <div class="feature-header">
+                            <div class="feature-icon">
+                                <i class="fas fa-bullhorn"></i>
+                            </div>
+                            <div>
+                                <div class="feature-title">Team Announcements</div>
+                                <div class="feature-subtitle">Communicate with your team</div>
+                            </div>
+                        </div>
+                        <div class="feature-body">
+                            <p class="feature-description">
+                                Create, manage, and distribute announcements to your team. Keep everyone informed about training schedules, match preparations, and important updates.
+                            </p>
+                            <div class="feature-highlights">
+                                <div class="highlight-item">
+                                    <i class="fas fa-check highlight-icon"></i>
+                                    <span>Create and schedule announcements</span>
+                                </div>
+                                <div class="highlight-item">
+                                    <i class="fas fa-check highlight-icon"></i>
+                                    <span>Target specific player groups</span>
+                                </div>
+                                <div class="highlight-item">
+                                    <i class="fas fa-check highlight-icon"></i>
+                                    <span>Track read receipts and engagement</span>
+                                </div>
+                                <div class="highlight-item">
+                                    <i class="fas fa-check highlight-icon"></i>
+                                    <span>Priority and urgent notifications</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="feature-footer">
+                            <div class="feature-status">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Ready to use</span>
+                            </div>
+                            <a href="coach-announcements-enhanced.html" class="feature-link">
+                                <span>Open</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Chat Feature -->
+                    <div class="feature-card" onclick="window.location.href='coach-chat-enhanced.html'">
+                        <div class="feature-header">
+                            <div class="feature-icon">
+                                <i class="fas fa-comments"></i>
+                            </div>
+                            <div>
+                                <div class="feature-title">Team Chat</div>
+                                <div class="feature-subtitle">Real-time communication</div>
+                            </div>
+                        </div>
+                        <div class="feature-body">
+                            <p class="feature-description">
+                                Engage in real-time conversations with your team. Create group chats, send direct messages, and share files and media with players and staff.
+                            </p>
+                            <div class="feature-highlights">
+                                <div class="highlight-item">
+                                    <i class="fas fa-check highlight-icon"></i>
+                                    <span>Group and direct messaging</span>
+                                </div>
+                                <div class="highlight-item">
+                                    <i class="fas fa-check highlight-icon"></i>
+                                    <span>File and media sharing</span>
+                                </div>
+                                <div class="highlight-item">
+                                    <i class="fas fa-check highlight-icon"></i>
+                                    <span>Online status and typing indicators</span>
+                                </div>
+                                <div class="highlight-item">
+                                    <i class="fas fa-check highlight-icon"></i>
+                                    <span>Message search and history</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="feature-footer">
+                            <div class="feature-status">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Ready to use</span>
+                            </div>
+                            <a href="coach-chat-enhanced.html" class="feature-link">
+                                <span>Open</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Players Feature -->
+                    <div class="feature-card" onclick="window.location.href='coach-players-enhanced.html'">
+                        <div class="feature-header">
+                            <div class="feature-icon">
+                                <i class="fas fa-user-friends"></i>
+                            </div>
+                            <div>
+                                <div class="feature-title">Player Management</div>
+                                <div class="feature-subtitle">Manage your squad</div>
+                            </div>
+                        </div>
+                        <div class="feature-body">
+                            <p class="feature-description">
+                                Comprehensive player management with detailed profiles, position tracking, formation builder, and performance statistics.
+                            </p>
+                            <div class="feature-highlights">
+                                <div class="highlight-item">
+                                    <i class="fas fa-check highlight-icon"></i>
+                                    <span>Player profiles and statistics</span>
+                                </div>
+                                <div class="highlight-item">
+                                    <i class="fas fa-check highlight-icon"></i>
+                                    <span>Position-based filtering</span>
+                                </div>
+                                <div class="highlight-item">
+                                    <i class="fas fa-check highlight-icon"></i>
+                                    <span>Interactive formation builder</span>
+                                </div>
+                                <div class="highlight-item">
+                                    <i class="fas fa-check highlight-icon"></i>
+                                    <span>Multiple view options</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="feature-footer">
+                            <div class="feature-status">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Ready to use</span>
+                            </div>
+                            <a href="coach-players-enhanced.html" class="feature-link">
+                                <span>Open</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Schedule Feature -->
+                    <div class="feature-card" onclick="window.location.href='coach-schedule-enhanced.html'">
+                        <div class="feature-header">
+                            <div class="feature-icon">
+                                <i class="fas fa-calendar-alt"></i>
+                            </div>
+                            <div>
+                                <div class="feature-title">Schedule Management</div>
+                                <div class="feature-subtitle">Plan and organize events</div>
+                            </div>
+                        </div>
+                        <div class="feature-body">
+                            <p class="feature-description">
+                                Manage training sessions, matches, and team events with multiple calendar views. Create, edit, and track all team activities.
+                            </p>
+                            <div class="feature-highlights">
+                                <div class="highlight-item">
+                                    <i class="fas fa-check highlight-icon"></i>
+                                    <span>Calendar, list, and week views</span>
+                                </div>
+                                <div class="highlight-item">
+                                    <i class="fas fa-check highlight-icon"></i>
+                                    <span>Event creation and management</span>
+                                </div>
+                                <div class="highlight-item">
+                                    <i class="fas fa-check highlight-icon"></i>
+                                    <span>Filtering and search capabilities</span>
+                                </div>
+                                <div class="highlight-item">
+                                    <i class="fas fa-check highlight-icon"></i>
+                                    <span>Export and sharing options</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="feature-footer">
+                            <div class="feature-status">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Ready to use</span>
+                            </div>
+                            <a href="coach-schedule-enhanced.html" class="feature-link">
+                                <span>Open</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Matches Feature -->
+                    <div class="feature-card" onclick="window.location.href='coach-matches-enhanced.html'">
+                        <div class="feature-header">
+                            <div class="feature-icon">
+                                <i class="fas fa-trophy"></i>
+                            </div>
+                            <div>
+                                <div class="feature-title">Matches & Results</div>
+                                <div class="feature-subtitle">Track fixtures and performance</div>
+                            </div>
+                        </div>
+                        <div class="feature-body">
+                            <p class="feature-description">
+                                Comprehensive match management with fixtures, results, league tables, and detailed statistics. Analyze team performance and track progress.
+                            </p>
+                            <div class="feature-highlights">
+                                <div class="highlight-item">
+                                    <i class="fas fa-check highlight-icon"></i>
+                                    <span>Fixtures and results tracking</span>
+                                </div>
+                                <div class="highlight-item">
+                                    <i class="fas fa-check highlight-icon"></i>
+                                    <span>League table and standings</span>
+                                </div>
+                                <div class="highlight-item">
+                                    <i class="fas fa-check highlight-icon"></i>
+                                    <span>Detailed match statistics</span>
+                                </div>
+                                <div class="highlight-item">
+                                    <i class="fas fa-check highlight-icon"></i>
+                                    <span>Performance analytics</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="feature-footer">
+                            <div class="feature-status">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Ready to use</span>
+                            </div>
+                            <a href="coach-matches-enhanced.html" class="feature-link">
+                                <span>Open</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Dashboard Feature -->
+                    <div class="feature-card" onclick="window.location.href='coach-dashboard.html'">
+                        <div class="feature-header">
+                            <div class="feature-icon">
+                                <i class="fas fa-tachometer-alt"></i>
+                            </div>
+                            <div>
+                                <div class="feature-title">Coach Dashboard</div>
+                                <div class="feature-subtitle">Overview and insights</div>
+                            </div>
+                        </div>
+                        <div class="feature-body">
+                            <p class="feature-description">
+                                Get a comprehensive overview of your team's performance, upcoming events, and key metrics. Your central hub for coaching activities.
+                            </p>
+                            <div class="feature-highlights">
+                                <div class="highlight-item">
+                                    <i class="fas fa-check highlight-icon"></i>
+                                    <span>Performance overview</span>
+                                </div>
+                                <div class="highlight-item">
+                                    <i class="fas fa-check highlight-icon"></i>
+                                    <span>Upcoming events summary</span>
+                                </div>
+                                <div class="highlight-item">
+                                    <i class="fas fa-check highlight-icon"></i>
+                                    <span>Key metrics and statistics</span>
+                                </div>
+                                <div class="highlight-item">
+                                    <i class="fas fa-check highlight-icon"></i>
+                                    <span>Quick action shortcuts</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="feature-footer">
+                            <div class="feature-status">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Ready to use</span>
+                            </div>
+                            <a href="coach-dashboard.html" class="feature-link">
+                                <span>Open</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Getting Started -->
+                <div class="getting-started">
+                    <h3>
+                        <i class="fas fa-rocket getting-started-icon"></i>
+                        Getting Started
+                    </h3>
+                    <p>Follow these steps to make the most of your Al Ahly SC Coach Portal:</p>
+                    
+                    <div class="steps-grid">
+                        <div class="step-item">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h4>Set Up Your Team</h4>
+                                <p>Add your players, define positions, and create your squad structure in the Player Management section.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="step-item">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h4>Schedule Training</h4>
+                                <p>Plan your training sessions, matches, and team events using the comprehensive Schedule Management tool.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="step-item">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h4>Communicate</h4>
+                                <p>Keep your team informed with announcements and engage in real-time conversations through the chat system.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="step-item">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <h4>Track Performance</h4>
+                                <p>Monitor match results, analyze statistics, and track your team's progress throughout the season.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Footer Info -->
+                <div class="footer-info">
+                    <h4>Al Ahly SC Coach Portal</h4>
+                    <p>
+                        This comprehensive coaching management system is designed specifically for Al Ahly Sporting Club. 
+                        All features are fully functional and ready for use. The system provides a complete solution for 
+                        team management, communication, and performance tracking.
+                    </p>
+                    
+                    <div class="contact-links">
+                        <a href="#" class="contact-link">
+                            <i class="fas fa-envelope"></i>
+                            <span>Support</span>
+                        </a>
+                        <a href="#" class="contact-link">
+                            <i class="fas fa-book"></i>
+                            <span>Documentation</span>
+                        </a>
+                        <a href="#" class="contact-link">
+                            <i class="fas fa-question-circle"></i>
+                            <span>Help</span>
+                        </a>
+                        <a href="#" class="contact-link">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="main.js"></script>
+    <script>
+        // Portal Index JavaScript
+        document.addEventListener('DOMContentLoaded', function() {
+            initializePortal();
+            setupEventListeners();
+        });
+
+        function initializePortal() {
+            // Initialize portal with welcome message
+            showNotification('Welcome to Al Ahly SC Coach Portal!', 'success');
+            
+            // Load any saved preferences
+            loadUserPreferences();
+        }
+
+        function setupEventListeners() {
+            // Add click handlers for feature cards
+            document.querySelectorAll('.feature-card').forEach(card => {
+                card.addEventListener('click', function(e) {
+                    // Prevent navigation if clicking on the link directly
+                    if (e.target.closest('.feature-link')) {
+                        return;
+                    }
+                    
+                    // Get the href from the feature link
+                    const link = this.querySelector('.feature-link');
+                    if (link) {
+                        window.location.href = link.href;
+                    }
+                });
+            });
+
+            // Add hover effects for better UX
+            document.querySelectorAll('.stat-card').forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-2px)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+        }
+
+        function loadUserPreferences() {
+            // Load theme preference
+            const savedTheme = localStorage.getItem('coach_portal_theme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-theme');
+                document.querySelector('.theme-toggle i').classList.replace('fa-moon', 'fa-sun');
+            }
+        }
+
+        // Quick navigation functions
+        function navigateToAnnouncements() {
+            window.location.href = 'coach-announcements-enhanced.html';
+        }
+
+        function navigateToChat() {
+            window.location.href = 'coach-chat-enhanced.html';
+        }
+
+        function navigateToPlayers() {
+            window.location.href = 'coach-players-enhanced.html';
+        }
+
+        function navigateToSchedule() {
+            window.location.href = 'coach-schedule-enhanced.html';
+        }
+
+        function navigateToMatches() {
+            window.location.href = 'coach-matches-enhanced.html';
+        }
+
+        function navigateToDashboard() {
+            window.location.href = 'coach-dashboard.html';
+        }
+
+        // Utility functions
+        function showWelcomeMessage() {
+            showNotification('All coach portal features are ready to use!', 'info');
+        }
+
+        function checkSystemStatus() {
+            const features = [
+                'Announcements',
+                'Team Chat',
+                'Player Management',
+                'Schedule Management',
+                'Matches & Results',
+                'Dashboard'
+            ];
+            
+            let statusMessage = 'System Status: All features operational\n\n';
+            features.forEach(feature => {
+                statusMessage += `✓ ${feature}\n`;
+            });
+            
+            alert(statusMessage);
+        }
+    </script>
+</body>
+</html>
+

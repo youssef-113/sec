@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Training Sessions - Al Ahly SC Coach Portal</title>
+        <link rel="stylesheet" href="../../styles/main.css">
+        <link rel="stylesheet" href="../../styles/coach.css">
+        <link rel="stylesheet" href="../../styles/schedule.css">
+        <link rel="stylesheet" href="../../styles/coach-sessions.css">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+            rel="stylesheet">
+    </head>
+
+    <body>
+        <div class="app-container">
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <div class="sidebar-header">
+                    <img src="../../search_images/7AhhubHgCAYu.jpg" alt="Al Ahly SC" class="sidebar-logo">
+                    <div class="sidebar-title">
+                        <h3>Al Ahly SC</h3>
+                        <p>Coach Portal</p>
+                    </div>
+                </div>
+
+                <nav class="sidebar-nav">
+                    <div class="nav-section">
+                        <h4>OVERVIEW</h4>
+                        <ul>
+                            <li><a href="coach-dashboard.html" class="nav-link"><i class="fas fa-home"></i>
+                                    Dashboard</a></li>
+                            <li><a href="coach-analytics.html" class="nav-link"><i class="fas fa-chart-bar"></i> My
+                                    Analytics</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="nav-section">
+                        <h4>TEAM MANAGEMENT</h4>
+                        <ul>
+                            <li><a href="coach-team.html" class="nav-link"><i class="fas fa-users"></i> My Team</a></li>
+                            <li><a href="../../schedule.html" class="nav-link"><i class="fas fa-calendar-alt"></i>
+                                    Schedule</a></li>
+                            <li><a href="../../drills.html" class="nav-link"><i class="fas fa-dumbbell"></i> Drill
+                                    Library</a></li>
+                            <li><a href="../../pages/player/players.html" class="nav-link"><i
+                                        class="fas fa-user-friends"></i> My Players</a></li>
+                            <li><a href="coach-attendance.html" class="nav-link"><i class="fas fa-clipboard-check"></i>
+                                    Attendance</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="nav-section">
+                        <h4>TRAINING</h4>
+                        <ul>
+                            <li><a href="coach-sessions.html" class="nav-link active"><i class="fas fa-play-circle"></i>
+                                    Training Sessions</a></li>
+                            <li><a href="coach-performance.html" class="nav-link"><i class="fas fa-chart-line"></i>
+                                    Performance</a></li>
+                            <li><a href="coach-reports.html" class="nav-link"><i class="fas fa-file-alt"></i>
+                                    Reports</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="nav-section">
+                        <h4>COMMUNICATION</h4>
+                        <ul>
+                            <li><a href="coach-announcements.html" class="nav-link"><i class="fas fa-bullhorn"></i>
+                                    Announcements</a></li>
+                            <li><a href="coach-chat.html" class="nav-link"><i class="fas fa-comments"></i> Team Chat</a>
+                            </li>
+                            <li><a href="coach-feedback.html" class="nav-link"><i class="fas fa-star"></i> Player
+                                    Feedback</a></li>
+                        </ul>
+                    </div>
+                </nav>
+
+                <div class="sidebar-footer">
+                    <div class="user-profile">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop&crop=face"
+                            alt="User" class="user-avatar">
+                        <div class="user-info">
+                            <span class="user-name">Ahmed Hassan</span>
+                            <span class="user-role">Football Coach</span>
+                        </div>
+                        <div class="user-menu">
+                            <i class="fas fa-chevron-down"></i>
+                            <div class="dropdown-menu">
+                                <a href="coach-profile.html"><i class="fas fa-user"></i> Profile</a>
+                                <a href="coach-settings.html"><i class="fas fa-cog"></i> Settings</a>
+                                <a href="../../index.html"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="main-content">
+                <header class="main-header">
+                    <div class="header-left">
+                        <button class="sidebar-toggle">
+                            <i class="fas fa-bars"></i>
+                        </button>
+                        <h1>Training Sessions</h1>
+                        <p>Manage and track your team's training sessions</p>
+                    </div>
+
+                    <div class="header-right">
+                        <div class="search-box">
+                            <i class="fas fa-search"></i>
+                            <input type="text" placeholder="Search sessions..." id="session-search">
+                        </div>
+                        <button class="btn-outline" onclick="exportSessions()">
+                            <i class="fas fa-download"></i>
+                            Export
+                        </button>
+                        <button class="btn-primary" onclick="openNewSessionModal()">
+                            <i class="fas fa-plus"></i>
+                            New Session
+                        </button>
+                    </div>
+                </header>
+
+                <div class="coach-content">
+                    <!-- Quick Stats -->
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-play-circle"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>24</h3>
+                                <p>Total Sessions</p>
+                            </div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>120h</h3>
+                                <p>Training Hours</p>
+                            </div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>95%</h3>
+                                <p>Attendance Rate</p>
+                            </div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>8.7</h3>
+                                <p>Avg. Performance</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Session Filters -->
+                    <div class="session-filters">
+                        <div class="filter-tabs">
+                            <button class="filter-tab active" data-filter="all">All Sessions</button>
+                            <button class="filter-tab" data-filter="upcoming">Upcoming</button>
+                            <button class="filter-tab" data-filter="completed">Completed</button>
+                            <button class="filter-tab" data-filter="cancelled">Cancelled</button>
+                        </div>
+
+                        <div class="filter-actions">
+                            <select id="session-type-filter">
+                                <option value="">All Types</option>
+                                <option value="tactical">Tactical</option>
+                                <option value="technical">Technical</option>
+                                <option value="physical">Physical</option>
+                                <option value="recovery">Recovery</option>
+                            </select>
+
+                            <select id="session-location-filter">
+                                <option value="">All Locations</option>
+                                <option value="main-pitch">Main Pitch</option>
+                                <option value="training-ground">Training Ground</option>
+                                <option value="gym">Gym</option>
+                                <option value="recovery-center">Recovery Center</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Sessions List -->
+                    <div class="sessions-list">
+                        <div class="session-item upcoming">
+                            <div class="session-header">
+                                <div class="session-info">
+                                    <h3>Tactical Training - Set Pieces</h3>
+                                    <span class="session-type tactical">Tactical</span>
+                                    <span class="session-time">
+                                        <i class="fas fa-clock"></i>
+                                        Today, 3:00 PM - 5:00 PM
+                                    </span>
+                                    <span class="session-location">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                        Main Pitch
+                                    </span>
+                                </div>
+                                <div class="session-status">
+                                    <span class="status-badge upcoming">Upcoming</span>
+                                    <div class="session-actions">
+                                        <button class="action-btn" onclick="startSession(1)">
+                                            <i class="fas fa-play"></i>
+                                            Start
+                                        </button>
+                                        <button class="action-btn" onclick="editSession(1)">
+                                            <i class="fas fa-edit"></i>
+                                            Edit
+                                        </button>
+                                        <button class="action-btn" onclick="cancelSession(1)">
+                                            <i class="fas fa-times"></i>
+                                            Cancel
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="session-details">
+                                <div class="session-description">
+                                    <h4>Session Objectives</h4>
+                                    <p>Focus on set piece execution including free kicks, corners, and penalty kicks.
+                                        Improve team coordination and timing in dead ball situations.</p>
+                                </div>
+
+                                <div class="session-participants">
+                                    <h4>Participants (24/25)</h4>
+                                    <div class="participants-list">
+                                        <div class="participant confirmed">
+                                            <img src="https://images.unsplash.com/photo-1566753323558-f4e0952af115?w=30&h=30&fit=crop&crop=face"
+                                                alt="Mohamed Salah">
+                                            <span>Mohamed Salah</span>
+                                        </div>
+                                        <div class="participant confirmed">
+                                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=30&h=30&fit=crop&crop=face"
+                                                alt="Ahmed Zizo">
+                                            <span>Ahmed Zizo</span>
+                                        </div>
+                                        <div class="participant pending">
+                                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=30&h=30&fit=crop&crop=face"
+                                                alt="Karim Fouad">
+                                            <span>Karim Fouad</span>
+                                        </div>
+                                        <div class="participant-more">
+                                            <span>+21 more</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="session-drills">
+                                    <h4>Planned Drills</h4>
+                                    <div class="drills-list">
+                                        <div class="drill-item">
+                                            <i class="fas fa-futbol"></i>
+                                            <span>Free Kick Practice</span>
+                                            <span class="drill-duration">30 min</span>
+                                        </div>
+                                        <div class="drill-item">
+                                            <i class="fas fa-futbol"></i>
+                                            <span>Corner Kick Routine</span>
+                                            <span class="drill-duration">25 min</span>
+                                        </div>
+                                        <div class="drill-item">
+                                            <i class="fas fa-futbol"></i>
+                                            <span>Penalty Practice</span>
+                                            <span class="drill-duration">20 min</span>
+                                        </div>
+                                        <div class="drill-item">
+                                            <i class="fas fa-futbol"></i>
+                                            <span>Set Piece Defense</span>
+                                            <span class="drill-duration">35 min</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="session-item completed">
+                            <div class="session-header">
+                                <div class="session-info">
+                                    <h3>Technical Skills - Ball Control</h3>
+                                    <span class="session-type technical">Technical</span>
+                                    <span class="session-time">
+                                        <i class="fas fa-clock"></i>
+                                        Yesterday, 2:00 PM - 4:00 PM
+                                    </span>
+                                    <span class="session-location">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                        Training Ground
+                                    </span>
+                                </div>
+                                <div class="session-status">
+                                    <span class="status-badge completed">Completed</span>
+                                    <div class="session-actions">
+                                        <button class="action-btn" onclick="viewReport(2)">
+                                            <i class="fas fa-chart-bar"></i>
+                                            Report
+                                        </button>
+                                        <button class="action-btn" onclick="duplicateSession(2)">
+                                            <i class="fas fa-copy"></i>
+                                            Duplicate
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="session-details">
+                                <div class="session-description">
+                                    <h4>Session Summary</h4>
+                                    <p>Excellent session focused on ball control and dribbling skills. Players showed
+                                        good improvement in close ball control and quick direction changes.</p>
+                                </div>
+
+                                <div class="session-stats">
+                                    <div class="stat-item">
+                                        <span class="stat-label">Attendance</span>
+                                        <span class="stat-value">24/25 (96%)</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-label">Performance</span>
+                                        <span class="stat-value">8.5/10</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-label">Duration</span>
+                                        <span class="stat-value">2h 15m</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-label">Drills Completed</span>
+                                        <span class="stat-value">4/4</span>
+                                    </div>
+                                </div>
+
+                                <div class="session-drills">
+                                    <h4>Completed Drills</h4>
+                                    <div class="drills-list">
+                                        <div class="drill-item completed">
+                                            <i class="fas fa-futbol"></i>
+                                            <span>Ball Control Circuit</span>
+                                            <span class="drill-duration">45 min</span>
+                                            <span class="drill-rating">9.2</span>
+                                        </div>
+                                        <div class="drill-item completed">
+                                            <i class="fas fa-futbol"></i>
+                                            <span>Dribbling Practice</span>
+                                            <span class="drill-duration">35 min</span>
+                                            <span class="drill-rating">8.8</span>
+                                        </div>
+                                        <div class="drill-item completed">
+                                            <i class="fas fa-futbol"></i>
+                                            <span>Passing Accuracy</span>
+                                            <span class="drill-duration">30 min</span>
+                                            <span class="drill-rating">9.0</span>
+                                        </div>
+                                        <div class="drill-item completed">
+                                            <i class="fas fa-futbol"></i>
+                                            <span>Small-Sided Games</span>
+                                            <span class="drill-duration">25 min</span>
+                                            <span class="drill-rating">8.7</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <!-- New Session Modal -->
+        <div class="modal" id="new-session-modal">
+            <div class="modal-content large">
+                <div class="modal-header">
+                    <h3>Create New Training Session</h3>
+                    <span class="close" onclick="closeNewSessionModal()">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <form id="new-session-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="session-title">Session Title</label>
+                                <input type="text" id="session-title" name="title" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="session-type">Session Type</label>
+                                <select id="session-type" name="type" required>
+                                    <option value="">Select Type</option>
+                                    <option value="tactical">Tactical</option>
+                                    <option value="technical">Technical</option>
+                                    <option value="physical">Physical</option>
+                                    <option value="recovery">Recovery</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="session-date">Date</label>
+                                <input type="date" id="session-date" name="date" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="session-start-time">Start Time</label>
+                                <input type="time" id="session-start-time" name="start-time" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="session-end-time">End Time</label>
+                                <input type="time" id="session-end-time" name="end-time" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="session-location">Location</label>
+                                <select id="session-location" name="location" required>
+                                    <option value="">Select Location</option>
+                                    <option value="main-pitch">Main Pitch</option>
+                                    <option value="training-ground">Training Ground</option>
+                                    <option value="gym">Gym</option>
+                                    <option value="recovery-center">Recovery Center</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="session-participants">Max Participants</label>
+                                <input type="number" id="session-participants" name="participants" min="1" max="30"
+                                    value="25" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="session-description">Session Description</label>
+                            <textarea id="session-description" name="description" rows="3"
+                                placeholder="Describe the session objectives and focus areas..."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="session-drills">Planned Drills</label>
+                            <div class="drills-input">
+                                <div class="drill-input-row">
+                                    <input type="text" placeholder="Drill name" class="drill-name">
+                                    <input type="number" placeholder="Duration (min)" class="drill-duration" min="5"
+                                        max="120">
+                                    <button type="button" class="btn-outline btn-sm" onclick="addDrillRow()">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="button" class="btn-outline" onclick="closeNewSessionModal()">Cancel</button>
+                            <button type="submit" class="btn-primary">Create Session</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <script src="../../scripts/main.js"></script>
+        <script src="../../scripts/coach-team.js"></script>
+        <script src="../../scripts/page-init.js"></script>
+        <script>
+            // Coach sessions functionality
+            function openNewSessionModal() {
+                openModal('new-session-modal');
+            }
+
+            function closeNewSessionModal() {
+                closeModal('new-session-modal');
+            }
+
+            function startSession(sessionId) {
+                showNotification('Starting session...', 'info');
+            }
+
+            function editSession(sessionId) {
+                showNotification('Edit session functionality will be implemented', 'info');
+            }
+
+            function cancelSession(sessionId) {
+                if (confirm('Are you sure you want to cancel this session?')) {
+                    showNotification('Session cancelled', 'success');
+                }
+            }
+
+            function viewReport(sessionId) {
+                showNotification('View report functionality will be implemented', 'info');
+            }
+
+            function duplicateSession(sessionId) {
+                showNotification('Duplicate session functionality will be implemented', 'info');
+            }
+
+            function exportSessions() {
+                showNotification('Export functionality will be implemented', 'info');
+            }
+
+            function addDrillRow() {
+                const drillsContainer = document.querySelector('.drills-input');
+                const newRow = document.createElement('div');
+                newRow.className = 'drill-input-row';
+                newRow.innerHTML = `
+                <input type="text" placeholder="Drill name" class="drill-name">
+                <input type="number" placeholder="Duration (min)" class="drill-duration" min="5" max="120">
+                <button type="button" class="btn-outline btn-sm" onclick="removeDrillRow(this)">
+                    <i class="fas fa-minus"></i>
+                </button>
+            `;
+                drillsContainer.appendChild(newRow);
+            }
+
+            function removeDrillRow(button) {
+                button.parentElement.remove();
+            }
+
+            // Filter functionality
+            document.querySelectorAll('.filter-tab').forEach(tab => {
+                tab.addEventListener('click', function () {
+                    document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+
+                    const filter = this.dataset.filter;
+                    const sessionItems = document.querySelectorAll('.session-item');
+
+                    sessionItems.forEach(item => {
+                        if (filter === 'all' || item.classList.contains(filter)) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
+
+            // Search functionality
+            document.getElementById('session-search').addEventListener('input', function () {
+                const searchTerm = this.value.toLowerCase();
+                const sessionItems = document.querySelectorAll('.session-item');
+
+                sessionItems.forEach(item => {
+                    const sessionTitle = item.querySelector('h3').textContent.toLowerCase();
+                    if (sessionTitle.includes(searchTerm)) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        </script>
+    </body>
+
+</html>

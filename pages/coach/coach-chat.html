@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Coach Team Chat</title>
+        <link rel="stylesheet" href="../../styles/coach.css">
+        <link rel="stylesheet" href="../../styles/main.css">
+        <link rel="stylesheet" href="../../styles/role-navigation.css">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+            rel="stylesheet">
+    </head>
+
+    <body>
+        <aside class="sidebar">
+            <div class="sidebar-title">
+                <p>Coach Dashboard</p>
+            </div>
+            <nav class="sidebar-nav">
+                <ul id="role-nav" class="sidebar-nav"></ul>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop&crop=face"
+                        alt="User" class="user-avatar">
+                    <div class="user-info">
+                        <span class="user-name">Coach Name</span>
+                        <span class="user-role">Coach</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+        <main class="main-content">
+            <header class="main-header">
+                <h1>Team Chat</h1>
+            </header>
+            <section class="chat-section">
+                <div class="chat-window">
+                    <div class="chat-messages" id="chat-messages">
+                        <!-- Messages will appear here -->
+                    </div>
+                    <div class="chat-input">
+                        <input type="text" id="chat-input" placeholder="Type your message...">
+                        <button class="btn-primary" id="send-btn">Send</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <script src="../../scripts/main.js"></script>
+        <script src="../../scripts/role-navigation.js"></script>
+        <script src="../../scripts/coach-team.js"></script>
+        <script src="../../scripts/page-init.js"></script>
+        <script>
+            // Render sidebar navigation for coach
+            autoRenderNavigation('#role-nav');
+            // Simple local chat demo (replace with backend for real use)
+            const chatMessages = document.getElementById('chat-messages');
+            const chatInput = document.getElementById('chat-input');
+            const sendBtn = document.getElementById('send-btn');
+            function renderMessages() {
+                const messages = JSON.parse(localStorage.getItem('coachChatMessages') || '[]');
+                chatMessages.innerHTML = messages.map(msg => `<div class='chat-msg'><span>${msg}</span></div>`).join('');
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+            sendBtn.addEventListener('click', () => {
+                const val = chatInput.value.trim();
+                if (val) {
+                    const messages = JSON.parse(localStorage.getItem('coachChatMessages') || '[]');
+                    messages.push(val);
+                    localStorage.setItem('coachChatMessages', JSON.stringify(messages));
+                    chatInput.value = '';
+                    renderMessages();
+                }
+            });
+            chatInput.addEventListener('keydown', e => {
+                if (e.key === 'Enter') sendBtn.click();
+            });
+            renderMessages();
+        </script>
+    </body>
+
+</html>

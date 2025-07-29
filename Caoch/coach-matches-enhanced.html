@@ -1,0 +1,1706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matches & Results - Al Ahly SC Coach Portal</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="coach.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Enhanced Matches Styles */
+        .matches-content {
+            padding: var(--spacing-xl);
+            flex: 1;
+        }
+
+        .matches-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-xl);
+            flex-wrap: wrap;
+            gap: var(--spacing);
+        }
+
+        .matches-title h1 {
+            font-size: var(--font-size-3xl);
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .matches-title p {
+            font-size: var(--font-size-base);
+            color: var(--gray-600);
+        }
+
+        .matches-controls {
+            display: flex;
+            gap: var(--spacing-sm);
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .view-toggle {
+            display: flex;
+            background-color: var(--gray-100);
+            border-radius: var(--radius);
+            padding: 4px;
+        }
+
+        .view-btn {
+            background: none;
+            border: none;
+            padding: var(--spacing-sm) var(--spacing);
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--gray-600);
+            font-size: var(--font-size-sm);
+            font-weight: 500;
+        }
+
+        .view-btn.active {
+            background-color: var(--primary-white);
+            color: var(--primary-red);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .matches-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .stat-card {
+            background: var(--primary-white);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--gray-200);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing);
+        }
+
+        .stat-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--font-size-lg);
+            color: var(--primary-white);
+        }
+
+        .stat-icon.wins {
+            background: linear-gradient(135deg, #10b981, #059669);
+        }
+
+        .stat-icon.draws {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+        }
+
+        .stat-icon.losses {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+        }
+
+        .stat-icon.goals {
+            background: linear-gradient(135deg, var(--primary-red), var(--dark-red));
+        }
+
+        .stat-info h3 {
+            font-size: var(--font-size-2xl);
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 2px;
+        }
+
+        .stat-info p {
+            font-size: var(--font-size-sm);
+            color: var(--gray-600);
+        }
+
+        /* Fixtures View */
+        .fixtures-container {
+            background: var(--primary-white);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--gray-200);
+        }
+
+        .fixtures-header {
+            padding: var(--spacing-lg);
+            border-bottom: 1px solid var(--gray-200);
+            background-color: var(--gray-50);
+            display: flex;
+            justify-content: between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: var(--spacing);
+        }
+
+        .fixtures-filters {
+            display: flex;
+            gap: var(--spacing);
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .filter-select {
+            padding: var(--spacing-sm);
+            border: 1px solid var(--gray-300);
+            border-radius: var(--radius);
+            font-size: var(--font-size-sm);
+            background-color: var(--primary-white);
+        }
+
+        .fixtures-list {
+            max-height: 600px;
+            overflow-y: auto;
+        }
+
+        .fixture-item {
+            display: flex;
+            align-items: center;
+            padding: var(--spacing-lg);
+            border-bottom: 1px solid var(--gray-200);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .fixture-item:hover {
+            background-color: var(--gray-50);
+        }
+
+        .fixture-item:last-child {
+            border-bottom: none;
+        }
+
+        .fixture-date {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 80px;
+            margin-right: var(--spacing-lg);
+        }
+
+        .fixture-day {
+            font-size: var(--font-size-sm);
+            font-weight: 600;
+            color: var(--primary-red);
+        }
+
+        .fixture-time {
+            font-size: var(--font-size-xs);
+            color: var(--gray-600);
+        }
+
+        .fixture-teams {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: var(--spacing);
+        }
+
+        .team-info {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            flex: 1;
+        }
+
+        .team-logo {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .team-name {
+            font-size: var(--font-size-base);
+            font-weight: 600;
+            color: var(--gray-900);
+        }
+
+        .match-score {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            min-width: 80px;
+            justify-content: center;
+        }
+
+        .score {
+            font-size: var(--font-size-lg);
+            font-weight: 700;
+            color: var(--gray-900);
+        }
+
+        .vs {
+            font-size: var(--font-size-sm);
+            color: var(--gray-500);
+        }
+
+        .match-status {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 100px;
+        }
+
+        .status-badge {
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: var(--radius-sm);
+            font-size: var(--font-size-xs);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .status-upcoming {
+            background-color: #dbeafe;
+            color: #1d4ed8;
+        }
+
+        .status-live {
+            background-color: #fecaca;
+            color: #dc2626;
+            animation: pulse 2s infinite;
+        }
+
+        .status-finished {
+            background-color: #f0fdf4;
+            color: #166534;
+        }
+
+        .match-competition {
+            font-size: var(--font-size-xs);
+            color: var(--gray-500);
+            margin-top: var(--spacing-xs);
+        }
+
+        .fixture-actions {
+            display: flex;
+            gap: var(--spacing-sm);
+            margin-left: var(--spacing);
+        }
+
+        .action-btn {
+            background: none;
+            border: 1px solid var(--gray-300);
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--gray-600);
+            font-size: var(--font-size-xs);
+        }
+
+        .action-btn:hover {
+            background-color: var(--gray-100);
+            color: var(--primary-red);
+        }
+
+        /* Results View */
+        .results-container {
+            background: var(--primary-white);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--gray-200);
+        }
+
+        .result-item {
+            display: flex;
+            align-items: center;
+            padding: var(--spacing-lg);
+            border-bottom: 1px solid var(--gray-200);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .result-item:hover {
+            background-color: var(--gray-50);
+        }
+
+        .result-outcome {
+            width: 4px;
+            height: 60px;
+            border-radius: var(--radius);
+            margin-right: var(--spacing);
+        }
+
+        .result-outcome.win {
+            background-color: #10b981;
+        }
+
+        .result-outcome.draw {
+            background-color: #f59e0b;
+        }
+
+        .result-outcome.loss {
+            background-color: #ef4444;
+        }
+
+        .result-stats {
+            display: flex;
+            gap: var(--spacing-lg);
+            margin-left: var(--spacing);
+        }
+
+        .result-stat {
+            text-align: center;
+        }
+
+        .result-stat-value {
+            font-size: var(--font-size-sm);
+            font-weight: 600;
+            color: var(--gray-900);
+            display: block;
+        }
+
+        .result-stat-label {
+            font-size: var(--font-size-xs);
+            color: var(--gray-600);
+        }
+
+        /* League Table View */
+        .league-table-container {
+            background: var(--primary-white);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--gray-200);
+            overflow: hidden;
+        }
+
+        .league-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .league-table th,
+        .league-table td {
+            padding: var(--spacing);
+            text-align: left;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .league-table th {
+            background-color: var(--gray-50);
+            font-weight: 600;
+            color: var(--gray-700);
+            font-size: var(--font-size-sm);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .league-table td {
+            font-size: var(--font-size-sm);
+            color: var(--gray-900);
+        }
+
+        .league-table .position {
+            text-align: center;
+            font-weight: 600;
+            width: 50px;
+        }
+
+        .league-table .team-cell {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .table-team-logo {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .table-team-name {
+            font-weight: 500;
+        }
+
+        .current-team {
+            background-color: var(--light-red);
+            font-weight: 600;
+        }
+
+        .champions-league {
+            border-left: 4px solid #10b981;
+        }
+
+        .europa-league {
+            border-left: 4px solid #f59e0b;
+        }
+
+        .relegation {
+            border-left: 4px solid #ef4444;
+        }
+
+        /* Statistics View */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+        }
+
+        .stats-card {
+            background: var(--primary-white);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--gray-200);
+            padding: var(--spacing-lg);
+        }
+
+        .stats-card h3 {
+            font-size: var(--font-size-lg);
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: var(--spacing);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .stats-list {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-sm);
+        }
+
+        .stats-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--spacing-sm);
+            background-color: var(--gray-50);
+            border-radius: var(--radius);
+        }
+
+        .stats-label {
+            font-size: var(--font-size-sm);
+            color: var(--gray-700);
+        }
+
+        .stats-value {
+            font-size: var(--font-size-sm);
+            font-weight: 600;
+            color: var(--primary-red);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background-color: var(--gray-200);
+            border-radius: var(--radius);
+            overflow: hidden;
+            margin-top: var(--spacing-xs);
+        }
+
+        .progress-fill {
+            height: 100%;
+            background-color: var(--primary-red);
+            transition: width 0.3s ease;
+        }
+
+        /* Match Detail Modal */
+        .match-detail-modal .modal-content {
+            max-width: 800px;
+        }
+
+        .match-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: var(--spacing-lg);
+            border-bottom: 1px solid var(--gray-200);
+            background-color: var(--gray-50);
+        }
+
+        .match-teams-detail {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-lg);
+        }
+
+        .team-detail {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .team-logo-large {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .team-name-large {
+            font-size: var(--font-size-lg);
+            font-weight: 600;
+            color: var(--gray-900);
+        }
+
+        .score-large {
+            font-size: var(--font-size-3xl);
+            font-weight: 700;
+            color: var(--primary-red);
+        }
+
+        .match-info {
+            text-align: center;
+        }
+
+        .match-competition-large {
+            font-size: var(--font-size-sm);
+            color: var(--gray-600);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .match-date-large {
+            font-size: var(--font-size-base);
+            font-weight: 500;
+            color: var(--gray-900);
+        }
+
+        .match-tabs {
+            display: flex;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .match-tab {
+            background: none;
+            border: none;
+            padding: var(--spacing) var(--spacing-lg);
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--gray-600);
+            font-size: var(--font-size-sm);
+            font-weight: 500;
+            border-bottom: 2px solid transparent;
+        }
+
+        .match-tab.active {
+            color: var(--primary-red);
+            border-bottom-color: var(--primary-red);
+        }
+
+        .match-tab-content {
+            padding: var(--spacing-lg);
+        }
+
+        .lineup-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-lg);
+        }
+
+        .team-lineup {
+            background-color: var(--gray-50);
+            border-radius: var(--radius);
+            padding: var(--spacing);
+        }
+
+        .lineup-title {
+            font-size: var(--font-size-base);
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: var(--spacing);
+            text-align: center;
+        }
+
+        .player-lineup {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            padding: var(--spacing-sm);
+            margin-bottom: var(--spacing-xs);
+            background-color: var(--primary-white);
+            border-radius: var(--radius-sm);
+        }
+
+        .player-number {
+            width: 24px;
+            height: 24px;
+            background-color: var(--primary-red);
+            color: var(--primary-white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--font-size-xs);
+            font-weight: 600;
+        }
+
+        .player-name-lineup {
+            font-size: var(--font-size-sm);
+            color: var(--gray-900);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .matches-content {
+                padding: var(--spacing);
+            }
+
+            .matches-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .league-table-container {
+                overflow-x: auto;
+            }
+
+            .league-table {
+                min-width: 800px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .matches-header {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .matches-controls {
+                justify-content: center;
+            }
+
+            .matches-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .fixture-item,
+            .result-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: var(--spacing-sm);
+            }
+
+            .fixture-teams {
+                width: 100%;
+                flex-direction: column;
+                gap: var(--spacing);
+            }
+
+            .team-info {
+                justify-content: center;
+            }
+
+            .fixtures-filters {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .match-teams-detail {
+                flex-direction: column;
+                gap: var(--spacing);
+            }
+
+            .lineup-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: var(--spacing-2xl);
+            color: var(--gray-500);
+        }
+
+        .empty-state i {
+            font-size: var(--font-size-4xl);
+            margin-bottom: var(--spacing);
+            color: var(--gray-400);
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="7AhhubHgCAYu.jpg" alt="Al Ahly SC" class="sidebar-logo">
+                <div class="sidebar-title">
+                    <h3>Al Ahly SC</h3>
+                    <p>Coach Portal</p>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <h4>OVERVIEW</h4>
+                    <ul>
+                        <li><a href="coach-dashboard.html" class="nav-link"><i class="fas fa-home"></i> Dashboard</a></li>
+                        <li><a href="coach-analytics.html" class="nav-link"><i class="fas fa-chart-bar"></i> My Analytics</a></li>
+                    </ul>
+                </div>
+                
+                <div class="nav-section">
+                    <h4>TEAM MANAGEMENT</h4>
+                    <ul>
+                        <li><a href="coach-team.html" class="nav-link"><i class="fas fa-users"></i> My Team</a></li>
+                        <li><a href="coach-schedule-enhanced.html" class="nav-link"><i class="fas fa-calendar-alt"></i> Schedule</a></li>
+                        <li><a href="drills.html" class="nav-link"><i class="fas fa-dumbbell"></i> Drill Library</a></li>
+                        <li><a href="coach-players-enhanced.html" class="nav-link"><i class="fas fa-user-friends"></i> My Players</a></li>
+                        <li><a href="coach-attendance.html" class="nav-link"><i class="fas fa-clipboard-check"></i> Attendance</a></li>
+                    </ul>
+                </div>
+                
+                <div class="nav-section">
+                    <h4>TRAINING</h4>
+                    <ul>
+                        <li><a href="coach-sessions.html" class="nav-link"><i class="fas fa-play-circle"></i> Training Sessions</a></li>
+                        <li><a href="coach-performance.html" class="nav-link"><i class="fas fa-chart-line"></i> Performance</a></li>
+                        <li><a href="coach-matches-enhanced.html" class="nav-link active"><i class="fas fa-trophy"></i> Matches</a></li>
+                    </ul>
+                </div>
+                
+                <div class="nav-section">
+                    <h4>COMMUNICATION</h4>
+                    <ul>
+                        <li><a href="coach-announcements-enhanced.html" class="nav-link"><i class="fas fa-bullhorn"></i> Announcements</a></li>
+                        <li><a href="coach-chat-enhanced.html" class="nav-link"><i class="fas fa-comments"></i> Team Chat</a></li>
+                        <li><a href="coach-feedback.html" class="nav-link"><i class="fas fa-star"></i> Player Feedback</a></li>
+                    </ul>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop&crop=face" alt="User" class="user-avatar">
+                    <div class="user-info">
+                        <span class="user-name">Ahmed Hassan</span>
+                        <span class="user-role">Football Coach</span>
+                    </div>
+                    <div class="user-menu">
+                        <i class="fas fa-chevron-down"></i>
+                        <div class="dropdown-menu">
+                            <a href="coach-profile.html"><i class="fas fa-user"></i> Profile</a>
+                            <a href="coach-settings.html"><i class="fas fa-cog"></i> Settings</a>
+                            <a href="index.html"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="main-header">
+                <div class="header-left">
+                    <button class="sidebar-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="matches-title">
+                        <h1>Matches & Results</h1>
+                        <p>Track fixtures, results, and league standings</p>
+                    </div>
+                </div>
+                
+                <div class="header-right">
+                    <div class="matches-controls">
+                        <div class="view-toggle">
+                            <button class="view-btn active" data-view="fixtures">
+                                <i class="fas fa-calendar-alt"></i> Fixtures
+                            </button>
+                            <button class="view-btn" data-view="results">
+                                <i class="fas fa-list-alt"></i> Results
+                            </button>
+                            <button class="view-btn" data-view="table">
+                                <i class="fas fa-table"></i> Table
+                            </button>
+                            <button class="view-btn" data-view="stats">
+                                <i class="fas fa-chart-bar"></i> Stats
+                            </button>
+                        </div>
+                        <button class="btn-outline" onclick="exportMatches()">
+                            <i class="fas fa-download"></i>
+                            Export
+                        </button>
+                    </div>
+                    <div class="theme-toggle">
+                        <i class="fas fa-moon"></i>
+                    </div>
+                    <div class="notifications">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">2</span>
+                    </div>
+                </div>
+            </header>
+            
+            <div class="matches-content">
+                <!-- Stats Overview -->
+                <div class="matches-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon wins">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>18</h3>
+                            <p>Wins</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon draws">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>4</h3>
+                            <p>Draws</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon losses">
+                            <i class="fas fa-times-circle"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>2</h3>
+                            <p>Losses</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon goals">
+                            <i class="fas fa-futbol"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>58</h3>
+                            <p>Goals Scored</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Fixtures View -->
+                <div id="fixtures-view" class="fixtures-container">
+                    <div class="fixtures-header">
+                        <h3>Upcoming Fixtures</h3>
+                        <div class="fixtures-filters">
+                            <select id="competition-filter" class="filter-select">
+                                <option value="">All Competitions</option>
+                                <option value="league">Egyptian Premier League</option>
+                                <option value="cup">Egypt Cup</option>
+                                <option value="champions">CAF Champions League</option>
+                                <option value="friendly">Friendly</option>
+                            </select>
+                            <select id="month-filter" class="filter-select">
+                                <option value="">All Months</option>
+                                <option value="01">January</option>
+                                <option value="02">February</option>
+                                <option value="03">March</option>
+                                <option value="04">April</option>
+                                <option value="05">May</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="fixtures-list" id="fixtures-list">
+                        <!-- Fixtures will be populated by JavaScript -->
+                    </div>
+                </div>
+                
+                <!-- Results View -->
+                <div id="results-view" class="results-container" style="display: none;">
+                    <div class="fixtures-header">
+                        <h3>Recent Results</h3>
+                        <div class="fixtures-filters">
+                            <select id="results-competition-filter" class="filter-select">
+                                <option value="">All Competitions</option>
+                                <option value="league">Egyptian Premier League</option>
+                                <option value="cup">Egypt Cup</option>
+                                <option value="champions">CAF Champions League</option>
+                                <option value="friendly">Friendly</option>
+                            </select>
+                            <select id="results-period-filter" class="filter-select">
+                                <option value="month">Last Month</option>
+                                <option value="quarter">Last 3 Months</option>
+                                <option value="season">This Season</option>
+                                <option value="all">All Time</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="fixtures-list" id="results-list">
+                        <!-- Results will be populated by JavaScript -->
+                    </div>
+                </div>
+                
+                <!-- League Table View -->
+                <div id="table-view" class="league-table-container" style="display: none;">
+                    <table class="league-table">
+                        <thead>
+                            <tr>
+                                <th class="position">Pos</th>
+                                <th>Team</th>
+                                <th>P</th>
+                                <th>W</th>
+                                <th>D</th>
+                                <th>L</th>
+                                <th>GF</th>
+                                <th>GA</th>
+                                <th>GD</th>
+                                <th>Pts</th>
+                            </tr>
+                        </thead>
+                        <tbody id="league-table-body">
+                            <!-- League table will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- Statistics View -->
+                <div id="stats-view" class="stats-grid" style="display: none;">
+                    <div class="stats-card">
+                        <h3><i class="fas fa-chart-line"></i> Performance Metrics</h3>
+                        <div class="stats-list">
+                            <div class="stats-item">
+                                <span class="stats-label">Win Rate</span>
+                                <span class="stats-value">75%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 75%;"></div>
+                            </div>
+                            <div class="stats-item">
+                                <span class="stats-label">Goals per Game</span>
+                                <span class="stats-value">2.4</span>
+                            </div>
+                            <div class="stats-item">
+                                <span class="stats-label">Clean Sheets</span>
+                                <span class="stats-value">14</span>
+                            </div>
+                            <div class="stats-item">
+                                <span class="stats-label">Possession Average</span>
+                                <span class="stats-value">68%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 68%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="stats-card">
+                        <h3><i class="fas fa-futbol"></i> Attacking Stats</h3>
+                        <div class="stats-list">
+                            <div class="stats-item">
+                                <span class="stats-label">Total Goals</span>
+                                <span class="stats-value">58</span>
+                            </div>
+                            <div class="stats-item">
+                                <span class="stats-label">Shots per Game</span>
+                                <span class="stats-value">16.2</span>
+                            </div>
+                            <div class="stats-item">
+                                <span class="stats-label">Shot Accuracy</span>
+                                <span class="stats-value">42%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 42%;"></div>
+                            </div>
+                            <div class="stats-item">
+                                <span class="stats-label">Assists</span>
+                                <span class="stats-value">45</span>
+                            </div>
+                            <div class="stats-item">
+                                <span class="stats-label">Corners Won</span>
+                                <span class="stats-value">142</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="stats-card">
+                        <h3><i class="fas fa-shield-alt"></i> Defensive Stats</h3>
+                        <div class="stats-list">
+                            <div class="stats-item">
+                                <span class="stats-label">Goals Conceded</span>
+                                <span class="stats-value">18</span>
+                            </div>
+                            <div class="stats-item">
+                                <span class="stats-label">Clean Sheets</span>
+                                <span class="stats-value">14</span>
+                            </div>
+                            <div class="stats-item">
+                                <span class="stats-label">Tackles per Game</span>
+                                <span class="stats-value">18.7</span>
+                            </div>
+                            <div class="stats-item">
+                                <span class="stats-label">Interceptions</span>
+                                <span class="stats-value">12.3</span>
+                            </div>
+                            <div class="stats-item">
+                                <span class="stats-label">Aerial Duels Won</span>
+                                <span class="stats-value">64%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 64%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="stats-card">
+                        <h3><i class="fas fa-users"></i> Team Discipline</h3>
+                        <div class="stats-list">
+                            <div class="stats-item">
+                                <span class="stats-label">Yellow Cards</span>
+                                <span class="stats-value">32</span>
+                            </div>
+                            <div class="stats-item">
+                                <span class="stats-label">Red Cards</span>
+                                <span class="stats-value">2</span>
+                            </div>
+                            <div class="stats-item">
+                                <span class="stats-label">Fouls per Game</span>
+                                <span class="stats-value">11.4</span>
+                            </div>
+                            <div class="stats-item">
+                                <span class="stats-label">Fair Play Points</span>
+                                <span class="stats-value">8.2</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Match Detail Modal -->
+    <div id="match-detail-modal" class="modal match-detail-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Match Details</h3>
+                <button class="close" onclick="closeModal('match-detail-modal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="match-header" id="match-detail-header">
+                    <!-- Match header will be populated by JavaScript -->
+                </div>
+                
+                <div class="match-tabs">
+                    <button class="match-tab active" data-tab="overview">Overview</button>
+                    <button class="match-tab" data-tab="lineup">Lineup</button>
+                    <button class="match-tab" data-tab="stats">Statistics</button>
+                    <button class="match-tab" data-tab="events">Events</button>
+                </div>
+                
+                <div class="match-tab-content" id="match-tab-content">
+                    <!-- Tab content will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+    <script>
+        // Enhanced Matches JavaScript
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeMatches();
+            loadMatchesData();
+            setupEventListeners();
+        });
+
+        // Sample data
+        let fixtures = [
+            {
+                id: 1,
+                homeTeam: "Al Ahly",
+                awayTeam: "Zamalek",
+                homeScore: null,
+                awayScore: null,
+                date: "2024-01-25",
+                time: "20:00",
+                competition: "league",
+                status: "upcoming",
+                venue: "Cairo Stadium"
+            },
+            {
+                id: 2,
+                homeTeam: "Pyramids FC",
+                awayTeam: "Al Ahly",
+                homeScore: null,
+                awayScore: null,
+                date: "2024-02-01",
+                time: "18:00",
+                competition: "league",
+                status: "upcoming",
+                venue: "30 June Stadium"
+            },
+            {
+                id: 3,
+                homeTeam: "Al Ahly",
+                awayTeam: "Esperance",
+                homeScore: null,
+                awayScore: null,
+                date: "2024-02-08",
+                time: "21:00",
+                competition: "champions",
+                status: "upcoming",
+                venue: "Cairo Stadium"
+            }
+        ];
+
+        let results = [
+            {
+                id: 4,
+                homeTeam: "Al Ahly",
+                awayTeam: "El Gouna",
+                homeScore: 3,
+                awayScore: 1,
+                date: "2024-01-15",
+                time: "20:00",
+                competition: "league",
+                status: "finished",
+                venue: "Cairo Stadium",
+                outcome: "win"
+            },
+            {
+                id: 5,
+                homeTeam: "Ismaily",
+                awayTeam: "Al Ahly",
+                homeScore: 1,
+                awayScore: 2,
+                date: "2024-01-08",
+                time: "18:00",
+                competition: "league",
+                status: "finished",
+                venue: "Ismaily Stadium",
+                outcome: "win"
+            },
+            {
+                id: 6,
+                homeTeam: "Al Ahly",
+                awayTeam: "Ceramica Cleopatra",
+                homeScore: 2,
+                awayScore: 2,
+                date: "2024-01-01",
+                time: "16:00",
+                competition: "league",
+                status: "finished",
+                venue: "Cairo Stadium",
+                outcome: "draw"
+            }
+        ];
+
+        let leagueTable = [
+            { position: 1, team: "Al Ahly", played: 24, won: 18, drawn: 4, lost: 2, goalsFor: 58, goalsAgainst: 18, goalDifference: 40, points: 58, current: true },
+            { position: 2, team: "Zamalek", played: 24, won: 16, drawn: 6, lost: 2, goalsFor: 45, goalsAgainst: 15, goalDifference: 30, points: 54, current: false },
+            { position: 3, team: "Pyramids FC", played: 24, won: 14, drawn: 7, lost: 3, goalsFor: 42, goalsAgainst: 22, goalDifference: 20, points: 49, current: false },
+            { position: 4, team: "Future FC", played: 24, won: 12, drawn: 8, lost: 4, goalsFor: 38, goalsAgainst: 25, goalDifference: 13, points: 44, current: false },
+            { position: 5, team: "Ismaily", played: 24, won: 11, drawn: 6, lost: 7, goalsFor: 32, goalsAgainst: 28, goalDifference: 4, points: 39, current: false }
+        ];
+
+        let currentView = 'fixtures';
+        let currentMatchTab = 'overview';
+
+        function initializeMatches() {
+            // Load data from localStorage if available
+            const savedFixtures = localStorage.getItem('coach_fixtures');
+            const savedResults = localStorage.getItem('coach_results');
+            
+            if (savedFixtures) fixtures = JSON.parse(savedFixtures);
+            if (savedResults) results = JSON.parse(savedResults);
+            
+            updateStats();
+        }
+
+        function loadMatchesData() {
+            if (currentView === 'fixtures') {
+                loadFixtures();
+            } else if (currentView === 'results') {
+                loadResults();
+            } else if (currentView === 'table') {
+                loadLeagueTable();
+            } else if (currentView === 'stats') {
+                // Stats are static for now
+            }
+        }
+
+        function loadFixtures() {
+            const filteredFixtures = filterFixtures();
+            const container = document.getElementById('fixtures-list');
+            
+            if (filteredFixtures.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-calendar-alt"></i>
+                        <h3>No fixtures found</h3>
+                        <p>No upcoming matches match your filters</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            container.innerHTML = filteredFixtures.map(fixture => {
+                const fixtureDate = new Date(fixture.date);
+                const today = new Date();
+                const isToday = fixtureDate.toDateString() === today.toDateString();
+                
+                return `
+                    <div class="fixture-item" onclick="viewMatchDetail(${fixture.id})">
+                        <div class="fixture-date">
+                            <div class="fixture-day">${fixtureDate.getDate()} ${getMonthName(fixtureDate.getMonth())}</div>
+                            <div class="fixture-time">${fixture.time}</div>
+                        </div>
+                        
+                        <div class="fixture-teams">
+                            <div class="team-info">
+                                <img src="7AhhubHgCAYu.jpg" alt="${fixture.homeTeam}" class="team-logo">
+                                <span class="team-name">${fixture.homeTeam}</span>
+                            </div>
+                            
+                            <div class="match-score">
+                                <span class="vs">VS</span>
+                            </div>
+                            
+                            <div class="team-info">
+                                <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=40&h=40&fit=crop&crop=center" alt="${fixture.awayTeam}" class="team-logo">
+                                <span class="team-name">${fixture.awayTeam}</span>
+                            </div>
+                        </div>
+                        
+                        <div class="match-status">
+                            <span class="status-badge status-${fixture.status}">
+                                ${fixture.status}
+                            </span>
+                            <div class="match-competition">${getCompetitionName(fixture.competition)}</div>
+                        </div>
+                        
+                        <div class="fixture-actions">
+                            <button class="action-btn" onclick="prepareMatch(${fixture.id}); event.stopPropagation();">
+                                <i class="fas fa-clipboard-list"></i> Prepare
+                            </button>
+                            <button class="action-btn" onclick="editFixture(${fixture.id}); event.stopPropagation();">
+                                <i class="fas fa-edit"></i> Edit
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function loadResults() {
+            const filteredResults = filterResults();
+            const container = document.getElementById('results-list');
+            
+            if (filteredResults.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-list-alt"></i>
+                        <h3>No results found</h3>
+                        <p>No match results match your filters</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            container.innerHTML = filteredResults.map(result => {
+                const resultDate = new Date(result.date);
+                
+                return `
+                    <div class="result-item" onclick="viewMatchDetail(${result.id})">
+                        <div class="fixture-date">
+                            <div class="fixture-day">${resultDate.getDate()} ${getMonthName(resultDate.getMonth())}</div>
+                            <div class="fixture-time">${result.time}</div>
+                        </div>
+                        
+                        <div class="result-outcome ${result.outcome}"></div>
+                        
+                        <div class="fixture-teams">
+                            <div class="team-info">
+                                <img src="7AhhubHgCAYu.jpg" alt="${result.homeTeam}" class="team-logo">
+                                <span class="team-name">${result.homeTeam}</span>
+                            </div>
+                            
+                            <div class="match-score">
+                                <span class="score">${result.homeScore} - ${result.awayScore}</span>
+                            </div>
+                            
+                            <div class="team-info">
+                                <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=40&h=40&fit=crop&crop=center" alt="${result.awayTeam}" class="team-logo">
+                                <span class="team-name">${result.awayTeam}</span>
+                            </div>
+                        </div>
+                        
+                        <div class="match-status">
+                            <span class="status-badge status-${result.status}">
+                                ${result.status}
+                            </span>
+                            <div class="match-competition">${getCompetitionName(result.competition)}</div>
+                        </div>
+                        
+                        <div class="result-stats">
+                            <div class="result-stat">
+                                <span class="result-stat-value">68%</span>
+                                <span class="result-stat-label">Possession</span>
+                            </div>
+                            <div class="result-stat">
+                                <span class="result-stat-value">12</span>
+                                <span class="result-stat-label">Shots</span>
+                            </div>
+                            <div class="result-stat">
+                                <span class="result-stat-value">5</span>
+                                <span class="result-stat-label">Corners</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function loadLeagueTable() {
+            const tbody = document.getElementById('league-table-body');
+            
+            tbody.innerHTML = leagueTable.map(team => `
+                <tr class="${team.current ? 'current-team' : ''} ${getTableRowClass(team.position)}">
+                    <td class="position">${team.position}</td>
+                    <td class="team-cell">
+                        <img src="${team.current ? '7AhhubHgCAYu.jpg' : 'https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=30&h=30&fit=crop&crop=center'}" alt="${team.team}" class="table-team-logo">
+                        <span class="table-team-name">${team.team}</span>
+                    </td>
+                    <td>${team.played}</td>
+                    <td>${team.won}</td>
+                    <td>${team.drawn}</td>
+                    <td>${team.lost}</td>
+                    <td>${team.goalsFor}</td>
+                    <td>${team.goalsAgainst}</td>
+                    <td>${team.goalDifference > 0 ? '+' : ''}${team.goalDifference}</td>
+                    <td><strong>${team.points}</strong></td>
+                </tr>
+            `).join('');
+        }
+
+        function filterFixtures() {
+            const competitionFilter = document.getElementById('competition-filter')?.value || '';
+            const monthFilter = document.getElementById('month-filter')?.value || '';
+            
+            return fixtures.filter(fixture => {
+                const matchesCompetition = !competitionFilter || fixture.competition === competitionFilter;
+                const matchesMonth = !monthFilter || fixture.date.includes(`-${monthFilter}-`);
+                
+                return matchesCompetition && matchesMonth;
+            });
+        }
+
+        function filterResults() {
+            const competitionFilter = document.getElementById('results-competition-filter')?.value || '';
+            const periodFilter = document.getElementById('results-period-filter')?.value || 'month';
+            
+            return results.filter(result => {
+                const matchesCompetition = !competitionFilter || result.competition === competitionFilter;
+                const matchesPeriod = checkResultPeriod(result.date, periodFilter);
+                
+                return matchesCompetition && matchesPeriod;
+            });
+        }
+
+        function checkResultPeriod(resultDate, period) {
+            const today = new Date();
+            const resultDateObj = new Date(resultDate);
+            
+            switch (period) {
+                case 'month':
+                    const monthAgo = new Date(today);
+                    monthAgo.setMonth(today.getMonth() - 1);
+                    return resultDateObj >= monthAgo;
+                case 'quarter':
+                    const quarterAgo = new Date(today);
+                    quarterAgo.setMonth(today.getMonth() - 3);
+                    return resultDateObj >= quarterAgo;
+                case 'season':
+                    const seasonStart = new Date(today.getFullYear(), 7, 1); // August 1st
+                    return resultDateObj >= seasonStart;
+                default:
+                    return true;
+            }
+        }
+
+        function setupEventListeners() {
+            // View switching
+            document.querySelectorAll('.view-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    currentView = this.dataset.view;
+                    switchView(currentView);
+                });
+            });
+
+            // Filter change listeners
+            const competitionFilter = document.getElementById('competition-filter');
+            const monthFilter = document.getElementById('month-filter');
+            const resultsCompetitionFilter = document.getElementById('results-competition-filter');
+            const resultsPeriodFilter = document.getElementById('results-period-filter');
+            
+            if (competitionFilter) competitionFilter.addEventListener('change', loadFixtures);
+            if (monthFilter) monthFilter.addEventListener('change', loadFixtures);
+            if (resultsCompetitionFilter) resultsCompetitionFilter.addEventListener('change', loadResults);
+            if (resultsPeriodFilter) resultsPeriodFilter.addEventListener('change', loadResults);
+
+            // Match detail tabs
+            document.addEventListener('click', function(e) {
+                if (e.target.classList.contains('match-tab')) {
+                    document.querySelectorAll('.match-tab').forEach(tab => tab.classList.remove('active'));
+                    e.target.classList.add('active');
+                    currentMatchTab = e.target.dataset.tab;
+                    loadMatchTabContent();
+                }
+            });
+        }
+
+        function switchView(view) {
+            // Hide all views
+            document.getElementById('fixtures-view').style.display = 'none';
+            document.getElementById('results-view').style.display = 'none';
+            document.getElementById('table-view').style.display = 'none';
+            document.getElementById('stats-view').style.display = 'none';
+
+            // Show selected view
+            document.getElementById(view + '-view').style.display = 'block';
+            
+            loadMatchesData();
+        }
+
+        function viewMatchDetail(id) {
+            const match = [...fixtures, ...results].find(m => m.id === id);
+            if (!match) return;
+            
+            // Populate match header
+            const header = document.getElementById('match-detail-header');
+            header.innerHTML = `
+                <div class="match-teams-detail">
+                    <div class="team-detail">
+                        <img src="7AhhubHgCAYu.jpg" alt="${match.homeTeam}" class="team-logo-large">
+                        <div class="team-name-large">${match.homeTeam}</div>
+                    </div>
+                    
+                    <div class="match-info">
+                        <div class="match-competition-large">${getCompetitionName(match.competition)}</div>
+                        <div class="match-date-large">${new Date(match.date).toLocaleDateString()}</div>
+                        ${match.homeScore !== null ? 
+                            `<div class="score-large">${match.homeScore} - ${match.awayScore}</div>` :
+                            `<div class="score-large">${match.time}</div>`
+                        }
+                    </div>
+                    
+                    <div class="team-detail">
+                        <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=60&h=60&fit=crop&crop=center" alt="${match.awayTeam}" class="team-logo-large">
+                        <div class="team-name-large">${match.awayTeam}</div>
+                    </div>
+                </div>
+            `;
+            
+            loadMatchTabContent();
+            openModal('match-detail-modal');
+        }
+
+        function loadMatchTabContent() {
+            const content = document.getElementById('match-tab-content');
+            
+            switch (currentMatchTab) {
+                case 'overview':
+                    content.innerHTML = `
+                        <div class="stats-grid">
+                            <div class="stats-card">
+                                <h3>Match Information</h3>
+                                <div class="stats-list">
+                                    <div class="stats-item">
+                                        <span class="stats-label">Venue</span>
+                                        <span class="stats-value">Cairo Stadium</span>
+                                    </div>
+                                    <div class="stats-item">
+                                        <span class="stats-label">Referee</span>
+                                        <span class="stats-value">Ahmed El-Ghandour</span>
+                                    </div>
+                                    <div class="stats-item">
+                                        <span class="stats-label">Attendance</span>
+                                        <span class="stats-value">75,000</span>
+                                    </div>
+                                    <div class="stats-item">
+                                        <span class="stats-label">Weather</span>
+                                        <span class="stats-value">Clear, 22°C</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    break;
+                case 'lineup':
+                    content.innerHTML = `
+                        <div class="lineup-grid">
+                            <div class="team-lineup">
+                                <div class="lineup-title">Al Ahly Starting XI</div>
+                                ${generateLineup('home')}
+                            </div>
+                            <div class="team-lineup">
+                                <div class="lineup-title">Opposition Starting XI</div>
+                                ${generateLineup('away')}
+                            </div>
+                        </div>
+                    `;
+                    break;
+                case 'stats':
+                    content.innerHTML = `
+                        <div class="stats-grid">
+                            <div class="stats-card">
+                                <h3>Match Statistics</h3>
+                                <div class="stats-list">
+                                    <div class="stats-item">
+                                        <span class="stats-label">Possession</span>
+                                        <span class="stats-value">68% - 32%</span>
+                                    </div>
+                                    <div class="stats-item">
+                                        <span class="stats-label">Shots</span>
+                                        <span class="stats-value">16 - 8</span>
+                                    </div>
+                                    <div class="stats-item">
+                                        <span class="stats-label">Shots on Target</span>
+                                        <span class="stats-value">7 - 3</span>
+                                    </div>
+                                    <div class="stats-item">
+                                        <span class="stats-label">Corners</span>
+                                        <span class="stats-value">8 - 2</span>
+                                    </div>
+                                    <div class="stats-item">
+                                        <span class="stats-label">Fouls</span>
+                                        <span class="stats-value">12 - 18</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    break;
+                case 'events':
+                    content.innerHTML = `
+                        <div class="stats-card">
+                            <h3>Match Events</h3>
+                            <div class="stats-list">
+                                <div class="stats-item">
+                                    <span class="stats-label">15' Goal - Mohamed Salah</span>
+                                    <span class="stats-value">1-0</span>
+                                </div>
+                                <div class="stats-item">
+                                    <span class="stats-label">32' Yellow Card - Ahmed Zizo</span>
+                                    <span class="stats-value">⚠️</span>
+                                </div>
+                                <div class="stats-item">
+                                    <span class="stats-label">58' Goal - Ali Mohamed</span>
+                                    <span class="stats-value">2-0</span>
+                                </div>
+                                <div class="stats-item">
+                                    <span class="stats-label">75' Substitution</span>
+                                    <span class="stats-value">🔄</span>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    break;
+            }
+        }
+
+        function generateLineup(team) {
+            const players = [
+                { number: 1, name: "Hassan Ahmed" },
+                { number: 4, name: "Karim Fouad" },
+                { number: 5, name: "Omar Khaled" },
+                { number: 3, name: "Youssef Ibrahim" },
+                { number: 2, name: "Mohamed Tarek" },
+                { number: 8, name: "Ahmed Zizo" },
+                { number: 6, name: "Mahmoud Hassan" },
+                { number: 7, name: "Ahmed Ali" },
+                { number: 10, name: "Mohamed Salah" },
+                { number: 9, name: "Ali Mohamed" },
+                { number: 11, name: "Hussein Faisal" }
+            ];
+            
+            return players.map(player => `
+                <div class="player-lineup">
+                    <div class="player-number">${player.number}</div>
+                    <div class="player-name-lineup">${player.name}</div>
+                </div>
+            `).join('');
+        }
+
+        function prepareMatch(id) {
+            showNotification('Opening match preparation tools...', 'info');
+        }
+
+        function editFixture(id) {
+            showNotification('Opening fixture editor...', 'info');
+        }
+
+        function exportMatches() {
+            const data = { fixtures, results, leagueTable };
+            const dataStr = JSON.stringify(data, null, 2);
+            const dataBlob = new Blob([dataStr], {type: 'application/json'});
+            const url = URL.createObjectURL(dataBlob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'matches_export.json';
+            link.click();
+            
+            showNotification('Matches data exported successfully!', 'success');
+        }
+
+        function updateStats() {
+            const wins = results.filter(r => r.outcome === 'win').length;
+            const draws = results.filter(r => r.outcome === 'draw').length;
+            const losses = results.filter(r => r.outcome === 'loss').length;
+            const goals = results.reduce((total, r) => {
+                return total + (r.homeTeam === 'Al Ahly' ? r.homeScore : r.awayScore);
+            }, 0);
+
+            // Update stat cards
+            const statCards = document.querySelectorAll('.stat-card');
+            if (statCards.length >= 4) {
+                statCards[0].querySelector('h3').textContent = wins;
+                statCards[1].querySelector('h3').textContent = draws;
+                statCards[2].querySelector('h3').textContent = losses;
+                statCards[3].querySelector('h3').textContent = goals;
+            }
+        }
+
+        function getCompetitionName(competition) {
+            const competitions = {
+                'league': 'Egyptian Premier League',
+                'cup': 'Egypt Cup',
+                'champions': 'CAF Champions League',
+                'friendly': 'Friendly Match'
+            };
+            return competitions[competition] || competition;
+        }
+
+        function getMonthName(month) {
+            const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+            return months[month];
+        }
+
+        function getTableRowClass(position) {
+            if (position <= 2) return 'champions-league';
+            if (position <= 4) return 'europa-league';
+            if (position >= 16) return 'relegation';
+            return '';
+        }
+    </script>
+</body>
+</html>
+

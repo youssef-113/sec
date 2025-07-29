@@ -1,0 +1,457 @@
+/* Player Nutrition Styles */
+.nutrition-content {
+    padding: var(--spacing-xl);
+    flex: 1;
+}
+
+/* Daily Overview */
+.daily-overview {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-2xl);
+}
+
+.daily-overview .overview-card {
+    background: var(--primary-white);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    box-shadow: var(--shadow);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing);
+    transition: var(--transition);
+}
+
+.daily-overview .overview-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.daily-overview .card-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--font-size-lg);
+    color: white;
+}
+
+.daily-overview .card-icon.calories {
+    background: linear-gradient(135deg, #dc2626, #b91c1c);
+}
+
+.daily-overview .card-icon.protein {
+    background: linear-gradient(135deg, #059669, #047857);
+}
+
+.daily-overview .card-icon.carbs {
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+}
+
+.daily-overview .card-icon.fats {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+}
+
+.daily-overview .card-icon.water {
+    background: linear-gradient(135deg, #06b6d4, #0891b2);
+}
+
+.daily-overview .card-info h3 {
+    font-size: var(--font-size-xl);
+    font-weight: 700;
+    color: var(--gray-900);
+    margin-bottom: 4px;
+}
+
+.daily-overview .card-info p {
+    font-size: var(--font-size-sm);
+    color: var(--gray-600);
+}
+
+.progress-ring {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    margin-left: auto;
+}
+
+.progress-circle {
+    transform: rotate(-90deg);
+}
+
+.progress-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    color: var(--gray-900);
+}
+
+/* Nutrition Section */
+.nutrition-section {
+    margin-bottom: var(--spacing-2xl);
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-lg);
+}
+
+.section-header h3 {
+    font-size: var(--font-size-xl);
+    font-weight: 600;
+    color: var(--gray-900);
+}
+
+.section-header p {
+    font-size: var(--font-size-sm);
+    color: var(--gray-600);
+}
+
+.meal-date {
+    font-size: var(--font-size-sm);
+    color: var(--gray-600);
+    font-weight: 500;
+}
+
+/* Meal Plan */
+.meal-plan {
+    display: grid;
+    gap: var(--spacing-lg);
+}
+
+.meal-card {
+    background: var(--primary-white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.meal-card:hover {
+    box-shadow: var(--shadow-md);
+}
+
+.meal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-lg);
+    background: var(--gray-50);
+    border-bottom: 1px solid var(--gray-200);
+}
+
+.meal-info h4 {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    color: var(--gray-900);
+    margin-bottom: 4px;
+}
+
+.meal-time {
+    font-size: var(--font-size-sm);
+    color: var(--gray-600);
+}
+
+.meal-calories {
+    text-align: right;
+}
+
+.calories {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    color: var(--gray-900);
+    display: block;
+    margin-bottom: 4px;
+}
+
+.status {
+    font-size: var(--font-size-xs);
+    font-weight: 500;
+    padding: 4px 8px;
+    border-radius: var(--radius-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.status.completed {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.status.pending {
+    background: #fef3c7;
+    color: #d97706;
+}
+
+.status.scheduled {
+    background: #dbeafe;
+    color: #1e40af;
+}
+
+.meal-items {
+    padding: var(--spacing-lg);
+}
+
+.meal-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-sm) 0;
+    border-bottom: 1px solid var(--gray-100);
+}
+
+.meal-item:last-child {
+    border-bottom: none;
+}
+
+.item-name {
+    font-size: var(--font-size-base);
+    color: var(--gray-900);
+}
+
+.item-amount {
+    font-size: var(--font-size-sm);
+    color: var(--gray-600);
+    font-weight: 500;
+}
+
+.meal-macros {
+    display: flex;
+    gap: var(--spacing-lg);
+    padding: var(--spacing) var(--spacing-lg);
+    background: var(--gray-50);
+    border-top: 1px solid var(--gray-200);
+}
+
+.macro {
+    font-size: var(--font-size-sm);
+    color: var(--gray-600);
+    font-weight: 500;
+}
+
+.meal-action {
+    margin: var(--spacing-lg);
+    padding: var(--spacing-sm) var(--spacing);
+    background: var(--primary-red);
+    color: var(--primary-white);
+    border: none;
+    border-radius: var(--radius);
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.meal-action:hover {
+    background: var(--dark-red);
+}
+
+/* Supplements */
+.supplements-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-lg);
+}
+
+.supplement-card {
+    background: var(--primary-white);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    box-shadow: var(--shadow);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing);
+    transition: var(--transition);
+}
+
+.supplement-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.supplement-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-red), var(--dark-red));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--font-size-lg);
+    color: white;
+}
+
+.supplement-info {
+    flex: 1;
+}
+
+.supplement-info h4 {
+    font-size: var(--font-size-base);
+    font-weight: 600;
+    color: var(--gray-900);
+    margin-bottom: 4px;
+}
+
+.supplement-info p {
+    font-size: var(--font-size-sm);
+    color: var(--gray-600);
+    margin-bottom: 4px;
+}
+
+.supplement-time {
+    font-size: var(--font-size-xs);
+    color: var(--gray-500);
+    font-style: italic;
+}
+
+.supplement-status {
+    text-align: right;
+}
+
+.status-btn {
+    padding: var(--spacing-sm) var(--spacing);
+    border: none;
+    border-radius: var(--radius);
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.status-btn.taken {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.status-btn.pending {
+    background: #fef3c7;
+    color: #d97706;
+}
+
+.status-btn.scheduled {
+    background: #dbeafe;
+    color: #1e40af;
+}
+
+.status-btn:hover {
+    opacity: 0.8;
+}
+
+/* Nutrition Tips */
+.tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-lg);
+}
+
+.tip-card {
+    background: var(--primary-white);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+.tip-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.tip-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--font-size-lg);
+    color: white;
+    margin-bottom: var(--spacing);
+}
+
+.tip-card.hydration .tip-icon {
+    background: linear-gradient(135deg, #06b6d4, #0891b2);
+}
+
+.tip-card.timing .tip-icon {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+}
+
+.tip-card.recovery .tip-icon {
+    background: linear-gradient(135deg, #059669, #047857);
+}
+
+.tip-card.sleep .tip-icon {
+    background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+}
+
+.tip-content h4 {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    color: var(--gray-900);
+    margin-bottom: var(--spacing-sm);
+}
+
+.tip-content p {
+    font-size: var(--font-size-base);
+    color: var(--gray-700);
+    line-height: 1.6;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+    .daily-overview {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    }
+
+    .supplements-grid,
+    .tips-grid {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .nutrition-content {
+        padding: var(--spacing-lg);
+    }
+
+    .daily-overview {
+        grid-template-columns: 1fr;
+    }
+
+    .meal-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-sm);
+    }
+
+    .meal-calories {
+        text-align: left;
+    }
+
+    .meal-macros {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+
+    .supplement-card {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .supplement-status {
+        text-align: center;
+    }
+}
+

@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback - Al Ahly SC Player Portal</title>
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/player.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Player Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="https://upload.wikimedia.org/wikipedia/en/4/41/Al_Ahly_SC_logo.png" alt="Al Ahly SC" class="sidebar-logo">
+                <div class="sidebar-title">
+                    <h3>Al Ahly SC</h3>
+                    <p>Player Portal</p>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <h4>OVERVIEW</h4>
+                    <ul>
+                        <li><a href="player-dashboard.html" class="nav-link"><i class="fas fa-home"></i> Dashboard</a></li>
+                        <li><a href="player-performance.html" class="nav-link"><i class="fas fa-chart-line"></i> Performance</a></li>
+                        <li><a href="player-schedule.html" class="nav-link"><i class="fas fa-calendar-alt"></i> Schedule</a></li>
+                    </ul>
+                </div>
+                
+                <div class="nav-section">
+                    <h4>TRAINING</h4>
+                    <ul>
+                        <li><a href="player-attendance.html" class="nav-link"><i class="fas fa-clipboard-check"></i> Attendance</a></li>
+                        <li><a href="player-drills.html" class="nav-link"><i class="fas fa-dumbbell"></i> Training Drills</a></li>
+                        <li><a href="player-goals.html" class="nav-link"><i class="fas fa-target"></i> Goals & Progress</a></li>
+                    </ul>
+                </div>
+                
+                <div class="nav-section">
+                    <h4>COMMUNICATION</h4>
+                    <ul>
+                        <li><a href="player-announcements.html" class="nav-link"><i class="fas fa-bullhorn"></i> Announcements</a></li>
+                        <li><a href="player-chat.html" class="nav-link"><i class="fas fa-comments"></i> Chat with Doctor</a></li>
+                        <li><a href="player-feedback.html" class="nav-link active"><i class="fas fa-star"></i> Feedback</a></li>
+                    </ul>
+                </div>
+                
+                <div class="nav-section">
+                    <h4>HEALTH</h4>
+                    <ul>
+                        <li><a href="player-medical.html" class="nav-link"><i class="fas fa-heartbeat"></i> Medical Records</a></li>
+                        <li><a href="player-nutrition.html" class="nav-link"><i class="fas fa-apple-alt"></i> Nutrition Plan</a></li>
+                    </ul>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <img src="https://images.unsplash.com/photo-1566753323558-f4e0952af115?w=40&h=40&fit=crop&crop=face" alt="Mohamed Salah" class="user-avatar">
+                    <div class="user-info">
+                        <span class="user-name">Mohamed Salah</span>
+                        <span class="user-role">Forward • #11</span>
+                    </div>
+                    <div class="user-menu">
+                        <i class="fas fa-chevron-down"></i>
+                        <div class="dropdown-menu">
+                            <a href="player-profile.html"><i class="fas fa-user"></i> Profile</a>
+                            <a href="player-settings.html"><i class="fas fa-cog"></i> Settings</a>
+                            <a href="index.html"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="main-header">
+                <div class="header-left">
+                    <button class="sidebar-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1>Feedback</h1>
+                    <p>View coach feedback and performance reviews</p>
+                </div>
+                
+                <div class="header-right">
+                    <div class="feedback-filters">
+                        <select id="feedback-period">
+                            <option value="this-month">This Month</option>
+                            <option value="last-month">Last Month</option>
+                            <option value="this-season">This Season</option>
+                        </select>
+                    </div>
+                    <button class="btn-outline" onclick="requestFeedback()">
+                        <i class="fas fa-comment-dots"></i>
+                        Request Feedback
+                    </button>
+                </div>
+            </header>
+            
+            <div class="feedback-content">
+                <!-- Feedback Overview -->
+                <div class="feedback-overview">
+                    <div class="overview-card">
+                        <div class="card-icon rating">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="card-info">
+                            <h3>4.7</h3>
+                            <p>Average Rating</p>
+                            <span class="card-change positive">+0.2 this month</span>
+                        </div>
+                    </div>
+                    
+                    <div class="overview-card">
+                        <div class="card-icon feedback-count">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <div class="card-info">
+                            <h3>12</h3>
+                            <p>Feedback Received</p>
+                            <span class="card-change positive">+3 this month</span>
+                        </div>
+                    </div>
+                    
+                    <div class="overview-card">
+                        <div class="card-icon improvement">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="card-info">
+                            <h3>85%</h3>
+                            <p>Improvement Rate</p>
+                            <span class="card-change positive">+5% this month</span>
+                        </div>
+                    </div>
+                    
+                    <div class="overview-card">
+                        <div class="card-icon goals">
+                            <i class="fas fa-target"></i>
+                        </div>
+                        <div class="card-info">
+                            <h3>8</h3>
+                            <p>Goals Achieved</p>
+                            <span class="card-change positive">+2 this month</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Recent Feedback -->
+                <div class="feedback-section">
+                    <div class="section-header">
+                        <h3>Recent Feedback</h3>
+                        <div class="feedback-tabs">
+                            <button class="tab-btn active" data-tab="all">All</button>
+                            <button class="tab-btn" data-tab="coach">Coach</button>
+                            <button class="tab-btn" data-tab="medical">Medical</button>
+                            <button class="tab-btn" data-tab="fitness">Fitness</button>
+                        </div>
+                    </div>
+                    
+                    <div class="feedback-list">
+                        <div class="feedback-item coach-feedback">
+                            <div class="feedback-header">
+                                <div class="feedback-author">
+                                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face" alt="Ahmed Hassan" class="author-avatar">
+                                    <div class="author-info">
+                                        <h4>Ahmed Hassan</h4>
+                                        <p>Head Coach</p>
+                                    </div>
+                                </div>
+                                <div class="feedback-meta">
+                                    <div class="feedback-rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    <span class="feedback-date">2 days ago</span>
+                                </div>
+                            </div>
+                            <div class="feedback-content">
+                                <h5>Excellent Performance in Training</h5>
+                                <p>Mohamed showed exceptional dedication and skill during this week's training sessions. His shooting accuracy has improved significantly, and his movement off the ball is becoming more intelligent. Keep up the excellent work!</p>
+                                <div class="feedback-categories">
+                                    <span class="category technical">Technical Skills</span>
+                                    <span class="category tactical">Tactical Awareness</span>
+                                </div>
+                            </div>
+                            <div class="feedback-actions">
+                                <button class="action-btn" onclick="respondToFeedback('fb1')">
+                                    <i class="fas fa-reply"></i>
+                                    Respond
+                                </button>
+                                <button class="action-btn" onclick="markAsRead('fb1')">
+                                    <i class="fas fa-check"></i>
+                                    Mark as Read
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="feedback-item medical-feedback">
+                            <div class="feedback-header">
+                                <div class="feedback-author">
+                                    <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=40&h=40&fit=crop&crop=face" alt="Dr. Sarah Ahmed" class="author-avatar">
+                                    <div class="author-info">
+                                        <h4>Dr. Sarah Ahmed</h4>
+                                        <p>Medical Staff</p>
+                                    </div>
+                                </div>
+                                <div class="feedback-meta">
+                                    <div class="feedback-rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                    </div>
+                                    <span class="feedback-date">5 days ago</span>
+                                </div>
+                            </div>
+                            <div class="feedback-content">
+                                <h5>Recovery Progress Update</h5>
+                                <p>Your ankle recovery is progressing well. You've been following the rehabilitation program consistently, which is excellent. Continue with the current exercises and we should see you back to full training soon.</p>
+                                <div class="feedback-categories">
+                                    <span class="category medical">Medical</span>
+                                    <span class="category recovery">Recovery</span>
+                                </div>
+                            </div>
+                            <div class="feedback-actions">
+                                <button class="action-btn" onclick="respondToFeedback('fb2')">
+                                    <i class="fas fa-reply"></i>
+                                    Respond
+                                </button>
+                                <button class="action-btn" onclick="markAsRead('fb2')">
+                                    <i class="fas fa-check"></i>
+                                    Mark as Read
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="feedback-item fitness-feedback">
+                            <div class="feedback-header">
+                                <div class="feedback-author">
+                                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop&crop=face" alt="Fitness Coach" class="author-avatar">
+                                    <div class="author-info">
+                                        <h4>Mohamed Ali</h4>
+                                        <p>Fitness Coach</p>
+                                    </div>
+                                </div>
+                                <div class="feedback-meta">
+                                    <div class="feedback-rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    <span class="feedback-date">1 week ago</span>
+                                </div>
+                            </div>
+                            <div class="feedback-content">
+                                <h5>Outstanding Physical Condition</h5>
+                                <p>Your fitness levels are at an all-time high. The work you've put in during the off-season is clearly paying off. Your sprint times have improved and your endurance is excellent. Keep maintaining this level!</p>
+                                <div class="feedback-categories">
+                                    <span class="category physical">Physical</span>
+                                    <span class="category endurance">Endurance</span>
+                                </div>
+                            </div>
+                            <div class="feedback-actions">
+                                <button class="action-btn" onclick="respondToFeedback('fb3')">
+                                    <i class="fas fa-reply"></i>
+                                    Respond
+                                </button>
+                                <button class="action-btn" onclick="markAsRead('fb3')">
+                                    <i class="fas fa-check"></i>
+                                    Mark as Read
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Performance Trends -->
+                <div class="feedback-section">
+                    <div class="section-header">
+                        <h3>Performance Trends</h3>
+                        <p>Based on recent feedback and evaluations</p>
+                    </div>
+                    
+                    <div class="trends-grid">
+                        <div class="trend-card improving">
+                            <div class="trend-icon">
+                                <i class="fas fa-arrow-up"></i>
+                            </div>
+                            <div class="trend-info">
+                                <h4>Shooting Accuracy</h4>
+                                <p>Consistently improving over the last month</p>
+                                <div class="trend-progress">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 85%"></div>
+                                    </div>
+                                    <span>85% (+12%)</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="trend-card stable">
+                            <div class="trend-icon">
+                                <i class="fas fa-minus"></i>
+                            </div>
+                            <div class="trend-info">
+                                <h4>Passing Accuracy</h4>
+                                <p>Maintaining excellent standards</p>
+                                <div class="trend-progress">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 87%"></div>
+                                    </div>
+                                    <span>87% (stable)</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="trend-card improving">
+                            <div class="trend-icon">
+                                <i class="fas fa-arrow-up"></i>
+                            </div>
+                            <div class="trend-info">
+                                <h4>Physical Fitness</h4>
+                                <p>Significant improvement in endurance</p>
+                                <div class="trend-progress">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 92%"></div>
+                                    </div>
+                                    <span>92% (+8%)</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="trend-card needs-attention">
+                            <div class="trend-icon">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <div class="trend-info">
+                                <h4>Defensive Work</h4>
+                                <p>Area for improvement identified</p>
+                                <div class="trend-progress">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 65%"></div>
+                                    </div>
+                                    <span>65% (focus area)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="scripts/main.js"></script>
+    <script src="scripts/player.js"></script>
+    <script src="scripts/page-init.js"></script>
+</body>
+</html>
+

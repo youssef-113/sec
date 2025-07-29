@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Reports & Analysis - Al Ahly SC Training Management</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/medical.css">
+    <link rel="stylesheet" href="styles/medical-reports.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Medical Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="/home/ubuntu/upload/search_images/1.png" alt="Al Ahly SC" class="sidebar-logo">
+                <div class="sidebar-title">
+                    <h3>Al Ahly SC</h3>
+                    <p>Medical Center</p>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <h4>MEDICAL OVERVIEW</h4>
+                    <ul>
+                        <li><a href="medical-dashboard.html" class="nav-link"><i class="fas fa-heartbeat"></i> Dashboard</a></li>
+                        <li><a href="medical-schedule.html" class="nav-link"><i class="fas fa-calendar-alt"></i> My Schedule</a></li>
+                        <li><a href="medical-announcements.html" class="nav-link"><i class="fas fa-bullhorn"></i> Announcements</a></li>
+                    </ul>
+                </div>
+                
+                <div class="nav-section">
+                    <h4>PLAYER MANAGEMENT</h4>
+                    <ul>
+                        <li><a href="medical-players.html" class="nav-link"><i class="fas fa-user-friends"></i> Player Search</a></li>
+                        <li><a href="medical-injuries.html" class="nav-link"><i class="fas fa-band-aid"></i> Injury Management</a></li>
+                        <li><a href="medical-checkups.html" class="nav-link"><i class="fas fa-clipboard-list"></i> Checkup Logs</a></li>
+                    </ul>
+                </div>
+                
+                <div class="nav-section">
+                    <h4>COMMUNICATION</h4>
+                    <ul>
+                        <li><a href="medical-chat.html" class="nav-link"><i class="fas fa-comments"></i> Player Chat</a></li>
+                        <li><a href="medical-reports.html" class="nav-link active"><i class="fas fa-file-medical"></i> Medical Reports</a></li>
+                    </ul>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=40&h=40&fit=crop&crop=face" alt="User" class="user-avatar">
+                    <div class="user-info">
+                        <span class="user-name">Dr. Sarah Ahmed</span>
+                        <span class="user-role">Medical Staff</span>
+                    </div>
+                    <div class="user-menu">
+                        <i class="fas fa-chevron-down"></i>
+                        <div class="dropdown-menu">
+                            <a href="profile.html"><i class="fas fa-user"></i> Profile</a>
+                            <a href="settings.html"><i class="fas fa-cog"></i> Settings</a>
+                            <a href="index.html"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="main-header">
+                <div class="header-left">
+                    <button class="sidebar-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1>Medical Reports & Analysis</h1>
+                    <p>Generate and analyze medical reports for individual players and the team</p>
+                </div>
+                
+                <div class="header-right">
+                    <button class="btn-primary" onclick="generateNewReport()">
+                        <i class="fas fa-file-export"></i>
+                        Generate Report
+                    </button>
+                </div>
+            </header>
+            
+            <div class="reports-content">
+                <!-- Report Filters -->
+                <div class="report-filters">
+                    <div class="filter-group">
+                        <label>Report Type:</label>
+                        <select id="report-type-filter">
+                            <option value="">All Types</option>
+                            <option value="injury">Injury Report</option>
+                            <option value="checkup">Checkup Summary</option>
+                            <option value="performance">Medical Performance</option>
+                            <option value="team-health">Team Health Analysis</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>Player:</label>
+                        <input type="text" id="player-search" placeholder="Search by player name...">
+                    </div>
+                    <div class="filter-group">
+                        <label>Date Range:</label>
+                        <input type="date" id="start-date">
+                        <span>to</span>
+                        <input type="date" id="end-date">
+                    </div>
+                    <button class="btn-outline" onclick="clearReportFilters()">
+                        <i class="fas fa-times"></i>
+                        Clear Filters
+                    </button>
+                </div>
+
+                <!-- Reports List -->
+                <div class="reports-list-section">
+                    <div class="report-card">
+                        <div class="report-card-header">
+                            <h3>Injury Report - Mohamed Salah</h3>
+                            <span class="report-date">Generated: Jan 25, 2024</span>
+                        </div>
+                        <div class="report-card-body">
+                            <p>Detailed report on Mohamed Salah's ankle sprain recovery progress and current status.</p>
+                            <div class="report-meta">
+                                <span><i class="fas fa-user"></i> Mohamed Salah</span>
+                                <span><i class="fas fa-file-alt"></i> Injury Report</span>
+                            </div>
+                        </div>
+                        <div class="report-card-footer">
+                            <button class="btn-outline" onclick="viewReport(1)">View Report</button>
+                            <button class="btn-primary" onclick="downloadReport(1)">Download PDF</button>
+                        </div>
+                    </div>
+
+                    <div class="report-card">
+                        <div class="report-card-header">
+                            <h3>Team Health Analysis - Football First Team</h3>
+                            <span class="report-date">Generated: Jan 22, 2024</span>
+                        </div>
+                        <div class="report-card-body">
+                            <p>Comprehensive analysis of the overall health and injury trends within the Football First Team.</p>
+                            <div class="report-meta">
+                                <span><i class="fas fa-users"></i> Football First Team</span>
+                                <span><i class="fas fa-chart-pie"></i> Team Health Analysis</span>
+                            </div>
+                        </div>
+                        <div class="report-card-footer">
+                            <button class="btn-outline" onclick="viewReport(2)">View Report</button>
+                            <button class="btn-primary" onclick="downloadReport(2)">Download PDF</button>
+                        </div>
+                    </div>
+
+                    <div class="report-card">
+                        <div class="report-card-header">
+                            <h3>Checkup Summary - January 2024</h3>
+                            <span class="report-date">Generated: Jan 31, 2024</span>
+                        </div>
+                        <div class="report-card-body">
+                            <p>Summary of all medical checkups conducted in January, highlighting key findings.</p>
+                            <div class="report-meta">
+                                <span><i class="fas fa-calendar-alt"></i> Monthly Summary</span>
+                                <span><i class="fas fa-clipboard-list"></i> Checkup Summary</span>
+                            </div>
+                        </div>
+                        <div class="report-card-footer">
+                            <button class="btn-outline" onclick="viewReport(3)">View Report</button>
+                            <button class="btn-primary" onclick="downloadReport(3)">Download PDF</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="scripts/main.js"></script>
+    <script src="scripts/medical.js"></script>
+    <script src="scripts/page-init.js"></script>
+    <script>
+        function generateNewReport() {
+            alert("Generating new report...");
+            // In a real application, this would open a modal or redirect to a report generation form
+        }
+
+        function viewReport(id) {
+            alert("Viewing report details for ID: " + id);
+            // In a real application, this would load report details dynamically
+        }
+
+        function downloadReport(id) {
+            alert("Downloading report for ID: " + id);
+            // In a real application, this would trigger a PDF download
+        }
+
+        function clearReportFilters() {
+            document.getElementById("report-type-filter").value = "";
+            document.getElementById("player-search").value = "";
+            document.getElementById("start-date").value = "";
+            document.getElementById("end-date").value = "";
+            // In a real application, this would re-filter the displayed reports
+        }
+    </script>
+</body>
+</html>
+

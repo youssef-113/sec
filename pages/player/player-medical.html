@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Records - Al Ahly SC Player Portal</title>
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/player.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Player Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="https://upload.wikimedia.org/wikipedia/en/4/41/Al_Ahly_SC_logo.png" alt="Al Ahly SC" class="sidebar-logo">
+                <div class="sidebar-title">
+                    <h3>Al Ahly SC</h3>
+                    <p>Player Portal</p>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <h4>OVERVIEW</h4>
+                    <ul>
+                        <li><a href="player-dashboard.html" class="nav-link"><i class="fas fa-home"></i> Dashboard</a></li>
+                        <li><a href="player-performance.html" class="nav-link"><i class="fas fa-chart-line"></i> Performance</a></li>
+                        <li><a href="player-schedule.html" class="nav-link"><i class="fas fa-calendar-alt"></i> Schedule</a></li>
+                    </ul>
+                </div>
+                
+                <div class="nav-section">
+                    <h4>TRAINING</h4>
+                    <ul>
+                        <li><a href="player-attendance.html" class="nav-link"><i class="fas fa-clipboard-check"></i> Attendance</a></li>
+                        <li><a href="player-drills.html" class="nav-link"><i class="fas fa-dumbbell"></i> Training Drills</a></li>
+                        <li><a href="player-goals.html" class="nav-link"><i class="fas fa-target"></i> Goals & Progress</a></li>
+                    </ul>
+                </div>
+                
+                <div class="nav-section">
+                    <h4>COMMUNICATION</h4>
+                    <ul>
+                        <li><a href="player-announcements.html" class="nav-link"><i class="fas fa-bullhorn"></i> Announcements</a></li>
+                        <li><a href="player-chat.html" class="nav-link"><i class="fas fa-comments"></i> Chat with Doctor</a></li>
+                        <li><a href="player-feedback.html" class="nav-link"><i class="fas fa-star"></i> Feedback</a></li>
+                    </ul>
+                </div>
+                
+                <div class="nav-section">
+                    <h4>HEALTH</h4>
+                    <ul>
+                        <li><a href="player-medical.html" class="nav-link active"><i class="fas fa-heartbeat"></i> Medical Records</a></li>
+                        <li><a href="player-nutrition.html" class="nav-link"><i class="fas fa-apple-alt"></i> Nutrition Plan</a></li>
+                    </ul>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <img src="https://images.unsplash.com/photo-1566753323558-f4e0952af115?w=40&h=40&fit=crop&crop=face" alt="Mohamed Salah" class="user-avatar">
+                    <div class="user-info">
+                        <span class="user-name">Mohamed Salah</span>
+                        <span class="user-role">Forward • #11</span>
+                    </div>
+                    <div class="user-menu">
+                        <i class="fas fa-chevron-down"></i>
+                        <div class="dropdown-menu">
+                            <a href="player-profile.html"><i class="fas fa-user"></i> Profile</a>
+                            <a href="player-settings.html"><i class="fas fa-cog"></i> Settings</a>
+                            <a href="../../index.html"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="main-header">
+                <div class="header-left">
+                    <button class="sidebar-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1>Medical Records</h1>
+                    <p>Your health information and medical history</p>
+                </div>
+                
+                <div class="header-right">
+                    <button class="btn-outline" onclick="requestAppointment()">
+                        <i class="fas fa-calendar-plus"></i>
+                        Book Appointment
+                    </button>
+                    <button class="btn-outline" onclick="emergencyContact()">
+                        <i class="fas fa-phone"></i>
+                        Emergency
+                    </button>
+                </div>
+            </header>
+            
+            <div class="medical-content">
+                <!-- Health Overview -->
+                <div class="health-overview">
+                    <div class="overview-card">
+                        <div class="card-icon health-status">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <div class="card-info">
+                            <h3>Excellent</h3>
+                            <p>Overall Health</p>
+                            <span class="card-change positive">No concerns</span>
+                        </div>
+                    </div>
+                    
+                    <div class="overview-card">
+                        <div class="card-icon fitness-level">
+                            <i class="fas fa-running"></i>
+                        </div>
+                        <div class="card-info">
+                            <h3>92%</h3>
+                            <p>Fitness Level</p>
+                            <span class="card-change positive">+3% this month</span>
+                        </div>
+                    </div>
+                    
+                    <div class="overview-card">
+                        <div class="card-icon injury-status">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="card-info">
+                            <h3>1</h3>
+                            <p>Minor Injury</p>
+                            <span class="card-change neutral">Ankle - Recovering</span>
+                        </div>
+                    </div>
+                    
+                    <div class="overview-card">
+                        <div class="card-icon checkup">
+                            <i class="fas fa-stethoscope"></i>
+                        </div>
+                        <div class="card-info">
+                            <h3>5</h3>
+                            <p>Days Until Checkup</p>
+                            <span class="card-change neutral">Jan 22, 2024</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Current Health Status -->
+                <div class="medical-section">
+                    <div class="section-header">
+                        <h3>Current Health Status</h3>
+                        <span class="last-updated">Last updated: Jan 15, 2024</span>
+                    </div>
+                    
+                    <div class="health-status-grid">
+                        <div class="status-card">
+                            <div class="status-header">
+                                <h4>Active Injuries</h4>
+                                <span class="status-count">1</span>
+                            </div>
+                            <div class="injury-list">
+                                <div class="injury-item minor">
+                                    <div class="injury-icon">
+                                        <i class="fas fa-exclamation-triangle"></i>
+                                    </div>
+                                    <div class="injury-info">
+                                        <h5>Right Ankle Sprain</h5>
+                                        <p>Grade 1 sprain - Minor</p>
+                                        <span class="injury-date">Occurred: Jan 8, 2024</span>
+                                        <span class="recovery-time">Expected recovery: 2-3 weeks</span>
+                                    </div>
+                                    <div class="injury-status">
+                                        <span class="status-badge recovering">Recovering</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="status-card">
+                            <div class="status-header">
+                                <h4>Vital Signs</h4>
+                                <span class="status-indicator normal">Normal</span>
+                            </div>
+                            <div class="vitals-list">
+                                <div class="vital-item">
+                                    <span class="vital-name">Heart Rate</span>
+                                    <span class="vital-value">68 bpm</span>
+                                    <span class="vital-status normal">Normal</span>
+                                </div>
+                                <div class="vital-item">
+                                    <span class="vital-name">Blood Pressure</span>
+                                    <span class="vital-value">120/80</span>
+                                    <span class="vital-status normal">Normal</span>
+                                </div>
+                                <div class="vital-item">
+                                    <span class="vital-name">Body Temperature</span>
+                                    <span class="vital-value">36.8°C</span>
+                                    <span class="vital-status normal">Normal</span>
+                                </div>
+                                <div class="vital-item">
+                                    <span class="vital-name">Weight</span>
+                                    <span class="vital-value">75 kg</span>
+                                    <span class="vital-status normal">Stable</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Medical History -->
+                <div class="medical-section">
+                    <div class="section-header">
+                        <h3>Medical History</h3>
+                        <div class="history-filters">
+                            <button class="filter-btn active" data-filter="all">All</button>
+                            <button class="filter-btn" data-filter="injuries">Injuries</button>
+                            <button class="filter-btn" data-filter="checkups">Checkups</button>
+                            <button class="filter-btn" data-filter="treatments">Treatments</button>
+                        </div>
+                    </div>
+                    
+                    <div class="medical-timeline">
+                        <div class="timeline-item injury">
+                            <div class="timeline-date">
+                                <span class="date">Jan 8</span>
+                                <span class="year">2024</span>
+                            </div>
+                            <div class="timeline-content">
+                                <div class="timeline-header">
+                                    <h4>Right Ankle Sprain</h4>
+                                    <span class="timeline-type injury">Injury</span>
+                                </div>
+                                <p>Grade 1 ankle sprain during training session. Immediate ice treatment applied. Prescribed rest and physiotherapy.</p>
+                                <div class="timeline-meta">
+                                    <span class="doctor">Dr. Sarah Ahmed</span>
+                                    <span class="treatment">Physiotherapy prescribed</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item checkup">
+                            <div class="timeline-date">
+                                <span class="date">Dec 15</span>
+                                <span class="year">2023</span>
+                            </div>
+                            <div class="timeline-content">
+                                <div class="timeline-header">
+                                    <h4>Monthly Health Checkup</h4>
+                                    <span class="timeline-type checkup">Checkup</span>
+                                </div>
+                                <p>Routine monthly health assessment. All vital signs normal. Fitness level excellent. No concerns identified.</p>
+                                <div class="timeline-meta">
+                                    <span class="doctor">Dr. Sarah Ahmed</span>
+                                    <span class="result">All clear</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item treatment">
+                            <div class="timeline-date">
+                                <span class="date">Nov 22</span>
+                                <span class="year">2023</span>
+                            </div>
+                            <div class="timeline-content">
+                                <div class="timeline-header">
+                                    <h4>Muscle Strain Treatment</h4>
+                                    <span class="timeline-type treatment">Treatment</span>
+                                </div>
+                                <p>Treatment for minor hamstring strain. Massage therapy and stretching exercises prescribed. Full recovery achieved.</p>
+                                <div class="timeline-meta">
+                                    <span class="doctor">Physiotherapist</span>
+                                    <span class="result">Fully recovered</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item checkup">
+                            <div class="timeline-date">
+                                <span class="date">Nov 15</span>
+                                <span class="year">2023</span>
+                            </div>
+                            <div class="timeline-content">
+                                <div class="timeline-header">
+                                    <h4>Pre-Season Medical</h4>
+                                    <span class="timeline-type checkup">Checkup</span>
+                                </div>
+                                <p>Comprehensive pre-season medical examination. Cardiovascular fitness excellent. Blood work normal. Cleared for full training.</p>
+                                <div class="timeline-meta">
+                                    <span class="doctor">Dr. Sarah Ahmed</span>
+                                    <span class="result">Cleared for training</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Upcoming Appointments -->
+                <div class="medical-section">
+                    <div class="section-header">
+                        <h3>Upcoming Appointments</h3>
+                        <button class="btn-primary" onclick="bookAppointment()">
+                            <i class="fas fa-plus"></i>
+                            Book New
+                        </button>
+                    </div>
+                    
+                    <div class="appointments-list">
+                        <div class="appointment-item">
+                            <div class="appointment-date">
+                                <span class="date">22</span>
+                                <span class="month">Jan</span>
+                            </div>
+                            <div class="appointment-info">
+                                <h4>Monthly Health Checkup</h4>
+                                <p>Routine health assessment and fitness evaluation</p>
+                                <div class="appointment-meta">
+                                    <span class="time"><i class="fas fa-clock"></i> 10:00 AM</span>
+                                    <span class="doctor"><i class="fas fa-user-md"></i> Dr. Sarah Ahmed</span>
+                                    <span class="location"><i class="fas fa-map-marker-alt"></i> Medical Center</span>
+                                </div>
+                            </div>
+                            <div class="appointment-actions">
+                                <button class="action-btn" onclick="rescheduleAppointment('apt1')">Reschedule</button>
+                                <button class="action-btn" onclick="cancelAppointment('apt1')">Cancel</button>
+                            </div>
+                        </div>
+                        
+                        <div class="appointment-item">
+                            <div class="appointment-date">
+                                <span class="date">25</span>
+                                <span class="month">Jan</span>
+                            </div>
+                            <div class="appointment-info">
+                                <h4>Ankle Recovery Assessment</h4>
+                                <p>Follow-up examination for ankle sprain recovery</p>
+                                <div class="appointment-meta">
+                                    <span class="time"><i class="fas fa-clock"></i> 2:00 PM</span>
+                                    <span class="doctor"><i class="fas fa-user-md"></i> Dr. Sarah Ahmed</span>
+                                    <span class="location"><i class="fas fa-map-marker-alt"></i> Medical Center</span>
+                                </div>
+                            </div>
+                            <div class="appointment-actions">
+                                <button class="action-btn" onclick="rescheduleAppointment('apt2')">Reschedule</button>
+                                <button class="action-btn" onclick="cancelAppointment('apt2')">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="../../scripts/main.js"></script>
+    <script src="../../scripts/player.js"></script>
+    <script src="../../scripts/page-init.js"></script>
+</body>
+</html>
+

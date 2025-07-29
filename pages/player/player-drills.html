@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Training Drills - Al Ahly SC Player Portal</title>
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/player.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Player Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="https://upload.wikimedia.org/wikipedia/en/4/41/Al_Ahly_SC_logo.png" alt="Al Ahly SC" class="sidebar-logo">
+                <div class="sidebar-title">
+                    <h3>Al Ahly SC</h3>
+                    <p>Player Portal</p>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <h4>OVERVIEW</h4>
+                    <ul>
+                        <li><a href="player-dashboard.html" class="nav-link"><i class="fas fa-home"></i> Dashboard</a></li>
+                        <li><a href="player-performance.html" class="nav-link"><i class="fas fa-chart-line"></i> Performance</a></li>
+                        <li><a href="player-schedule.html" class="nav-link"><i class="fas fa-calendar-alt"></i> Schedule</a></li>
+                    </ul>
+                </div>
+                
+                <div class="nav-section">
+                    <h4>TRAINING</h4>
+                    <ul>
+                        <li><a href="player-attendance.html" class="nav-link"><i class="fas fa-clipboard-check"></i> Attendance</a></li>
+                        <li><a href="player-drills.html" class="nav-link active"><i class="fas fa-dumbbell"></i> Training Drills</a></li>
+                        <li><a href="player-goals.html" class="nav-link"><i class="fas fa-target"></i> Goals & Progress</a></li>
+                    </ul>
+                </div>
+                
+                <div class="nav-section">
+                    <h4>COMMUNICATION</h4>
+                    <ul>
+                        <li><a href="player-announcements.html" class="nav-link"><i class="fas fa-bullhorn"></i> Announcements</a></li>
+                        <li><a href="player-chat.html" class="nav-link"><i class="fas fa-comments"></i> Chat with Doctor</a></li>
+                        <li><a href="player-feedback.html" class="nav-link"><i class="fas fa-star"></i> Feedback</a></li>
+                    </ul>
+                </div>
+                
+                <div class="nav-section">
+                    <h4>HEALTH</h4>
+                    <ul>
+                        <li><a href="player-medical.html" class="nav-link"><i class="fas fa-heartbeat"></i> Medical Records</a></li>
+                        <li><a href="player-nutrition.html" class="nav-link"><i class="fas fa-apple-alt"></i> Nutrition Plan</a></li>
+                    </ul>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <img src="https://images.unsplash.com/photo-1566753323558-f4e0952af115?w=40&h=40&fit=crop&crop=face" alt="Mohamed Salah" class="user-avatar">
+                    <div class="user-info">
+                        <span class="user-name">Mohamed Salah</span>
+                        <span class="user-role">Forward • #11</span>
+                    </div>
+                    <div class="user-menu">
+                        <i class="fas fa-chevron-down"></i>
+                        <div class="dropdown-menu">
+                            <a href="player-profile.html"><i class="fas fa-user"></i> Profile</a>
+                            <a href="player-settings.html"><i class="fas fa-cog"></i> Settings</a>
+                            <a href="index.html"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="main-header">
+                <div class="header-left">
+                    <button class="sidebar-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1>Training Drills</h1>
+                    <p>Explore and practice various training drills</p>
+                </div>
+                
+                <div class="header-right">
+                    <div class="drill-filters">
+                        <select id="drill-category">
+                            <option value="all">All Categories</option>
+                            <option value="technical">Technical</option>
+                            <option value="tactical">Tactical</option>
+                            <option value="physical">Physical</option>
+                            <option value="goalkeeping">Goalkeeping</option>
+                        </select>
+                        <input type="text" placeholder="Search drills..." class="search-input">
+                    </div>
+                    <button class="btn-primary">
+                        <i class="fas fa-plus"></i>
+                        New Drill
+                    </button>
+                </div>
+            </header>
+            
+            <div class="drills-content">
+                <div class="drill-grid">
+                    <!-- Example Drill Card -->
+                    <div class="drill-card">
+                        <img src="https://via.placeholder.com/300x200?text=Technical+Drill" alt="Technical Drill" class="drill-image">
+                        <div class="drill-info">
+                            <h3>Passing & Receiving Fundamentals</h3>
+                            <p class="drill-category">Technical</p>
+                            <div class="drill-meta">
+                                <span><i class="fas fa-users"></i> 4-6 Players</span>
+                                <span><i class="fas fa-clock"></i> 30 min</span>
+                                <span><i class="fas fa-star"></i> Intermediate</span>
+                            </div>
+                            <p class="drill-description">Focuses on accurate passing, first touch, and movement off the ball.</p>
+                            <button class="btn-secondary">View Drill</button>
+                        </div>
+                    </div>
+                    
+                    <div class="drill-card">
+                        <img src="https://via.placeholder.com/300x200?text=Tactical+Drill" alt="Tactical Drill" class="drill-image">
+                        <div class="drill-info">
+                            <h3>Defensive Shape & Pressing</h3>
+                            <p class="drill-category">Tactical</p>
+                            <div class="drill-meta">
+                                <span><i class="fas fa-users"></i> 8-10 Players</span>
+                                <span><i class="fas fa-clock"></i> 45 min</span>
+                                <span><i class="fas fa-star"></i> Advanced</span>
+                            </div>
+                            <p class="drill-description">Trains players to maintain defensive shape and execute effective pressing triggers.</p>
+                            <button class="btn-secondary">View Drill</button>
+                        </div>
+                    </div>
+
+                    <div class="drill-card">
+                        <img src="https://via.placeholder.com/300x200?text=Physical+Drill" alt="Physical Drill" class="drill-image">
+                        <div class="drill-info">
+                            <h3>Agility & Speed Ladder</h3>
+                            <p class="drill-category">Physical</p>
+                            <div class="drill-meta">
+                                <span><i class="fas fa-users"></i> 1-2 Players</span>
+                                <span><i class="fas fa-clock"></i> 20 min</span>
+                                <span><i class="fas fa-star"></i> Beginner</span>
+                            </div>
+                            <p class="drill-description">Improves quickness, coordination, and change of direction.</p>
+                            <button class="btn-secondary">View Drill</button>
+                        </div>
+                    </div>
+
+                    <div class="drill-card">
+                        <img src="https://via.placeholder.com/300x200?text=Goalkeeping+Drill" alt="Goalkeeping Drill" class="drill-image">
+                        <div class="drill-info">
+                            <h3>Shot Stopping & Reflexes</h3>
+                            <p class="drill-category">Goalkeeping</p>
+                            <div class="drill-meta">
+                                <span><i class="fas fa-users"></i> 1 Goalkeeper</span>
+                                <span><i class="fas fa-clock"></i> 25 min</span>
+                                <span><i class="fas fa-star"></i> Intermediate</span>
+                            </div>
+                            <p class="drill-description">Drills to enhance goalkeepers reaction time and ability to save shots.</p>
+                            <button class="btn-secondary">View Drill</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="scripts/main.js"></script>
+    <script src="scripts/player.js"></script>
+    <script src="scripts/page-init.js"></script>
+</body>
+</html>
+
+

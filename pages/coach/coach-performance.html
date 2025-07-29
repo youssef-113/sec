@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Team Performance - Al Ahly SC Coach Portal</title>
+        <link rel="stylesheet" href="../../styles/main.css">
+        <link rel="stylesheet" href="../../styles/coach.css">
+        <link rel="stylesheet" href="../../styles/dashboard.css">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+            rel="stylesheet">
+    </head>
+
+    <body>
+        <div class="app-container">
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <div class="sidebar-header">
+                    <img src="../../search_images/7AhhubHgCAYu.jpg" alt="Al Ahly SC" class="sidebar-logo">
+                    <div class="sidebar-title">
+                        <h3>Al Ahly SC</h3>
+                        <p>Coach Portal</p>
+                    </div>
+                </div>
+
+                <nav class="sidebar-nav">
+                    <div class="nav-section">
+                        <h4>OVERVIEW</h4>
+                        <ul>
+                            <li><a href="coach-dashboard.html" class="nav-link"><i class="fas fa-home"></i>
+                                    Dashboard</a></li>
+                            <li><a href="coach-analytics.html" class="nav-link"><i class="fas fa-chart-bar"></i> My
+                                    Analytics</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="nav-section">
+                        <h4>TEAM MANAGEMENT</h4>
+                        <ul>
+                            <li><a href="coach-team.html" class="nav-link"><i class="fas fa-users"></i> My Team</a></li>
+                            <li><a href="../../schedule.html" class="nav-link"><i class="fas fa-calendar-alt"></i>
+                                    Schedule</a></li>
+                            <li><a href="../../drills.html" class="nav-link"><i class="fas fa-dumbbell"></i> Drill
+                                    Library</a></li>
+                            <li><a href="../../pages/player/players.html" class="nav-link"><i
+                                        class="fas fa-user-friends"></i> My Players</a></li>
+                            <li><a href="coach-attendance.html" class="nav-link"><i class="fas fa-clipboard-check"></i>
+                                    Attendance</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="nav-section">
+                        <h4>TRAINING</h4>
+                        <ul>
+                            <li><a href="coach-sessions.html" class="nav-link"><i class="fas fa-play-circle"></i>
+                                    Training Sessions</a></li>
+                            <li><a href="coach-performance.html" class="nav-link active"><i
+                                        class="fas fa-chart-line"></i> Performance</a></li>
+                            <li><a href="coach-reports.html" class="nav-link"><i class="fas fa-file-alt"></i>
+                                    Reports</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="nav-section">
+                        <h4>COMMUNICATION</h4>
+                        <ul>
+                            <li><a href="coach-announcements.html" class="nav-link"><i class="fas fa-bullhorn"></i>
+                                    Announcements</a></li>
+                            <li><a href="coach-chat.html" class="nav-link"><i class="fas fa-comments"></i> Team Chat</a>
+                            </li>
+                            <li><a href="coach-feedback.html" class="nav-link"><i class="fas fa-star"></i> Player
+                                    Feedback</a></li>
+                        </ul>
+                    </div>
+                </nav>
+
+                <div class="sidebar-footer">
+                    <div class="user-profile">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop&crop=face"
+                            alt="User" class="user-avatar">
+                        <div class="user-info">
+                            <span class="user-name">Ahmed Hassan</span>
+                            <span class="user-role">Football Coach</span>
+                        </div>
+                        <div class="user-menu">
+                            <i class="fas fa-chevron-down"></i>
+                            <div class="dropdown-menu">
+                                <a href="coach-profile.html"><i class="fas fa-user"></i> Profile</a>
+                                <a href="coach-settings.html"><i class="fas fa-cog"></i> Settings</a>
+                                <a href="../../index.html"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="main-content">
+                <header class="main-header">
+                    <div class="header-left">
+                        <button class="sidebar-toggle">
+                            <i class="fas fa-bars"></i>
+                        </button>
+                        <h1>Team Performance</h1>
+                        <p>Track and analyze your team's performance metrics</p>
+                    </div>
+
+                    <div class="header-right">
+                        <div class="performance-period">
+                            <select id="performance-period">
+                                <option value="this-month">This Month</option>
+                                <option value="last-month">Last Month</option>
+                                <option value="this-season">This Season</option>
+                                <option value="last-season">Last Season</option>
+                            </select>
+                        </div>
+                        <button class="btn-outline" onclick="exportPerformance()">
+                            <i class="fas fa-download"></i>
+                            Export
+                        </button>
+                        <button class="btn-primary" onclick="generateReport()">
+                            <i class="fas fa-chart-bar"></i>
+                            Generate Report
+                        </button>
+                    </div>
+                </header>
+
+                <div class="coach-content">
+                    <!-- Performance Overview -->
+                    <div class="performance-overview">
+                        <div class="overview-stats">
+                            <div class="stat-card">
+                                <div class="stat-icon">
+                                    <i class="fas fa-trophy"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <h3>15</h3>
+                                    <p>Wins</p>
+                                    <span class="stat-change positive">+3 from last month</span>
+                                </div>
+                            </div>
+
+                            <div class="stat-card">
+                                <div class="stat-icon">
+                                    <i class="fas fa-futbol"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <h3>42</h3>
+                                    <p>Goals Scored</p>
+                                    <span class="stat-change positive">+8 from last month</span>
+                                </div>
+                            </div>
+
+                            <div class="stat-card">
+                                <div class="stat-icon">
+                                    <i class="fas fa-shield-alt"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <h3>12</h3>
+                                    <p>Goals Conceded</p>
+                                    <span class="stat-change negative">-2 from last month</span>
+                                </div>
+                            </div>
+
+                            <div class="stat-card">
+                                <div class="stat-icon">
+                                    <i class="fas fa-percentage"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <h3>87%</h3>
+                                    <p>Pass Accuracy</p>
+                                    <span class="stat-change positive">+5% from last month</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Performance Charts -->
+                    <div class="performance-charts">
+                        <div class="chart-section">
+                            <h3>Team Performance Trends</h3>
+                            <div class="chart-container">
+                                <canvas id="performance-chart" width="400" height="200"></canvas>
+                            </div>
+                        </div>
+
+                        <div class="chart-section">
+                            <h3>Player Performance Distribution</h3>
+                            <div class="chart-container">
+                                <canvas id="player-distribution-chart" width="400" height="200"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Top Performers -->
+                    <div class="top-performers">
+                        <h3>Top Performers This Month</h3>
+                        <div class="performers-grid">
+                            <div class="performer-card">
+                                <div class="performer-rank">#1</div>
+                                <img src="https://images.unsplash.com/photo-1566753323558-f4e0952af115?w=60&h=60&fit=crop&crop=face"
+                                    alt="Mohamed Salah" class="performer-avatar">
+                                <div class="performer-info">
+                                    <h4>Mohamed Salah</h4>
+                                    <span class="position">Forward</span>
+                                    <div class="performer-stats">
+                                        <div class="stat">
+                                            <span class="stat-value">12</span>
+                                            <span class="stat-label">Goals</span>
+                                        </div>
+                                        <div class="stat">
+                                            <span class="stat-value">8</span>
+                                            <span class="stat-label">Assists</span>
+                                        </div>
+                                        <div class="stat">
+                                            <span class="stat-value">9.2</span>
+                                            <span class="stat-label">Rating</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="performer-card">
+                                <div class="performer-rank">#2</div>
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=60&h=60&fit=crop&crop=face"
+                                    alt="Ahmed Zizo" class="performer-avatar">
+                                <div class="performer-info">
+                                    <h4>Ahmed Zizo</h4>
+                                    <span class="position">Midfielder</span>
+                                    <div class="performer-stats">
+                                        <div class="stat">
+                                            <span class="stat-value">6</span>
+                                            <span class="stat-label">Goals</span>
+                                        </div>
+                                        <div class="stat">
+                                            <span class="stat-value">12</span>
+                                            <span class="stat-label">Assists</span>
+                                        </div>
+                                        <div class="stat">
+                                            <span class="stat-value">8.8</span>
+                                            <span class="stat-label">Rating</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="performer-card">
+                                <div class="performer-rank">#3</div>
+                                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=60&h=60&fit=crop&crop=face"
+                                    alt="Karim Fouad" class="performer-avatar">
+                                <div class="performer-info">
+                                    <h4>Karim Fouad</h4>
+                                    <span class="position">Defender</span>
+                                    <div class="performer-stats">
+                                        <div class="stat">
+                                            <span class="stat-value">2</span>
+                                            <span class="stat-label">Goals</span>
+                                        </div>
+                                        <div class="stat">
+                                            <span class="stat-value">4</span>
+                                            <span class="stat-label">Assists</span>
+                                        </div>
+                                        <div class="stat">
+                                            <span class="stat-value">8.6</span>
+                                            <span class="stat-label">Rating</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Performance Metrics -->
+                    <div class="performance-metrics">
+                        <h3>Detailed Performance Metrics</h3>
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <h4>Attacking Performance</h4>
+                                <div class="metric-value">85%</div>
+                                <div class="metric-bar">
+                                    <div class="metric-fill" style="width: 85%"></div>
+                                </div>
+                                <p>Goals per game: 2.8</p>
+                            </div>
+
+                            <div class="metric-card">
+                                <h4>Defensive Performance</h4>
+                                <div class="metric-value">78%</div>
+                                <div class="metric-bar">
+                                    <div class="metric-fill" style="width: 78%"></div>
+                                </div>
+                                <p>Clean sheets: 8</p>
+                            </div>
+
+                            <div class="metric-card">
+                                <h4>Possession Control</h4>
+                                <div class="metric-value">72%</div>
+                                <div class="metric-bar">
+                                    <div class="metric-fill" style="width: 72%"></div>
+                                </div>
+                                <p>Average possession: 58%</p>
+                            </div>
+
+                            <div class="metric-card">
+                                <h4>Team Cohesion</h4>
+                                <div class="metric-value">91%</div>
+                                <div class="metric-bar">
+                                    <div class="metric-fill" style="width: 91%"></div>
+                                </div>
+                                <p>Team chemistry score</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <script src="../../scripts/main.js"></script>
+        <script src="../../scripts/coach-team.js"></script>
+        <script src="../../scripts/visualization.js"></script>
+        <script src="../../scripts/page-init.js"></script>
+        <script>
+            // Coach performance functionality
+            function exportPerformance() {
+                showNotification('Export functionality will be implemented', 'info');
+            }
+
+            function generateReport() {
+                showNotification('Generate report functionality will be implemented', 'info');
+            }
+
+            // Initialize charts when DOM is loaded
+            document.addEventListener('DOMContentLoaded', function () {
+                // Performance chart
+                const performanceCtx = document.getElementById('performance-chart').getContext('2d');
+                new Chart(performanceCtx, {
+                    type: 'line',
+                    data: {
+                        labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+                        datasets: [{
+                            label: 'Team Performance',
+                            data: [7.5, 8.2, 8.8, 9.1],
+                            borderColor: '#dc2626',
+                            backgroundColor: 'rgba(220, 38, 38, 0.1)',
+                            tension: 0.4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                max: 10
+                            }
+                        }
+                    }
+                });
+
+                // Player distribution chart
+                const distributionCtx = document.getElementById('player-distribution-chart').getContext('2d');
+                new Chart(distributionCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Excellent (9-10)', 'Good (7-8)', 'Average (5-6)', 'Below Average (<5)'],
+                        datasets: [{
+                            data: [8, 12, 4, 1],
+                            backgroundColor: [
+                                '#10b981',
+                                '#3b82f6',
+                                '#f59e0b',
+                                '#ef4444'
+                            ]
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'bottom'
+                            }
+                        }
+                    }
+                });
+            });
+        </script>
+    </body>
+
+</html>

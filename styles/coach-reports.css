@@ -1,0 +1,413 @@
+/* Coach Reports Styles */
+
+.report-types {
+    margin-bottom: 2rem;
+}
+
+.report-types h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 1rem;
+}
+
+.types-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.type-card {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e5e7eb;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.type-card:hover {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+.type-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    color: white;
+}
+
+.type-icon.performance {
+    background: linear-gradient(135deg, #dc2626, #ef4444);
+}
+
+.type-icon.attendance {
+    background: linear-gradient(135deg, #3b82f6, #60a5fa);
+}
+
+.type-icon.training {
+    background: linear-gradient(135deg, #10b981, #34d399);
+}
+
+.type-icon.medical {
+    background: linear-gradient(135deg, #8b5cf6, #a78bfa);
+}
+
+.type-card h4 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 0.5rem;
+}
+
+.type-card p {
+    color: #6b7280;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+}
+
+.type-duration {
+    font-size: 0.75rem;
+    color: #9ca3af;
+}
+
+.recent-reports {
+    margin-bottom: 2rem;
+}
+
+.recent-reports h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 1rem;
+}
+
+.reports-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.report-item {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e5e7eb;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.report-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex: 1;
+}
+
+.report-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    color: white;
+}
+
+.report-icon.performance {
+    background: #dc2626;
+}
+
+.report-icon.attendance {
+    background: #3b82f6;
+}
+
+.report-icon.training {
+    background: #10b981;
+}
+
+.report-icon.medical {
+    background: #8b5cf6;
+}
+
+.report-details h4 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 0.25rem;
+}
+
+.report-details p {
+    color: #6b7280;
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+}
+
+.report-meta {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.75rem;
+    color: #9ca3af;
+}
+
+.report-status {
+    padding: 0.25rem 0.5rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.report-status.completed {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.report-status.processing {
+    background: #fef3c7;
+    color: #d97706;
+}
+
+.report-status.failed {
+    background: #fee2e2;
+    color: #dc2626;
+}
+
+.report-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.action-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #e5e7eb;
+    background: white;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 0.75rem;
+}
+
+.action-btn:hover {
+    background: #f9fafb;
+    border-color: #d1d5db;
+}
+
+.action-btn i {
+    font-size: 0.75rem;
+}
+
+.scheduled-reports {
+    margin-bottom: 2rem;
+}
+
+.scheduled-reports h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 1rem;
+}
+
+.scheduled-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.scheduled-item {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e5e7eb;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.scheduled-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex: 1;
+}
+
+.scheduled-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    background: #f3f4f6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    color: #6b7280;
+}
+
+.scheduled-details h4 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 0.25rem;
+}
+
+.scheduled-details p {
+    color: #6b7280;
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+}
+
+.scheduled-time {
+    font-size: 0.75rem;
+    color: #9ca3af;
+}
+
+.scheduled-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+/* Modal Styles */
+.checkbox-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    font-size: 0.875rem;
+}
+
+.checkbox-container input[type="checkbox"] {
+    display: none;
+}
+
+.checkmark {
+    width: 18px;
+    height: 18px;
+    border: 2px solid #d1d5db;
+    border-radius: 4px;
+    position: relative;
+    transition: all 0.2s;
+}
+
+.checkbox-container input[type="checkbox"]:checked + .checkmark {
+    background: #dc2626;
+    border-color: #dc2626;
+}
+
+.checkbox-container input[type="checkbox"]:checked + .checkmark::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 0.75rem;
+    font-weight: bold;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .types-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .report-item {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: stretch;
+    }
+
+    .report-info {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .report-actions {
+        justify-content: center;
+    }
+
+    .scheduled-item {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: stretch;
+    }
+
+    .scheduled-info {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .scheduled-actions {
+        justify-content: center;
+    }
+}
+
+/* Animation for type cards */
+.type-card {
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Hover effects */
+.action-btn:hover {
+    background: #dc2626;
+    color: white;
+    border-color: #dc2626;
+}
+
+.type-card:hover .type-icon {
+    transform: scale(1.1);
+    transition: transform 0.2s ease;
+}
+
+/* Status indicators */
+.report-item.processing {
+    border-left: 4px solid #f59e0b;
+}
+
+.report-item.completed {
+    border-left: 4px solid #10b981;
+}
+
+.report-item.failed {
+    border-left: 4px solid #ef4444;
+}
+
+.scheduled-item.active {
+    border-left: 4px solid #3b82f6;
+}
+
+.scheduled-item.paused {
+    border-left: 4px solid #9ca3af;
+    opacity: 0.7;
+}
